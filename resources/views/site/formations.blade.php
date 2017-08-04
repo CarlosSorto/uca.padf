@@ -14,5 +14,4 @@
             </div>
         </div>
     </section>
-    {{-- {{ $page->content('acerca-del-portal') }} --}}
 @endsection

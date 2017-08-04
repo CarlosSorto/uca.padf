@@ -30,7 +30,14 @@ $router->get('repositorio-ddhh', 'SiteController@repositories')
        ->name('repositories');
 $router->get('organizaciones-afiliadas', 'SiteController@organizations')
        ->name('organizations');
-$router->get('formacion', 'SiteController@formations')
+$router->get('formaciones', 'SiteController@formations')
        ->name('formations');
 $router->get('contactenos', 'SiteController@contact')
        ->name('contact');
+
+/*
+ * Details Pages
+ */
+
+ $router->get('formaciones/{formation}', 'SiteController@formation')
+        ->name('formation');
