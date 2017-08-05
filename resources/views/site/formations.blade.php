@@ -14,4 +14,5 @@
             </div>
         </div>
     </section>
+    {!! $content->get('formacion_introduccion') !!}
 @endsection

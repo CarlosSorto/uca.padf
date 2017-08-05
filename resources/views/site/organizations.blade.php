@@ -14,5 +14,5 @@
             </div>
         </div>
     </section>
-    {{-- {{ $page->content('acerca-del-portal') }} --}}
+    {!! $content->get('organizaciones_introduccion') !!}
 @endsection
