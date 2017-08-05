@@ -31,81 +31,60 @@
                 </div>
         </div>
     </section>
-    <section id="documents" class="pv4">
-        <div class="img-cover relative dn db-l">
-            <img src="images/documents.jpg" alt="" class="w-100 h5">
-            <div class="img-overlay"></div>
-            <h1 class="white text-overlay">Nueva Documentación <br>Disponible</h1>
-        </div>
+    <section id="documents">
+        {!!$content->get('new_documents') !!}
 
         <h1 class="text--blue db dn-l mh5 f2 fw4">Nueva Documentación Disponible</h1>
 
         <div class="mw9-l mw7 center ph3-ns mt5">
             <div class="cf ph2-ns">
-                <div class="fl w-50-m w-third-ns w-100 ph5">
-                    <div class="relative pl5">
-                        <span class="icon-pdf f1 silver ma1 absolute top-0 left-0"></span>
-                        <h3 class="f4 fw5 text--blue">Visión sociológica del hombre latinoamericano</h3>
-                        <p class="silver f6">Ellacuría, Ignacio, 1930-1989</p>
+                @foreach ($documents as $document)
+                    <div class="fl w-50-m w-third-ns w-100 ph5">
+                        <div class="relative pl5">
+                            <span class="icon-pdf f1 silver ma1 absolute top-0 left-0"></span>
+                            <h3 class="f4 fw5 text--blue">{{ $document->title }}</h3>
+                            <p class="silver f6">{{ $document->author }}, {{ $document->published_date }}</p>
+                        </div>
+                        <div class="mv4">
+                            <a href="{{ route('document', $document->id) }}" class="f5 fw4 db tc bo--purple link ba bw1 pv2 text--purple hover-bg--purple hover-white bg-animate">Ver más</a>
+                        </div>
                     </div>
-                    <div class="mv4">
-                        <a href="#" class="f5 fw4 db tc bo--purple link ba bw1 pv2 text--purple hover-bg--purple hover-white bg-animate">Ver más</a>
-                    </div>
-                </div>
-                <div class="fl w-50-m w-third-ns w-100 ph5">
-                    <div class="relative pl5">
-                        <span class="icon-pdf f1 silver ma1 absolute top-0 left-0"></span>
-                        <h3 class="f4 fw5 text--blue">Visión sociológica del hombre latinoamericano</h3>
-                        <p class="silver f6">Ellacuría, Ignacio, 1930-1989</p>
-                    </div>
-                    <div class="mv4">
-                        <a href="#" class="f5 fw4 db tc bo--purple link ba bw1 pv2 text--purple hover-bg--purple hover-white bg-animate">Ver más</a>
-                    </div>
-                </div>
-                <div class="fl w-50-m w-third-ns w-100 ph5">
-                    <div class="relative pl5">
-                        <span class="icon-pdf f1 silver ma1 absolute top-0 left-0"></span>
-                        <h3 class="f4 fw5 text--blue">Visión sociológica del hombre latinoamericano</h3>
-                        <p class="silver f6">Ellacuría, Ignacio, 1930-1989</p>
-                    </div>
-                    <div class="mv4">
-                        <a href="#" class="f5 fw4 db tc bo--purple link ba bw1 pv2 text--purple hover-bg--purple hover-white bg-animate">Ver más</a>
-                    </div>
-                </div>
-                <div class="fl w-50-m w-third-ns w-100 ph5">
-                    <div class="relative pl5">
-                        <span class="icon-pdf f1 silver ma1 absolute top-0 left-0"></span>
-                        <h3 class="f4 fw5 text--blue">Visión sociológica del hombre latinoamericano</h3>
-                        <p class="silver f6">Ellacuría, Ignacio, 1930-1989</p>
-                    </div>
-                    <div class="mv4">
-                        <a href="#" class="f5 fw4 db tc bo--purple link ba bw1 pv2 text--purple hover-bg--purple hover-white bg-animate">Ver más</a>
-                    </div>
-                </div>
-                <div class="fl w-50-m w-third-ns w-100 ph5">
-                    <div class="relative pl5">
-                        <span class="icon-pdf f1 silver ma1 absolute top-0 left-0"></span>
-                        <h3 class="f4 fw5 text--blue">Visión sociológica del hombre latinoamericano</h3>
-                        <p class="silver f6">Ellacuría, Ignacio, 1930-1989</p>
-                    </div>
-                    <div class="mv4">
-                        <a href="#" class="f5 fw4 db tc bo--purple link ba bw1 pv2 text--purple hover-bg--purple hover-white bg-animate">Ver más</a>
-                    </div>
-                </div>
-                <div class="fl w-50-m w-third-ns w-100 ph5">
-                    <div class="relative pl5">
-                        <span class="icon-pdf f1 silver ma1 absolute top-0 left-0"></span>
-                        <h3 class="f4 fw5 text--blue">Visión sociológica del hombre latinoamericano</h3>
-                        <p class="silver f6">Ellacuría, Ignacio, 1930-1989</p>
-                    </div>
-                    <div class="mv4">
-                        <a href="#" class="f5 fw4 db tc bo--purple link ba bw1 pv2 text--purple hover-bg--purple hover-white bg-animate">Ver más</a>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
         <div class="tc mb5 w-70 center">
-            <a href="repositorio-ddhh.html" class="f4 fw4 db tc center link ba bw1 white bo--blue text--blue mt5 pv3 w-30-ns w-100 hover-white hover-bg--blue">Ver más documentos</a>
+            <a href="{{ route('repositories') }}" class="f4 fw4 db tc center link ba bw1 white bo--blue text--blue mt5 pv3 w-30-ns w-100 hover-white hover-bg--blue">Ver más documentos</a>
+        </div>
+    </section>
+    <section class="bg--light-blue" id="organizations">
+        <div class="pv5 w-70-l w-80 center">
+            <h1 class="text--blue fw4 f2 mh3">Organizaciones Recientemente <br>
+                Incorporadas</h1>
+                <div class="owl-carousel owl-theme" id="owl-organization">
+                    @foreach ($organizations as $organization)
+                        <div class="ba bg-white b--black-10 mv4 w-100 mw6 center pa4 h6 shadow-5">
+                            <a href="{{ route('organization', $organization->id) }}">
+                                <img src="{{ $organization->image }}" alt="" width="100%">
+                            </a>
+                            <h4 class="fw6 text--blue f4 h3">{{ $organization->name }}</h4>
+                            <p class="silver lh-copy f6 h3 mb4">{{ $organization->description }}</p>
+                            <p class="text--blue f5"><span class="icon-phone mr2"></span>{{ $organization->phone }}</p>
+                            <p class="text--blue f5"><span class="icon-web mr2"></span>
+                                <a href="{{ $organization->website }}" target="_blank" class="link text--blue">
+                                    {{ $organization->website }}
+                                </a>
+                            </p>
+                            <div class="mt4 cf center ">
+                                @foreach ($organization->work_areas()->get() as $work_area)
+                                    <span class="fl tc pv2 w-50 w-third-ns f6 text--light-blue-50">{{ $work_area->name }}</span>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+                <div class="tc">
+                    <a href="{{ route('organizations') }}" class="f4 fw4 db tc center link ba bw1 white bo--blue text--blue mt5 pv3 w-100 w-80-m w-40-ns hover-white hover-bg--blue">Ver listado completo</a>
+                </div>
         </div>
     </section>
 @endsection

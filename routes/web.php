@@ -41,3 +41,7 @@ $router->get('contactenos', 'SiteController@contact')
 
  $router->get('formaciones/{formation}', 'SiteController@formation')
         ->name('formation');
+ $router->get('repositorio-ddhh/{document}', 'SiteController@document')
+        ->name('document');
+ $router->get('organizaciones-afiliadas/{organization}', 'SiteController@organization')
+        ->name('organization');

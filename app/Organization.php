@@ -11,7 +11,17 @@ class Organization extends Model
         return $this->belongsTo(Country::class);
     }
 
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+
     public function classificationId()
+    {
+        return $this->belongsTo(Classification::class);
+    }
+
+    public function classification()
     {
         return $this->belongsTo(Classification::class);
     }
