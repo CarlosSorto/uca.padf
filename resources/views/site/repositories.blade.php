@@ -15,4 +15,5 @@
         </div>
     </section>
     {!! $content->get('repositorio_ddhh_introduccion') !!}
+    <documents></documents>
 @endsection

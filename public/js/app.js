@@ -797,7 +797,7 @@ window.Vue = __webpack_require__(35);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example', __webpack_require__(36));
+Vue.component('documents', __webpack_require__(36));
 
 var app = new Vue({
   el: '#app'
@@ -41800,9 +41800,9 @@ var Component = __webpack_require__(37)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/home/cesar/Code/iw/PADF/uca.padf/resources/assets/js/components/Example.vue"
+Component.options.__file = "/home/cesar/Code/iw/PADF/uca.padf/resources/assets/js/components/Documents.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] Example.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] Documents.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -41811,9 +41811,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-9b4bd550", Component.options)
+    hotAPI.createRecord("data-v-486e7bb4", Component.options)
   } else {
-    hotAPI.reload("data-v-9b4bd550", Component.options)
+    hotAPI.reload("data-v-486e7bb4", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -41942,11 +41942,62 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            documents: []
+        };
+    },
     mounted: function mounted() {
         console.log('Component mounted.');
+        this.get();
+    },
+
+    methods: {
+        get: function get() {
+            var _this = this;
+
+            axios.get('/api/documents').then(function (response) {
+                console.log(response.data.data);
+                _this.documents = response.data.data;
+            });
+        }
     }
+
 });
 
 /***/ }),
@@ -41954,27 +42005,162 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _vm._m(0)
+  return _c('section', {
+    staticClass: "pv4",
+    attrs: {
+      "id": "search"
+    }
+  }, [_c('div', {
+    staticClass: "center w-60-l w-80"
+  }, [_c('h1', {
+    staticClass: "tc text--blue fw4 f2"
+  }, [_vm._v("Inicia tu búsqueda")]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "cf"
+  }, _vm._l((_vm.documents), function(document) {
+    return _c('div', {
+      staticClass: "fl w-100 w-50-m w-third-l ph2"
+    }, [_c('div', {
+      staticClass: "ba bg-white b--black-10 mv4 ph3 pv2 w-100 mw6 h6 shadow-5"
+    }, [_c('div', {
+      staticClass: "relative pl5"
+    }, [_c('span', {
+      staticClass: "icon-pdf f1 silver ma1 absolute top-0 left-0"
+    }), _vm._v(" "), _c('h3', {
+      staticClass: "f5 fw5 text--blue"
+    }, [_vm._v(_vm._s(document.title))]), _vm._v(" "), _c('p', {
+      staticClass: "silver f6"
+    }, [_vm._v(_vm._s(document.author) + ", " + _vm._s(document.published_date))])]), _vm._v(" "), _c('div', {
+      staticClass: "mv4"
+    }, [_c('a', {
+      staticClass: "f5 fw4 db tc bo--purple link ba bw1 pv2 text--purple hover-bg--purple hover-white bg-animate",
+      attrs: {
+        "href": '/repositorio-ddhh/' + document.id
+      }
+    }, [_vm._v("Ver más")])])])])
+  })), _vm._v(" "), _vm._m(1)])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('input', {
+    staticClass: "pa2 input-reset ba bg-transparent b--silver silver w-30-l w-100 mh0",
+    attrs: {
+      "type": "text",
+      "placeholder": "Palabra Clave"
+    }
+  }), _vm._v(" "), _c('select', {
+    staticClass: "pa2 input-reset ba bg-transparent b--silver silver w-30-l w-100 text--light-blue-50 mh0",
+    attrs: {
+      "name": "",
+      "id": ""
+    }
+  }, [_c('option', {
+    staticClass: "text--light-blue-50",
+    attrs: {
+      "value": ""
+    }
+  }, [_vm._v("Selecciones un País")]), _vm._v(" "), _c('option', {
+    staticClass: "text--light-blue-50",
+    attrs: {
+      "value": "SV"
+    }
+  }, [_vm._v("El Salvador")]), _vm._v(" "), _c('option', {
+    staticClass: "text--light-blue-50",
+    attrs: {
+      "value": "HN"
+    }
+  }, [_vm._v("Honduras")]), _vm._v(" "), _c('option', {
+    staticClass: "text--light-blue-50",
+    attrs: {
+      "value": "GT"
+    }
+  }, [_vm._v("Guatemala")]), _vm._v(" "), _c('option', {
+    staticClass: "text--light-blue-50",
+    attrs: {
+      "value": "CR"
+    }
+  }, [_vm._v("Costa Rica")])]), _vm._v(" "), _c('select', {
+    staticClass: "pa2 input-reset ba bg-transparent b--silver silver w-30-l w-100 mb2 text--light-blue-50 mh0",
+    attrs: {
+      "name": "",
+      "id": ""
+    }
+  }, [_c('option', {
+    staticClass: "text--light-blue-50",
+    attrs: {
+      "value": ""
+    }
+  }, [_vm._v("Año de Publicación")]), _vm._v(" "), _c('option', {
+    staticClass: "text--light-blue-50",
+    attrs: {
+      "value": "1"
+    }
+  }, [_vm._v("2015")]), _vm._v(" "), _c('option', {
+    staticClass: "text--light-blue-50",
+    attrs: {
+      "value": "2"
+    }
+  }, [_vm._v("2016")]), _vm._v(" "), _c('option', {
+    staticClass: "text--light-blue-50",
+    attrs: {
+      "value": "3"
+    }
+  }, [_vm._v("2017")])]), _vm._v(" "), _c('a', {
+    staticClass: "f5 bo--purple fw4 db link ba bw1 pv2-l ph3-l text--purple hover-bg--purple hover-white bg-animate tc di-l",
+    attrs: {
+      "href": "#"
+    }
+  }, [_c('span', {
+    staticClass: "icon-search"
+  })])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    staticClass: "container"
-  }, [_c('div', {
-    staticClass: "row"
-  }, [_c('div', {
-    staticClass: "col-md-8 col-md-offset-2"
-  }, [_c('div', {
-    staticClass: "panel panel-default"
-  }, [_c('div', {
-    staticClass: "panel-heading"
-  }, [_vm._v("Example Component")]), _vm._v(" "), _c('div', {
-    staticClass: "panel-body"
-  }, [_vm._v("\n                    I'm an example component!\n                ")])])])])])
+    staticClass: "center tc"
+  }, [_c('ul', {
+    staticClass: "center tc dib list"
+  }, [_c('li', {
+    staticClass: "dib tc mh2"
+  }, [_c('a', {
+    staticClass: "link",
+    attrs: {
+      "href": ""
+    }
+  }, [_c('span', {
+    staticClass: "icon-left-arrow f4 silver hover-text--purple"
+  })])]), _vm._v(" "), _c('li', {
+    staticClass: "dib tc mh2"
+  }, [_c('a', {
+    staticClass: "link silver hover-text--purple f4",
+    attrs: {
+      "href": ""
+    }
+  }, [_vm._v("1")])]), _vm._v(" "), _c('li', {
+    staticClass: "dib tc mh2"
+  }, [_c('a', {
+    staticClass: "link silver hover-text--purple f4",
+    attrs: {
+      "href": ""
+    }
+  }, [_vm._v("2")])]), _vm._v(" "), _c('li', {
+    staticClass: "dib tc mh2"
+  }, [_c('a', {
+    staticClass: "link silver hover-text--purple f4",
+    attrs: {
+      "href": ""
+    }
+  }, [_vm._v("3")])]), _vm._v(" "), _c('li', {
+    staticClass: "dib tc mh2"
+  }, [_c('a', {
+    staticClass: "link",
+    attrs: {
+      "href": ""
+    }
+  }, [_c('span', {
+    staticClass: "icon-right-arrow f4 text--blue hover-text--purple"
+  })])])])])
 }]}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-9b4bd550", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-486e7bb4", module.exports)
   }
 }
 
