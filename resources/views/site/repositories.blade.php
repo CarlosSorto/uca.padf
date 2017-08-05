@@ -14,5 +14,5 @@
             </div>
         </div>
     </section>
-    {{-- {{ $page->content('acerca-del-portal') }} --}}
+    {!! $content->get('repositorio_ddhh_introduccion') !!}
 @endsection

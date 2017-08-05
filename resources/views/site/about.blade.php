@@ -14,5 +14,9 @@
             </div>
         </div>
     </section>
-    {{-- {{ $page->content('acerca-del-portal') }} --}}
+    {!! $content->get('acerca_del_portal_iniciativa') !!}
+    {!! $content->get('acerca_del_portal_porque_surgio') !!}
+    {!! $content->get('acerca_del_portal_beneficios') !!}
+    {!! $content->get('acerca_del_portal_organizaciones') !!}
+    {!! $content->get('acerca_del_portal_galeria') !!}
 @endsection
