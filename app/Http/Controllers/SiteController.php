@@ -46,6 +46,11 @@ class SiteController extends Controller
         return view('site.details.document', compact('document'));
     }
 
+    public function create_document()
+    {
+        return view('site.forms.document');
+    }
+
     public function organizations()
     {
         return view('site.organizations');
@@ -56,6 +61,11 @@ class SiteController extends Controller
         return view('site.details.organization', compact('organization'));
     }
 
+    public function create_organization()
+    {
+        return view('site.forms.organization');
+    }
+
     public function formations()
     {
         return view('site.formations');
@@ -64,6 +74,11 @@ class SiteController extends Controller
     public function formation(Formation $formation)
     {
         return view('site.details.formation', compact('formation'));
+    }
+
+    public function create_formation()
+    {
+        return view('site.forms.formation');
     }
 
     public function contact()

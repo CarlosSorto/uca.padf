@@ -24,7 +24,7 @@
             </div>
             <div class="cf w-90 mt4">
                 <div class="fl w-60 dn db-l pa2">
-                    <div id="map" style="width: 600px; height: 400px;"></div>
+                    <div id="vmap" style="width: 600px; height: 400px;"></div>
                 </div>
                 <div class="fl w-100 w-40-l pa2 shadow-4" v-for="organization in organizations">
                     <div class="relative pl7-l pl6 mb4 w-100 tl">

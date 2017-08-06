@@ -24,5 +24,22 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
     <script src="{{ asset('js/vendor.js') }}"></script>
+    <script>
+          function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+              zoom: 15,
+              center: {lat: 13.681189, lng: -89.235058}
+            });
+
+            var marker = new google.maps.Marker({
+              position: map.getCenter(),
+              icon: './storage/settings/bWyKxsQdWBVnkJlXGKIVNosBrOwE7p2UiGDT5tJw.png',
+              map: map
+            });
+          }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSyxQcRGp-u1hiUl7iAu71dEBhr4Acz2s&callback=initMap">
+    </script>
 </body>
 </html>

@@ -1,4 +1,5 @@
 require('./bootstrap');
+// require('./site');
 
 window.Vue = require('vue');
 window.vueFilter = require('vue-filter');

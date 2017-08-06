@@ -45,3 +45,14 @@ $router->get('contactenos', 'SiteController@contact')
         ->name('document');
  $router->get('organizaciones-afiliadas/{organization}', 'SiteController@organization')
         ->name('organization');
+
+/*
+ * Form Pages
+ */
+
+ $router->get('formacion/crear', 'SiteController@create_formation')
+        ->name('create.formation');
+ $router->get('organizacion/crear', 'SiteController@create_organization')
+        ->name('create.organization');
+ $router->get('documento/crear', 'SiteController@create_document')
+        ->name('create.document');
