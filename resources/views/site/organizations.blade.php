@@ -15,4 +15,5 @@
         </div>
     </section>
     {!! $content->get('organizaciones_introduccion') !!}
+    <organizations></organizations>
 @endsection

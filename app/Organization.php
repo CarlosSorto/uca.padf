@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Iw\Api\Traits\Models\Searcheable;
 
 class Organization extends Model
 {
+    use Searcheable;
+
     public function countryId()
     {
         return $this->belongsTo(Country::class);
