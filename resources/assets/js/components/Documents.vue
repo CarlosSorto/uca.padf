@@ -20,28 +20,54 @@
                 <a href="#" class="f5 bo--purple fw4 db link ba bw1 pv2-l ph3-l text--purple hover-bg--purple hover-white bg-animate tc di-l"><span class="icon-search"></span></a>
             </div>
             <div class="cf">
-                <div class="fl w-100 w-50-m w-third-l ph2" v-for="document in documents">
-                    <div class="ba bg-white b--black-10 mv4 ph3 pv2 w-100 mw6 h6 shadow-5">
-                        <div class="relative pl5">
-                            <span class="icon-pdf f1 silver ma1 absolute top-0 left-0"></span>
-                            <h3 class="f5 fw5 text--blue">{{ document.title }}</h3>
-                            <p class="silver f6">{{ document.author }}, {{ document.published_date }}</p>
-                        </div>
-                        <div class="mv4">
-                            <a :href="'/repositorio-ddhh/' + document.id" class="f5 fw4 db tc bo--purple link ba bw1 pv2 text--purple hover-bg--purple hover-white bg-animate">Ver más</a>
+                <div class="tr right pt4 pr3">
+                    <a class="link" :class="grid ? 'text--blue' : 'light-silver'" @click="toggle('grid')"><span class="icon-grid f4 pa2"></span></a>
+                    <a class="link" :class="list ? 'text--blue' : 'light-silver'" @click="toggle('list')"><span class="icon-list f4"></span></a>
+                </div>
+                <transition name="slide-fade">
+                    <div v-for="document in documents" v-show="grid">
+                        <div class="fl w-100 w-50-m w-third-l ph2">
+                            <div class="ba bg-white b--black-10 mv4 ph3 pv2 w-100 mw6 h6 shadow-5">
+                                <div class="relative pl5">
+                                    <span class="icon-pdf f1 silver ma1 absolute top-0 left-0"></span>
+                                    <h3 class="f5 fw5 text--blue">{{ document.title }}</h3>
+                                    <p class="silver f6">{{ document.author }}, {{ document.published_date }}</p>
+                                </div>
+                                <div class="mv4">
+                                    <a :href="'/repositorio-ddhh/' + document.id" class="f5 fw4 db tc bo--purple link ba bw1 pv2 text--purple hover-bg--purple hover-white bg-animate">Ver más</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </transition>
+                <transition name="slide-fade">
+                    <div v-for="document in documents" v-show="list">
+                        <div class="ba bg-white b--black-10 mv4 ph3 pv2 w-100 h6 shadow-5">
+                            <div class="relative pl5">
+                                <span class="icon-pdf f1 silver ma1 absolute top-0 left-0"></span>
+                                <h3 class="f5 fw5 text--blue">{{ document.title }}</h3>
+                                <p class="silver f6">{{ document.author }}, {{ document.published_date }}</p>
+                            </div>
+                            <div class="mv4">
+                                <a :href="'/repositorio-ddhh/' + document.id" class="f5 fw4 db tc bo--purple link ba bw1 pv2 text--purple hover-bg--purple hover-white bg-animate">Ver más</a>
+                            </div>
+                        </div>
+                    </div>
+                </transition>
             </div>
             <div class="center tc">
-                <ul class="center tc dib list">
-                    <li class="dib tc mh2"><a href="" class="link"><span class="icon-left-arrow f4 silver hover-text--purple"></span></a></li>
-                    <li class="dib tc mh2"><a href="" class="link silver hover-text--purple f4">1</a></li>
-                    <li class="dib tc mh2"><a href="" class="link silver hover-text--purple f4">2</a></li>
-                    <li class="dib tc mh2"><a href="" class="link silver hover-text--purple f4">3</a></li>
-                    <li class="dib tc mh2"><a href="" class="link"><span class="icon-right-arrow f4 text--blue hover-text--purple"></span></a></li>
-                </ul>
-                </div>
+                <paginate   :page-count="parseInt(meta.total)"
+                            :page-range="6"
+                            :next-class="'dib tc mh2'"
+                            :next-link-class="'link'"
+                            :prev-class="'dib tc mh2'"
+                            :prev-link-class="'link'"
+                            :page-link-class="'link silver hover-text--purple f4'"
+                            :page-class="'dib tc mh2'"
+                            :container-class="'center tc dib list'">
+                    <span slot="prevContent" class="icon-left-arrow f4 silver hover-text--purple"></span>
+                    <span slot="nextContent" class="icon-right-arrow f4 text--blue hover-text--purple"></span>
+                </paginate>
             </div>
         </div>
     </section>
@@ -51,21 +77,47 @@
     export default {
         data() {
             return {
-                documents: []
+                documents: [],
+                meta: [],
+                grid: true,
+                list: false,
             }
         },
         mounted() {
-            console.log('Component mounted.')
             this.get()
         },
         methods: {
             get() {
                 axios.get('/api/documents').then((response) => {
-                    console.log(response.data.data);
                     this.documents = response.data.data
+                    this.meta = response.data.meta
                 });
+            },
+            toggle(type) {
+                if (type == 'grid') {
+                    this.grid = true
+                    this.list = false
+                }
+                else if(type == 'list') {
+                    this.grid = false
+                    this.list = true
+                }
             }
         }
-
     }
 </script>
+<style media="screen">
+    /* Enter and leave animations can use different */
+    /* durations and timing functions.              */
+    .slide-fade-enter-active {
+        transition: all .3s ease;
+    }
+    .slide-fade-leave-active {
+        transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+    }
+    .slide-fade-enter, .slide-fade-leave-to
+    /* .slide-fade-leave-active below version 2.1.8 */ {
+        transform: translateX(10px);
+        opacity: 0;
+    }
+</style>
