@@ -1,5 +1,6 @@
 <?php
 
 $router->namespace('API')->group(function ($router) {
-    $router->apiResource('documents', 'DocumentsController', ['only'=> ['index']]);
+    $router->resource('documents', 'DocumentsController', ['only'=> ['index']]);
+    $router->resource('formations', 'FormationsController', ['only'=> ['index']]);
 });

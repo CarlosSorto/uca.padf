@@ -3,9 +3,30 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Iw\Api\Traits\Models\Searcheable;
 
 class Formation extends Model
 {
+    use Searcheable;
+
+    protected static $searcheable_fields = [
+      'id' => [
+        'type'=> 'integer',
+      ],
+      'active' => [
+        'type'=> 'integer',
+      ],
+      'title' => [
+        'type'=> 'string',
+      ],
+      'country_id' => [
+        'type'=> 'integer',
+      ],
+      'description' => [
+        'type'=> 'string',
+      ],
+    ];
+
     public function modalityId()
     {
         return $this->belongsTo(Modality::class);

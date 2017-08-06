@@ -19,7 +19,7 @@ class Document extends Model
       'title' => [
         'type'=> 'string',
       ],
-      'author_name' => [
+      'author' => [
         'type'=> 'string',
       ],
       'country_id' => [
@@ -28,25 +28,10 @@ class Document extends Model
       'organization_id' => [
         'type'=> 'integer',
       ],
-      'published_at' => [
-        'type'=> 'datetime',
+      'published_date' => [
+        'type'=> 'date',
       ],
       'description' => [
-        'type'=> 'string',
-      ],
-      'keywords' => [
-        'type'=> 'string',
-      ],
-      'content' => [
-        'type'=> 'string',
-      ],
-      'applicant_name' => [
-        'type'=> 'string',
-      ],
-      'applicant_institution_name' => [
-        'type'=> 'string',
-      ],
-      'applicant_charge' => [
         'type'=> 'string',
       ],
     ];
