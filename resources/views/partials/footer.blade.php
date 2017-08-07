@@ -5,10 +5,10 @@
                 {!! $content->get('links_footer') !!}
             </div>
             <div class="fl w-50 w-25-ns w-50-m pa2 mt5">
-                <img src="{{ config('app.url') .'/'. app('voyager')->setting('logo_usaid') }}" alt="">
+                <img src="{{ config('app.url') .'/storage/'. app('voyager')->setting('logo_usaid') }}" alt="">
             </div>
             <div class="fl w-50 w-25-ns pa2 w-50-m mt5">
-                <img src="{{ config('app.url') .'/'. app('voyager')->setting('logo_padf') }}" alt="">
+                <img src="{{ config('app.url') .'/storage/'. app('voyager')->setting('logo_padf') }}" alt="">
             </div>
         </div>
         <div class="dt w-100 center tc">
