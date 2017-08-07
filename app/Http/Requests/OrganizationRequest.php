@@ -13,7 +13,7 @@ class OrganizationRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,17 @@ class OrganizationRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name'              => ['required'],
+            'phone'             => ['required'],
+            'email'             => ['required', 'email'],
+            'description'       => ['required'],
+            'long_description'  => ['required'],
+            'classification_id' => ['required', 'exists:classifications,id'],
+            'country_id'        => ['required', 'exists:countries,id'],
+            'image'             => ['required', 'image'],
+            'applicant'         => ['required'],
+            'institution'       => ['required'],
+            'position'          => ['required'],
         ];
     }
 }

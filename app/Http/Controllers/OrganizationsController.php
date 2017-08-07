@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Request\OrganizationRequest;
+use App\Http\Requests\OrganizationRequest;
 use App\Organization;
 use Illuminate\Http\Request;
 
@@ -33,7 +33,13 @@ class OrganizationsController extends Controller
      */
     public function store(OrganizationRequest $request)
     {
-        dd($request->all());
+        $this->organization->fill($request->all());
+
+        if ($this->organization->save()) {
+            return redirect(route('organizations'));
+        }
+
+        return redirect()->back();
     }
 
     /**

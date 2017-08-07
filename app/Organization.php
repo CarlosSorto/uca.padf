@@ -9,6 +9,23 @@ class Organization extends Model
 {
     use Searcheable;
 
+    protected $fillable= [
+        'name',
+        'phone',
+        'email',
+        'description',
+        'long_description',
+        'classification_id',
+        'country_id',
+        'website',
+        'latitude',
+        'longitude',
+        'image',
+        'applicant',
+        'institution',
+        'position',
+    ];
+
     public function countryId()
     {
         return $this->belongsTo(Country::class);
