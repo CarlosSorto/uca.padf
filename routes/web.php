@@ -1,26 +1,13 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-Route::get('/', function () {
+$router->get('/', function () {
     return view('welcome');
 });
 
 
-Route::group(['prefix' => 'admin'], function () {
+$router->group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
-
-Auth::routes();
 
 $router->get('/', 'SiteController@home')
        ->name('home');
@@ -56,3 +43,6 @@ $router->get('contactenos', 'SiteController@contact')
         ->name('create.organization');
  $router->get('documento/crear', 'SiteController@create_document')
         ->name('create.document');
+
+$router->post('document', 'DocumentsController@store')->name('document.store');
+$router->post('organization', 'OrganizationsController@store')->name('organization.store');

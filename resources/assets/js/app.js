@@ -1,5 +1,8 @@
 require('./bootstrap');
-// require('./site');
+window.Pikaday = require('pikaday');
+require('pikaday/css/pikaday.css');
+
+require('./site');
 
 window.Vue = require('vue');
 window.vueFilter = require('vue-filter');

@@ -9,6 +9,22 @@ class Document extends Model
 {
     use Searcheable;
 
+    protected $fillable = [
+        'title',
+        'author',
+        'description',
+        'long_description',
+        'published_date',
+        'country_id',
+        'organization_id',
+        'topics',
+        'keywords',
+        'file',
+        'name_applicant',
+        'institution',
+        'position',
+    ];
+
     protected static $searcheable_fields = [
       'id' => [
         'type'=> 'integer',

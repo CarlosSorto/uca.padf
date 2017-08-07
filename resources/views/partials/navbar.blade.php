@@ -25,9 +25,9 @@
 <header class="dn-l db w-100 fixed top-0 z-2">
     <nav class="bg-white ph3 pv1 shadow-1">
         <div class="dtc w-100">
-            <a class="link gray dt" href="index.html" title="Inicio">
+            <a class="link gray dt" href="/" title="Inicio">
                 <div class="dtc w3">
-                    <img src="{{ app('voyager')->setting('logo') }}" alt="Logo" class="db w-100">
+                    <img src="{{ config('app.url') .'/'.  app('voyager')->setting('logo') }}" alt="Logo" class="db w-100">
                 </div>
                 <div class="dtc v-top pl2 pt3 mw5">
                     <h4 class="ttu fw6 f6">
@@ -38,14 +38,6 @@
                     <div class="cf">
                         <ul class="list fl w-80">
                             {{ menu('responsive', 'partials.menu.responsive') }}
-                            {{-- <li class="mv4 bb b--white pb4"><a href="/" class="link f3 white">Inicio</a></li>
-                            <li class="mv4 bb b--white pb4"><a href="acerca-del-portal.html" class="link f3 white">Acerca del Portal</a></li>
-                            <li class="mv4 bb b--white pb4"><a href="repositorio-ddhh.html" class="link f3 white">Repositorio DDHH</a></li>
-                            <li class="mv4 bb b--white pb4"><a href="organizaciones.html" class="link f3 white">Organizaciones Afiliadas</a></li>
-                            <li class="mv4 bb b--white pb4"><a href="formacion-html" class="link f3 white">Formación</a></li>
-                            <li class="mv4 bb b--white pb4"><a target="_blank" href="http://foro.uca.iw.sv" class="link f3 white">Comunidad de Práctica</a></li>
-                            <li class="mv4 bb b--white pb4"><a href="contactenos.html" class="link f3 white">Contáctenos</a></li>
-                            <li class="mv4 pb4"><a href="" class="link f3 white">Buscar</a></li> --}}
                         </ul>
                         <div class="fl w-20 pa4">
                             <a href="#" id="cancel" class="link silver"><span class="icon-cancel f3 fw6 silver"></span></a>
