@@ -3,8 +3,8 @@
 @section('content')
     <section class="pt6-l pt5">
         <div class="img-cover relative mt3">
-            <img src="{{ $cover->get('contactenos')->image }}"
-                 alt=""
+            <img src="storage/{{ $cover->get('contactenos')->image }}"
+                 alt="Contactenos"
                  width="100%"
                  class="h-75">
             <div class="img-overlay h-75"></div>
