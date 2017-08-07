@@ -27,7 +27,7 @@
         <div class="dtc w-100">
             <a class="link gray dt" href="/" title="Inicio">
                 <div class="dtc w3">
-                    <img src="{{ config('app.url') .'/'.  app('voyager')->setting('logo') }}" alt="Logo" class="db w-100">
+                    <img src="{{ config('app.url') .'/storage/'.  app('voyager')->setting('logo') }}" alt="Logo" class="db w-100">
                 </div>
                 <div class="dtc v-top pl2 pt3 mw5">
                     <h4 class="ttu fw6 f6">
