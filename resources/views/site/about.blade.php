@@ -17,6 +17,33 @@
     {!! $content->get('acerca_del_portal_iniciativa') !!}
     {!! $content->get('acerca_del_portal_porque_surgio') !!}
     {!! $content->get('acerca_del_portal_beneficios') !!}
-    {!! $content->get('acerca_del_portal_organizaciones') !!}
-    {!! $content->get('acerca_del_portal_galeria') !!}
+    <section class="bg--light-blue pv4">
+        {!! $content->get('acerca_del_portal_organizaciones') !!}
+        <div class="cf w-60-l w-80 center tc">
+            @foreach ($founders as $founder)
+                <div class="fl w-20-l w-50-m w-100 pa2">
+                    <div class="ba bg-white b--black-10 mv4 w-100 mw6 pa4 h6 shadow-5">
+                        <img src="storage/{{ $founder->image }}" alt="{{ $founder->name }}" class="w-100">
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </section>
+    <section class="pv4">
+       <div class="center w-60-l w-80">
+           <h1 class="tc text--blue fw4 f2">Galería</h1>
+           <div class="owl-carousel owl-theme center" id="owl-galery" data-slider-id="1">
+               @foreach ($galleries as $gallery)
+                   <img class="owl-lazy img-carousel" data-src="storage/{{ $gallery->image }}" alt="{{ $gallery->name }}">
+               @endforeach
+           </div>
+           <div class="owl-thumbs" data-slider-id="1">
+               @foreach ($galleries as $gallery)
+                   <button class="owl-thumb-item">
+                       <img class="owl-lazy tc" src="storage/{{ $gallery->image }}" alt="{{ $gallery->name }}">
+                   </button>
+               @endforeach
+           </div>
+       </div>
+   </section>
 @endsection

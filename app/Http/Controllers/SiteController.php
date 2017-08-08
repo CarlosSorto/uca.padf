@@ -6,6 +6,8 @@ use App\Classification;
 use App\Country;
 use App\Document;
 use App\Formation;
+use App\Founder;
+use App\Gallery;
 use App\Organization;
 use App\Topic;
 use App\WorkArea;
@@ -19,6 +21,8 @@ class SiteController extends Controller
     protected $topic;
     protected $classification;
     protected $workArea;
+    protected $founder;
+    protected $gallery;
 
     public function __construct(
             Formation $formation,
@@ -27,7 +31,9 @@ class SiteController extends Controller
             Country $country,
             Topic $topic,
             Classification $classification,
-            WorkArea $workArea)
+            WorkArea $workArea,
+            Founder $founder,
+            Gallery $gallery)
     {
         $this->formation      = $formation;
         $this->document       = $document;
@@ -36,6 +42,8 @@ class SiteController extends Controller
         $this->topic          = $topic;
         $this->classification = $classification;
         $this->workArea       = $workArea;
+        $this->founder        = $founder;
+        $this->gallery        = $gallery;
     }
 
     public function home()
@@ -49,7 +57,10 @@ class SiteController extends Controller
 
     public function about()
     {
-        return view('site.about');
+        $founders  = $this->founder->all();
+        $galleries = $this->gallery->all();
+
+        return view('site.about', compact('founders', 'galleries'));
     }
 
     public function repositories()
