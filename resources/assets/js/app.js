@@ -1,6 +1,8 @@
 require('./bootstrap');
 window.Pikaday = require('pikaday');
 require('pikaday/css/pikaday.css');
+require('./jquery-jvectormap-2.0.3.min.js');
+require('./jquery-jvectormap-world-mill.js');
 
 require('./site');
 

@@ -1,3 +1,4 @@
+
 <template>
     <section class="pv4">
         <div class="center tc">
@@ -13,12 +14,8 @@
                 <select name="" id="" class="pa2 input-reset ba bg-transparent b--silver silver w-30-l w-100 text--light-blue-50 mh0">
                     <option value="" class="text--light-blue-50">Nombre de la Organización</option>
                 </select>
-                <select name="" id="" class="pa2 input-reset ba bg-transparent b--silver silver w-30-l w-100 mb2 text--light-blue-50 mh0">
-                    <option value="" class="text--light-blue-50">País</option>
-                    <option value="SV" class="text--light-blue-50">El Salvador</option>
-                    <option value="HN" class="text--light-blue-50">Honduras</option>
-                    <option value="GT" class="text--light-blue-50">Guatemala</option>
-                    <option value="CR" class="text--light-blue-50">Costa Rica</option>
+                <select name="" id="" class="pa2 input-reset ba bg-transparent b--silver silver w-30-l w-100 mb2 text--light-blue-50 mh0" v-on:change="selectVmapRegion">
+                    <option :value="country.iso" class="text--light-blue-50" v-for="country in countries">{{ country.name }}</option>
                 </select>
                 <a href="#" class="f5 bo--purple fw4 db link ba bw1 pv2 ph3-l text--purple hover-bg--purple hover-white bg-animate tc di-l"><span class="icon-search"></span></a>
             </div>
@@ -44,10 +41,19 @@
             return {
                 organizations: [],
                 meta: [],
+                mapEl: null,
+                countries: [],
+                queryCountry: {
+                        "filter[q][iso|in][]": ['SV', 'GT', 'HN'],
+                        "filter[q][DefaultSort|scp]": 1
+                }
             }
         },
         mounted() {
             this.get()
+            this.initialize()
+            this.getCountries()
+            this.setVmapFocusRegion()
         },
         methods: {
             get() {
@@ -55,7 +61,35 @@
                     this.organizations = response.data.data
                     this.meta = response.data.meta
                 });
-            }
+            },
+            initialize()
+            {
+                this.mapEl = $('#vmap');
+                this.mapEl.vectorMap({
+                  map: 'world_mill',
+                  zoomOnScroll: true,
+                  regionsSelectable: true,
+                  regionsSelectableOne: true,
+                });
+                return this.vmap = this.mapEl.vectorMap('get', 'mapObject');
+            },
+            getCountries()
+            {
+                axios.get('/api/countries', {
+                    params: this.queryCountry
+                  }).then( (response) => {
+                    this.countries = response.data.data
+                })
+            },
+            setVmapFocusRegion(value){
+              if (value == null) { value = 'SV'; }
+              return this.mapEl.vectorMap('set', 'focus', {region: value});
+            },
+            selectVmapRegion(e){
+                var value = $(e.target).val();
+                if (value == null) { value = 'SV'; }
+                return this.vmap['regions'][value].element.setSelected(true);
+             }
         }
     }
 </script>
