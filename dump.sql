@@ -1,5 +1,3 @@
-Terminal close -- exit!
-trib 5.7.19, for Linux (x86_64)
 --
 -- Host: localhost    Database: uca_padf
 -- ------------------------------------------------------
@@ -27,8 +25,8 @@ CREATE TABLE `categories` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `parent_id` int(10) unsigned DEFAULT NULL,
   `order` int(11) NOT NULL DEFAULT '1',
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -56,7 +54,7 @@ DROP TABLE IF EXISTS `classifications`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `classifications` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(191) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
@@ -83,12 +81,12 @@ DROP TABLE IF EXISTS `contents`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `contents` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `key` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `key` varchar(191) COLLATE utf8_unicode_ci NOT NULL,
   `value` text COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(191) COLLATE utf8_unicode_ci NOT NULL,
   `description` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -113,7 +111,7 @@ DROP TABLE IF EXISTS `countries`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `countries` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(191) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
@@ -140,12 +138,12 @@ DROP TABLE IF EXISTS `covers`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `covers` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `image` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `image` varchar(191) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(191) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
-  `section` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'inicio',
+  `section` varchar(191) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'inicio',
   `description` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -171,9 +169,9 @@ DROP TABLE IF EXISTS `data_rows`;
 CREATE TABLE `data_rows` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `data_type_id` int(10) unsigned NOT NULL,
-  `field` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `display_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `field` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `display_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `required` tinyint(1) NOT NULL DEFAULT '0',
   `browse` tinyint(1) NOT NULL DEFAULT '1',
   `read` tinyint(1) NOT NULL DEFAULT '1',
@@ -207,14 +205,14 @@ DROP TABLE IF EXISTS `data_types`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `data_types` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `display_name_singular` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `display_name_plural` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `icon` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `model_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `controller` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `display_name_singular` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `display_name_plural` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `model_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `controller` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `generate_permissions` tinyint(1) NOT NULL DEFAULT '0',
   `server_side` tinyint(4) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
@@ -270,10 +268,10 @@ DROP TABLE IF EXISTS `documents`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `documents` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `author` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(191) COLLATE utf8_unicode_ci NOT NULL,
+  `author` varchar(191) COLLATE utf8_unicode_ci NOT NULL,
   `published_date` date NOT NULL,
-  `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `description` varchar(191) COLLATE utf8_unicode_ci NOT NULL,
   `long_description` text COLLATE utf8_unicode_ci NOT NULL,
   `country_id` int(11) NOT NULL,
   `organization_id` int(11) DEFAULT NULL,
@@ -283,10 +281,10 @@ CREATE TABLE `documents` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `active` tinyint(4) NOT NULL DEFAULT '0',
-  `file` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `file` varchar(191) COLLATE utf8_unicode_ci NOT NULL,
   `name_applicant` text COLLATE utf8_unicode_ci NOT NULL,
   `institution` text COLLATE utf8_unicode_ci NOT NULL,
-  `position` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `position` varchar(191) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -310,7 +308,7 @@ DROP TABLE IF EXISTS `formation_types`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `formation_types` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(191) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
@@ -337,18 +335,18 @@ DROP TABLE IF EXISTS `formations`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `formations` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `duration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(191) COLLATE utf8_unicode_ci NOT NULL,
+  `duration` varchar(191) COLLATE utf8_unicode_ci NOT NULL,
   `place` text COLLATE utf8_unicode_ci NOT NULL,
   `since` date NOT NULL,
   `until` date NOT NULL,
-  `public` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `public` varchar(191) COLLATE utf8_unicode_ci NOT NULL,
   `organizer` text COLLATE utf8_unicode_ci NOT NULL,
   `representative` text COLLATE utf8_unicode_ci NOT NULL,
-  `position` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `website` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `link` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `position` varchar(191) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(191) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `website` varchar(191) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `link` varchar(191) COLLATE utf8_unicode_ci NOT NULL,
   `active` tinyint(4) NOT NULL DEFAULT '0',
   `description` text COLLATE utf8_unicode_ci NOT NULL,
   `modality_id` int(10) unsigned NOT NULL,
@@ -437,16 +435,16 @@ DROP TABLE IF EXISTS `menu_items`;
 CREATE TABLE `menu_items` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `menu_id` int(10) unsigned DEFAULT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `target` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '_self',
-  `icon_class` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `color` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `url` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `target` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '_self',
+  `icon_class` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `color` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `parent_id` int(11) DEFAULT NULL,
   `order` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `route` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `route` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `parameters` text COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`),
   KEY `menu_items_menu_id_foreign` (`menu_id`),
@@ -473,7 +471,7 @@ DROP TABLE IF EXISTS `menus`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `menus` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -500,7 +498,7 @@ DROP TABLE IF EXISTS `migrations`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `migrations` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -525,8 +523,8 @@ DROP TABLE IF EXISTS `modalities`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `modalities` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `icon` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `name` varchar(191) COLLATE utf8_unicode_ci NOT NULL,
+  `icon` varchar(191) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
@@ -579,13 +577,13 @@ DROP TABLE IF EXISTS `organizations`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `organizations` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `phone` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(191) COLLATE utf8_unicode_ci NOT NULL,
+  `phone` varchar(191) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(191) COLLATE utf8_unicode_ci NOT NULL,
   `description` text COLLATE utf8_unicode_ci NOT NULL,
   `classification_id` int(11) NOT NULL,
   `country_id` int(11) NOT NULL,
-  `website` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `website` varchar(191) COLLATE utf8_unicode_ci DEFAULT NULL,
   `workareas` int(11) DEFAULT NULL,
   `latitude` float DEFAULT NULL,
   `longitude` float DEFAULT NULL,
@@ -593,7 +591,7 @@ CREATE TABLE `organizations` (
   `active` tinyint(4) NOT NULL DEFAULT '0',
   `applicant` text COLLATE utf8_unicode_ci NOT NULL,
   `institution` text COLLATE utf8_unicode_ci NOT NULL,
-  `position` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `position` varchar(191) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
@@ -621,15 +619,15 @@ DROP TABLE IF EXISTS `pages`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `pages` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `excerpt` text COLLATE utf8mb4_unicode_ci,
   `body` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `cover` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `text_cover` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cover` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `text_cover` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
-  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'slug',
+  `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'slug',
   PRIMARY KEY (`id`),
   UNIQUE KEY `pages_slug_unique` (`text_cover`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -653,8 +651,8 @@ DROP TABLE IF EXISTS `password_resets`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `password_resets` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   KEY `password_resets_email_index` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -678,7 +676,7 @@ DROP TABLE IF EXISTS `permission_groups`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `permission_groups` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `permission_groups_name_unique` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -730,8 +728,8 @@ DROP TABLE IF EXISTS `permissions`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `permissions` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `table_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `key` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `table_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `permission_group_id` int(10) unsigned DEFAULT NULL,
@@ -761,12 +759,12 @@ CREATE TABLE `posts` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `author_id` int(11) NOT NULL,
   `category_id` int(11) DEFAULT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `seo_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `seo_title` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `excerpt` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `body` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `meta_description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `meta_keywords` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` enum('PUBLISHED','DRAFT','PENDING') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'DRAFT',
@@ -796,8 +794,8 @@ DROP TABLE IF EXISTS `roles`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `roles` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `display_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `display_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -824,11 +822,11 @@ DROP TABLE IF EXISTS `settings`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `settings` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `display_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `key` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `display_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `value` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `details` text COLLATE utf8mb4_unicode_ci,
-  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `order` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `settings_key_unique` (`key`)
@@ -854,7 +852,7 @@ DROP TABLE IF EXISTS `topics`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `topics` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(191) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
@@ -881,10 +879,10 @@ DROP TABLE IF EXISTS `translations`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `translations` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `table_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `column_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `table_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `column_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `foreign_key` int(10) unsigned NOT NULL,
-  `locale` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `locale` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `value` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -913,10 +911,10 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `role_id` int(11) DEFAULT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `avatar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `avatar` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
