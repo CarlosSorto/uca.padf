@@ -6,7 +6,7 @@
             <h1 class="text--blue fw4 f2">Directorio de Organizaciones</h1>
             <div class="fl w-100 w-40-l pa2">
                 <div class="pa5 shadow-5">
-                    <img src="/{{ $organization->image }}" alt="">
+                    <img src="/storage/{{ $organization->image }}" alt="">
                 </div>
             </div>
             <div class="fl w-100 w-60-l ph4">
