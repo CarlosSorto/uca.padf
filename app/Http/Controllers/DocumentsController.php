@@ -34,6 +34,11 @@ class DocumentsController extends Controller
     public function store(DocumentRequest $request)
     {
         $this->document->fill($request->all());
+        if ($request->file('file')) {
+            $name                 = uniqid().'.'.$request->file->extension();
+            $path                 = $request->file->storeAs('documents', $name, 'public');
+            $this->document->file = $path;
+        }
 
         if ($this->document->save()) {
             return redirect(route('repositories'));

@@ -63366,7 +63366,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Enter and leave animations can use different */\n/* durations and timing functions.              */\n.slide-fade-enter-active {\n    transition: all .3s ease;\n}\n.slide-fade-leave-active {\n    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);\n}\n.slide-fade-enter, .slide-fade-leave-to\n/* .slide-fade-leave-active below version 2.1.8 */ {\n    transform: translateX(10px);\n    opacity: 0;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Enter and leave animations can use different */\n/* durations and timing functions.              */\n.slide-fade-enter-active {\n    transition: all .3s ease;\n}\n.slide-fade-leave-active {\n    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);\n}\n.slide-fade-enter, .slide-fade-leave-to\n/* .slide-fade-leave-active below version 2.1.8 */ {\n    transform: translateX(10px);\n    opacity: 0;\n}\n", ""]);
 
 // exports
 
@@ -63492,18 +63492,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             documents: [],
             meta: [],
             grid: true,
-            list: false
+            list: false,
+            keyword: '',
+            country_id: '',
+            countries: [],
+            queryCountry: {
+                "filter[q][iso|in][]": ['SV', 'GT', 'HN'],
+                "filter[q][DefaultSort|scp]": 1
+            }
         };
     },
     mounted: function mounted() {
         this.get();
+        this.getCountries();
     },
 
     methods: {
         get: function get() {
             var _this = this;
 
-            axios.get('/api/documents').then(function (response) {
+            axios.get('/api/documents', {
+                params: {
+                    "filter[q][active|eq]": 1,
+                    "filter[q][country_id|eq]": this.country_id,
+                    "filter[q][title|cont]": this.keyword,
+                    "filter[q][description|cont]": this.keyword,
+                    "filter[per_page]": 9
+                }
+            }).then(function (response) {
                 _this.documents = response.data.data;
                 _this.meta = response.data.meta;
             });
@@ -63516,6 +63532,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 this.grid = false;
                 this.list = true;
             }
+        },
+        getCountries: function getCountries() {
+            var _this2 = this;
+
+            axios.get('/api/countries', {
+                params: this.queryCountry
+            }).then(function (response) {
+                _this2.countries = response.data.data;
+            });
+        },
+        clickCallback: function clickCallback(pageNum) {
+            console.log(pageNum);
         }
     }
 });
@@ -63534,7 +63562,71 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "center w-60-l w-80"
   }, [_c('h1', {
     staticClass: "tc text--blue fw4 f2"
-  }, [_vm._v("Inicia tu búsqueda")]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c('div', {
+  }, [_vm._v("Inicia tu búsqueda")]), _vm._v(" "), _c('div', [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.keyword),
+      expression: "keyword"
+    }],
+    staticClass: "pa2 input-reset ba bg-transparent b--silver silver w-30-l w-100 mh0",
+    attrs: {
+      "type": "text",
+      "placeholder": "Palabra Clave"
+    },
+    domProps: {
+      "value": (_vm.keyword)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.keyword = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.country_id),
+      expression: "country_id"
+    }],
+    staticClass: "pa2 input-reset ba bg-transparent b--silver silver w-30-l w-100 text--light-blue-50 mh0",
+    attrs: {
+      "name": "",
+      "id": ""
+    },
+    on: {
+      "change": function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.country_id = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }
+    }
+  }, [_c('option', {
+    staticClass: "text--light-blue-50",
+    attrs: {
+      "value": ""
+    }
+  }, [_vm._v("Selecciones un País")]), _vm._v(" "), _vm._l((_vm.countries), function(country) {
+    return _c('option', {
+      staticClass: "text--light-blue-50",
+      domProps: {
+        "value": country.id,
+        "textContent": _vm._s(country.name)
+      }
+    })
+  })], 2), _vm._v(" "), _vm._m(0), _vm._v(" "), _c('a', {
+    staticClass: "f5 bo--purple fw4 db link ba bw1 pv2-l ph3-l text--purple hover-bg--purple hover-white bg-animate tc di-l",
+    on: {
+      "click": _vm.get
+    }
+  }, [_c('span', {
+    staticClass: "icon-search"
+  })])]), _vm._v(" "), (_vm.documents.length) ? _c('div', [_c('div', {
     staticClass: "cf"
   }, [_c('div', {
     staticClass: "tr right pt4 pr3"
@@ -63558,11 +63650,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('span', {
     staticClass: "icon-list f4"
-  })])]), _vm._v(" "), _c('transition', {
-    attrs: {
-      "name": "slide-fade"
-    }
-  }, _vm._l((_vm.documents), function(document) {
+  })])]), _vm._v(" "), _vm._l((_vm.documents), function(document) {
     return _c('div', {
       directives: [{
         name: "show",
@@ -63579,9 +63667,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_c('span', {
       staticClass: "icon-pdf f1 silver ma1 absolute top-0 left-0"
     }), _vm._v(" "), _c('h3', {
-      staticClass: "f5 fw5 text--blue"
+      staticClass: "f5 fw5 text--blue h3"
     }, [_vm._v(_vm._s(document.title))]), _vm._v(" "), _c('p', {
-      staticClass: "silver f6"
+      staticClass: "silver f6 h2"
     }, [_vm._v(_vm._s(document.author) + ", " + _vm._s(document.published_date))])]), _vm._v(" "), _c('div', {
       staticClass: "mv4"
     }, [_c('a', {
@@ -63590,11 +63678,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "href": '/repositorio-ddhh/' + document.id
       }
     }, [_vm._v("Ver más")])])])])])
-  })), _vm._v(" "), _c('transition', {
-    attrs: {
-      "name": "slide-fade"
-    }
-  }, _vm._l((_vm.documents), function(document) {
+  }), _vm._v(" "), _vm._l((_vm.documents), function(document) {
     return _c('div', {
       directives: [{
         name: "show",
@@ -63620,16 +63704,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "href": '/repositorio-ddhh/' + document.id
       }
     }, [_vm._v("Ver más")])])])])
-  }))], 1), _vm._v(" "), _c('div', {
+  })], 2), _vm._v(" "), _c('div', {
     staticClass: "center tc"
   }, [_c('paginate', {
     attrs: {
-      "page-count": parseInt(_vm.meta.total),
-      "page-range": 6,
+      "page-count": 2,
+      "page-range": 1,
       "next-class": 'dib tc mh2',
       "next-link-class": 'link',
       "prev-class": 'dib tc mh2',
       "prev-link-class": 'link',
+      "click-handler": _vm.clickCallback,
       "page-link-class": 'link silver hover-text--purple f4',
       "page-class": 'dib tc mh2',
       "container-class": 'center tc dib list'
@@ -63640,46 +63725,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }), _vm._v(" "), _c('span', {
     staticClass: "icon-right-arrow f4 text--blue hover-text--purple",
     slot: "nextContent"
-  })])], 1)])])
+  })])], 1)]) : _c('div', {
+    staticClass: "tc"
+  }, [_c('p', {
+    staticClass: "f4"
+  }, [_vm._v("No se encontraron coincidencias.")])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('input', {
-    staticClass: "pa2 input-reset ba bg-transparent b--silver silver w-30-l w-100 mh0",
-    attrs: {
-      "type": "text",
-      "placeholder": "Palabra Clave"
-    }
-  }), _vm._v(" "), _c('select', {
-    staticClass: "pa2 input-reset ba bg-transparent b--silver silver w-30-l w-100 text--light-blue-50 mh0",
-    attrs: {
-      "name": "",
-      "id": ""
-    }
-  }, [_c('option', {
-    staticClass: "text--light-blue-50",
-    attrs: {
-      "value": ""
-    }
-  }, [_vm._v("Selecciones un País")]), _vm._v(" "), _c('option', {
-    staticClass: "text--light-blue-50",
-    attrs: {
-      "value": "SV"
-    }
-  }, [_vm._v("El Salvador")]), _vm._v(" "), _c('option', {
-    staticClass: "text--light-blue-50",
-    attrs: {
-      "value": "HN"
-    }
-  }, [_vm._v("Honduras")]), _vm._v(" "), _c('option', {
-    staticClass: "text--light-blue-50",
-    attrs: {
-      "value": "GT"
-    }
-  }, [_vm._v("Guatemala")]), _vm._v(" "), _c('option', {
-    staticClass: "text--light-blue-50",
-    attrs: {
-      "value": "CR"
-    }
-  }, [_vm._v("Costa Rica")])]), _vm._v(" "), _c('select', {
+  return _c('select', {
     staticClass: "pa2 input-reset ba bg-transparent b--silver silver w-30-l w-100 mb2 text--light-blue-50 mh0",
     attrs: {
       "name": "",
@@ -63705,14 +63757,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "value": "3"
     }
-  }, [_vm._v("2017")])]), _vm._v(" "), _c('a', {
-    staticClass: "f5 bo--purple fw4 db link ba bw1 pv2-l ph3-l text--purple hover-bg--purple hover-white bg-animate tc di-l",
-    attrs: {
-      "href": "#"
-    }
-  }, [_c('span', {
-    staticClass: "icon-search"
-  })])])
+  }, [_vm._v("2017")])])
 }]}
 module.exports.render._withStripped = true
 if (false) {
