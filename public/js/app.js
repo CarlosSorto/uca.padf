@@ -50393,6 +50393,8 @@ jQuery.fn.vectorMap('addMap', 'world_mill', { 'insets': [{ 'width': 900, 'top': 
 
 $(function () {
   var picker = new Pikaday({ field: $('#published_date')[0] });
+  var picker2 = new Pikaday({ field: $('#since_date')[0] });
+  var picker3 = new Pikaday({ field: $('#until_date')[0] });
 });
 
 /***/ }),
@@ -64370,7 +64372,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "cf w-90 mt4"
   }, [_vm._m(2), _vm._v(" "), _vm._l((_vm.organizations), function(organization) {
     return _c('div', {
-      staticClass: "fl w-100 w-40-l pa2 shadow-4"
+      staticClass: "fl w-100 w-40-l pa2 shadow-4 bg-light-gray mt2"
     }, [_c('div', {
       staticClass: "relative pl7-l pl6 mb4 w-100 tl"
     }, [_c('img', {
@@ -64387,7 +64389,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }), _vm._v(" "), _c('a', {
       staticClass: "f6 fw4 tc center link ba bw1 white bo--purple text--purple pv2 w-100 ph4 hover-white hover-bg--purple",
       attrs: {
-        "href": '/orgnizaciones' + organization.id
+        "href": '/organizaciones-afiliadas/' + organization.id
       }
     }, [_vm._v("Más Información")])])])
   })], 2)])])

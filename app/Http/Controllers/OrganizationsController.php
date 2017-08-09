@@ -34,9 +34,14 @@ class OrganizationsController extends Controller
     public function store(OrganizationRequest $request)
     {
         $this->organization->fill($request->all());
+        if ($request->file('image')) {
+            $name                      = uniqid().'.'.$request->image->extension();
+            $path                      = $request->image->storeAs('organizations', $name, 'public');
+            $this->organization->image = $path;
+        }
 
         if ($this->organization->save()) {
-            return redirect(route('organizations'));
+            return redirect()->route('organizations');
         }
 
         return redirect()->back();

@@ -9,6 +9,26 @@ class Formation extends Model
 {
     use Searcheable;
 
+    protected $fillable = [
+        'title',
+        'duration',
+        'place',
+        'since',
+        'until',
+        'public',
+        'organizer',
+        'representative',
+        'position',
+        'email',
+        'website',
+        'description',
+        'link',
+        'active',
+        'modality_id',
+        'country_id',
+        'formation_type_id',
+    ];
+
     protected static $searcheable_fields = [
       'id' => [
         'type'=> 'integer',

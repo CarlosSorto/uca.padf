@@ -46,3 +46,4 @@ $router->get('contactenos', 'SiteController@contact')
 
 $router->post('document', 'DocumentsController@store')->name('document.store');
 $router->post('organization', 'OrganizationsController@store')->name('organization.store');
+$router->post('formation', 'FormationsController@store')->name('formation.store');

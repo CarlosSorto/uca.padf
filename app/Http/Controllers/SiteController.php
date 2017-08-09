@@ -6,8 +6,10 @@ use App\Classification;
 use App\Country;
 use App\Document;
 use App\Formation;
+use App\FormationType;
 use App\Founder;
 use App\Gallery;
+use App\Modality;
 use App\Organization;
 use App\Topic;
 use App\WorkArea;
@@ -23,6 +25,8 @@ class SiteController extends Controller
     protected $workArea;
     protected $founder;
     protected $gallery;
+    protected $modality;
+    protected $formationType;
 
     public function __construct(
             Formation $formation,
@@ -33,7 +37,9 @@ class SiteController extends Controller
             Classification $classification,
             WorkArea $workArea,
             Founder $founder,
-            Gallery $gallery)
+            Gallery $gallery,
+            Modality $modality,
+            FormationType $formationType)
     {
         $this->formation      = $formation;
         $this->document       = $document;
@@ -44,6 +50,8 @@ class SiteController extends Controller
         $this->workArea       = $workArea;
         $this->founder        = $founder;
         $this->gallery        = $gallery;
+        $this->modality       = $modality;
+        $this->formationType  = $formationType;
     }
 
     public function home()
@@ -113,7 +121,11 @@ class SiteController extends Controller
 
     public function create_formation()
     {
-        return view('site.forms.formation');
+        $modalities = $this->modality->all();
+        $countries  = $this->country->all();
+        $types      = $this->formationType->all();
+
+        return view('site.forms.formation', compact('modalities', 'countries', 'types'));
     }
 
     public function contact()

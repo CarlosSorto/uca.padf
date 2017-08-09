@@ -25,11 +25,11 @@
                 <div class="fl w-60 dn db-l pa2">
                     <div id="vmap" style="width: 600px; height: 400px;"></div>
                 </div>
-                <div class="fl w-100 w-40-l pa2 shadow-4" v-for="organization in organizations">
+                <div class="fl w-100 w-40-l pa2 shadow-4 bg-light-gray mt2" v-for="organization in organizations">
                     <div class="relative pl7-l pl6 mb4 w-100 tl">
                         <img :src="organization.logo" alt="" class="w-20 absolute top-0 left-1">
                         <p class="f6 w-60 fw6 text--blue h3" v-text="organization.name"></p>
-                        <a :href="'/orgnizaciones'+ organization.id" class="f6 fw4 tc center link ba bw1 white bo--purple text--purple pv2 w-100 ph4 hover-white hover-bg--purple">Más Información</a>
+                        <a :href="'/organizaciones-afiliadas/'+ organization.id" class="f6 fw4 tc center link ba bw1 white bo--purple text--purple pv2 w-100 ph4 hover-white hover-bg--purple">Más Información</a>
                     </div>
                 </div>
             </div>
