@@ -2,25 +2,27 @@
     <section class="pv4 bg--light-blue">
         <div class="mw8 center ph3-ns">
             <div class="w-80 center">
-                <input type="text" class="pa2 input-reset ba dib bg-transparent b--light-silver br1 bw1 w-30-l w-100 ma0" placeholder="Palabra Clave">
-                <select name="" id="" class="pa2 input-reset dib ba bg-transparent b--light-silver br1 bw1 w-30-l w-100 text--light-blue-50 ma0">
+                <input type="text" class="pa2 input-reset ba dib bg-transparent b--light-silver br1 bw1 w-30-l w-100 ma0" placeholder="Palabra Clave" v-model="keyword">
+                <select name="" id="" class="pa2 input-reset dib ba bg-transparent b--light-silver br1 bw1 w-30-l w-100 text--light-blue-50 ma0" v-model="modality">
                     <option value="" class="text--light-blue-50">Selecciones una Modalidad</option>
+                    <option :value="modality.id" class="text--light-blue-50" v-for="modality in modalities">{{ modality.name }}</option>
                 </select>
-                <select name="" id="" class="pa2 input-reset ba bg-transparent b--light-silver br1 bw1 w-30-l w-100 mb2 text--light-blue-50 ma0">
-                    <option value="" class="text--light-blue-50">Fecha</option>
+                <select name="" id="" class="pa2 input-reset dib ba bg-transparent b--light-silver br1 bw1 w-30-l w-100 text--light-blue-50 ma0" v-model="type">
+                    <option value="" class="text--light-blue-50">Tipo de Formación</option>
+                    <option :value="type.id" class="text--light-blue-50" v-for="type in types">{{ type.name }}</option>
                 </select>
-                <a href="#" class="f5 bo--purple fw4 db link ba bw1 pv2 ph3-l text--purple hover-bg--purple hover-white bg-animate tc di-l"><span class="icon-search"></span></a>
+                <a @click="get" class="f5 bo--purple fw4 db link ba bw1 pv2 ph3-l text--purple hover-bg--purple hover-white bg-animate tc di-l"><span class="icon-search"></span></a>
             </div>
+            <div v-if="formations.length">
             <div class="cf ph2-ns pa2 ">
                 <div class="tr right pt4 pr3">
                     <a class="link" :class="grid ? 'text--blue' : 'light-silver'" @click="toggle('grid')"><span class="icon-grid f4 pa2"></span></a>
                     <a class="link" :class="list ? 'text--blue' : 'light-silver'" @click="toggle('list')"><span class="icon-list f4"></span></a>
                 </div>
-                <transition name="slide-fade">
                     <div v-for="formation in formations" v-show="grid">
                         <div class="fl w-100 w-50-m w-third-l pa1">
                             <div class="ba bg-white b--black-10 mv4 w-100 mw6 center pa4 h6 shadow-5">
-                                <h4 class="fw6 text--blue f5">{{ formation.title }}</h4>
+                                <h4 class="fw6 text--blue f5 h2">{{ formation.title }}</h4>
                                 <p class="lh-copy f6 h3-l h4 mb4">{{ formation.description | truncate(125, '...') }}</p>
                                 <p class="text--light-blue-50 f6"><span :class="formation.modality.icon"></span> {{ formation.modality.name }}</p>
                                 <div class="mv4">
@@ -29,8 +31,6 @@
                             </div>
                         </div>
                     </div>
-                </transition>
-                <transition name="slide-fade">
                     <div v-for="formation in formations" v-show="list">
                         <div class="ba bg-white b--black-10 mv4 w-100 center pa4 h6 shadow-5">
                             <p class="fw6 text--blue f5">{{ formation.title }}</p>
@@ -39,7 +39,6 @@
                             <a :href="'/formaciones/' + formation.id" class="f5 fw4 db tc bo--purple link ba bw1 pv2 text--purple hover-bg--purple hover-white bg-animate">Ir a Capacitación</a>
                         </div>
                     </div>
-                </transition>
             </div>
             <div class="center tc">
                     <paginate   :page-count="parseInt(meta.total)"
@@ -56,14 +55,22 @@
                     </paginate>
             </div>
         </div>
+        <div v-else class="tc mt4">
+            <p class="f4">No se encontraron coincidencias.</p>
+        </div>
+        </div>
     </section>
 </template>
 
 <script>
     export default {
+        props: ['modalities', 'types'],
         data() {
             return {
                 formations: [],
+                modality: null,
+                type: null,
+                keyword:null,
                 grid: true,
                 list: false,
                 meta: [],
@@ -74,7 +81,14 @@
         },
         methods: {
             get() {
-                axios.get('/api/formations').then((response) => {
+                axios.get('/api/formations',{
+                    params: {
+                        "filter[q][active|eq][]": 1,
+                        "filter[q][modality_id|eq]": this.modality,
+                        "filter[q][type_id|eq]": this.type,
+                        "filter[q][title|cont]": this.keyword,
+                    }
+                }).then((response) => {
                     this.formations = response.data.data
                     this.meta = response.data.meta
                 });

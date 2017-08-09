@@ -52,17 +52,17 @@
                         <div class="white relative pl4 mb4">
                             <span class="icon-map mt4 f4 absolute top-0 left-0"></span>
                             <p>Dirección</p>
-                            <p class="fw3 f6 lh-copy">Ave. El Espino, Urb. Madre Selva No.65, Antiguo Cuscatlán, La Libertad, El Salvador</p>
+                            <p class="fw3 f6 lh-copy">{{ app('voyager')->setting('contact_direction') }}</p>
                         </div>
                         <div class="white relative pl4 mb4">
                             <span class="icon-mail mt2 f4 absolute top-0 left-0"></span>
                             <p>Correo Electrónico</p>
-                            <p class="fw3 f6">info@example.com</p>
+                            <p class="fw3 f6">{{ app('voyager')->setting('contact_email') }}</p>
                         </div>
                         <div class="white relative pl4">
                             <span class="icon-phone mt2 f4 absolute top-0 left-0"></span>
                             <p>Teléfono</p>
-                            <p class="fw3 f6">(503) 2564-1680</p>
+                            <p class="fw3 f6">{{ app('voyager')->setting('contact_email') }}</p>
                         </div>
                     </div>
                 </div>

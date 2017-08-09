@@ -39,11 +39,11 @@ class Formation extends Model
       'title' => [
         'type'=> 'string',
       ],
-      'country_id' => [
+      'modality_id' => [
         'type'=> 'integer',
       ],
-      'description' => [
-        'type'=> 'string',
+      'formation_type_id' => [
+        'type'=> 'integer',
       ],
     ];
 

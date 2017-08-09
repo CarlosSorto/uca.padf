@@ -15,5 +15,5 @@
         </div>
     </section>
     {!! $content->get('formacion_introduccion') !!}
-    <formations></formations>
+    <formations :modalities="{{ $modalities }}" :types="{{ $types }}"></formations>
 @endsection

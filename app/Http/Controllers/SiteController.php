@@ -111,7 +111,10 @@ class SiteController extends Controller
 
     public function formations()
     {
-        return view('site.formations');
+        $modalities = $this->modality->all();
+        $types      = $this->formationType->all();
+
+        return view('site.formations', compact('modalities', 'types'));
     }
 
     public function formation(Formation $formation)

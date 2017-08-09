@@ -63848,7 +63848,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Enter and leave animations can use different */\n/* durations and timing functions.              */\n.slide-fade-enter-active {\n    transition: all .3s ease;\n}\n.slide-fade-leave-active {\n    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);\n}\n.slide-fade-enter, .slide-fade-leave-to\n/* .slide-fade-leave-active below version 2.1.8 */ {\n    transform: translateX(10px);\n    opacity: 0;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Enter and leave animations can use different */\n/* durations and timing functions.              */\n.slide-fade-enter-active {\n    transition: all .3s ease;\n}\n.slide-fade-leave-active {\n    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);\n}\n.slide-fade-enter, .slide-fade-leave-to\n/* .slide-fade-leave-active below version 2.1.8 */ {\n    transform: translateX(10px);\n    opacity: 0;\n}\n", ""]);
 
 // exports
 
@@ -63920,11 +63920,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['modalities', 'types'],
     data: function data() {
         return {
             formations: [],
+            modality: null,
+            type: null,
+            keyword: null,
             grid: true,
             list: false,
             meta: []
@@ -63938,7 +63945,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         get: function get() {
             var _this = this;
 
-            axios.get('/api/formations').then(function (response) {
+            axios.get('/api/formations', {
+                params: {
+                    "filter[q][active|eq][]": 1,
+                    "filter[q][modality_id|eq]": this.modality,
+                    "filter[q][type_id|eq]": this.type,
+                    "filter[q][title|cont]": this.keyword
+                }
+            }).then(function (response) {
                 _this.formations = response.data.data;
                 _this.meta = response.data.meta;
             });
@@ -63964,7 +63978,107 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "pv4 bg--light-blue"
   }, [_c('div', {
     staticClass: "mw8 center ph3-ns"
-  }, [_vm._m(0), _vm._v(" "), _c('div', {
+  }, [_c('div', {
+    staticClass: "w-80 center"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.keyword),
+      expression: "keyword"
+    }],
+    staticClass: "pa2 input-reset ba dib bg-transparent b--light-silver br1 bw1 w-30-l w-100 ma0",
+    attrs: {
+      "type": "text",
+      "placeholder": "Palabra Clave"
+    },
+    domProps: {
+      "value": (_vm.keyword)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.keyword = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.modality),
+      expression: "modality"
+    }],
+    staticClass: "pa2 input-reset dib ba bg-transparent b--light-silver br1 bw1 w-30-l w-100 text--light-blue-50 ma0",
+    attrs: {
+      "name": "",
+      "id": ""
+    },
+    on: {
+      "change": function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.modality = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }
+    }
+  }, [_c('option', {
+    staticClass: "text--light-blue-50",
+    attrs: {
+      "value": ""
+    }
+  }, [_vm._v("Selecciones una Modalidad")]), _vm._v(" "), _vm._l((_vm.modalities), function(modality) {
+    return _c('option', {
+      staticClass: "text--light-blue-50",
+      domProps: {
+        "value": modality.id
+      }
+    }, [_vm._v(_vm._s(modality.name))])
+  })], 2), _vm._v(" "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.type),
+      expression: "type"
+    }],
+    staticClass: "pa2 input-reset dib ba bg-transparent b--light-silver br1 bw1 w-30-l w-100 text--light-blue-50 ma0",
+    attrs: {
+      "name": "",
+      "id": ""
+    },
+    on: {
+      "change": function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.type = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }
+    }
+  }, [_c('option', {
+    staticClass: "text--light-blue-50",
+    attrs: {
+      "value": ""
+    }
+  }, [_vm._v("Tipo de Formación")]), _vm._v(" "), _vm._l((_vm.types), function(type) {
+    return _c('option', {
+      staticClass: "text--light-blue-50",
+      domProps: {
+        "value": type.id
+      }
+    }, [_vm._v(_vm._s(type.name))])
+  })], 2), _vm._v(" "), _c('a', {
+    staticClass: "f5 bo--purple fw4 db link ba bw1 pv2 ph3-l text--purple hover-bg--purple hover-white bg-animate tc di-l",
+    on: {
+      "click": _vm.get
+    }
+  }, [_c('span', {
+    staticClass: "icon-search"
+  })])]), _vm._v(" "), (_vm.formations.length) ? _c('div', [_c('div', {
     staticClass: "cf ph2-ns pa2 "
   }, [_c('div', {
     staticClass: "tr right pt4 pr3"
@@ -63988,11 +64102,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('span', {
     staticClass: "icon-list f4"
-  })])]), _vm._v(" "), _c('transition', {
-    attrs: {
-      "name": "slide-fade"
-    }
-  }, _vm._l((_vm.formations), function(formation) {
+  })])]), _vm._v(" "), _vm._l((_vm.formations), function(formation) {
     return _c('div', {
       directives: [{
         name: "show",
@@ -64005,7 +64115,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_c('div', {
       staticClass: "ba bg-white b--black-10 mv4 w-100 mw6 center pa4 h6 shadow-5"
     }, [_c('h4', {
-      staticClass: "fw6 text--blue f5"
+      staticClass: "fw6 text--blue f5 h2"
     }, [_vm._v(_vm._s(formation.title))]), _vm._v(" "), _c('p', {
       staticClass: "lh-copy f6 h3-l h4 mb4"
     }, [_vm._v(_vm._s(_vm._f("truncate")(formation.description, 125, '...')))]), _vm._v(" "), _c('p', {
@@ -64020,11 +64130,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "href": '/formaciones/' + formation.id
       }
     }, [_vm._v("Ir a Capacitación")])])])])])
-  })), _vm._v(" "), _c('transition', {
-    attrs: {
-      "name": "slide-fade"
-    }
-  }, _vm._l((_vm.formations), function(formation) {
+  }), _vm._v(" "), _vm._l((_vm.formations), function(formation) {
     return _c('div', {
       directives: [{
         name: "show",
@@ -64048,7 +64154,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "href": '/formaciones/' + formation.id
       }
     }, [_vm._v("Ir a Capacitación")])])])
-  }))], 1), _vm._v(" "), _c('div', {
+  })], 2), _vm._v(" "), _c('div', {
     staticClass: "center tc"
   }, [_c('paginate', {
     attrs: {
@@ -64068,47 +64174,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }), _vm._v(" "), _c('span', {
     staticClass: "icon-right-arrow f4 text--blue hover-text--purple",
     slot: "nextContent"
-  })])], 1)])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "w-80 center"
-  }, [_c('input', {
-    staticClass: "pa2 input-reset ba dib bg-transparent b--light-silver br1 bw1 w-30-l w-100 ma0",
-    attrs: {
-      "type": "text",
-      "placeholder": "Palabra Clave"
-    }
-  }), _vm._v(" "), _c('select', {
-    staticClass: "pa2 input-reset dib ba bg-transparent b--light-silver br1 bw1 w-30-l w-100 text--light-blue-50 ma0",
-    attrs: {
-      "name": "",
-      "id": ""
-    }
-  }, [_c('option', {
-    staticClass: "text--light-blue-50",
-    attrs: {
-      "value": ""
-    }
-  }, [_vm._v("Selecciones una Modalidad")])]), _vm._v(" "), _c('select', {
-    staticClass: "pa2 input-reset ba bg-transparent b--light-silver br1 bw1 w-30-l w-100 mb2 text--light-blue-50 ma0",
-    attrs: {
-      "name": "",
-      "id": ""
-    }
-  }, [_c('option', {
-    staticClass: "text--light-blue-50",
-    attrs: {
-      "value": ""
-    }
-  }, [_vm._v("Fecha")])]), _vm._v(" "), _c('a', {
-    staticClass: "f5 bo--purple fw4 db link ba bw1 pv2 ph3-l text--purple hover-bg--purple hover-white bg-animate tc di-l",
-    attrs: {
-      "href": "#"
-    }
-  }, [_c('span', {
-    staticClass: "icon-search"
-  })])])
-}]}
+  })])], 1)]) : _c('div', {
+    staticClass: "tc mt4"
+  }, [_c('p', {
+    staticClass: "f4"
+  }, [_vm._v("No se encontraron coincidencias.")])])])])
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
