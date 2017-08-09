@@ -21,7 +21,8 @@ $router->get('formaciones', 'SiteController@formations')
        ->name('formations');
 $router->get('contactenos', 'SiteController@contact')
        ->name('contact');
-
+$router->get('buscar', 'SiteController@search')
+        ->name('search');
 /*
  * Details Pages
  */

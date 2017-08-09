@@ -1,7 +1,8 @@
+-- MySQL dump 10.16  Distrib 10.1.23-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: uca_padf
 -- ------------------------------------------------------
--- Server version	5.7.19-0ubuntu0.16.04.1
+-- Server version	10.1.23-MariaDB-9+deb9u1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -295,7 +296,7 @@ CREATE TABLE `documents` (
 
 LOCK TABLES `documents` WRITE;
 /*!40000 ALTER TABLE `documents` DISABLE KEYS */;
-INSERT INTO `documents` VALUES (1,'Tratado de Paz de la Republica de El Salvador','Juan Manuel Cañas','1993-12-01','Un Tratado de Paz es un acuerdo entre dos o más partes hostiles, por lo general países o gobiernos, que culmina formalmente un estado de guerra entre las partes. Es diferente de un armisticio, que es un acuerdo para detener las hostilidades','Un Tratado de Paz es un acuerdo entre dos o más partes hostiles, por lo general países o gobiernos, que culmina formalmente un estado de guerra entre las partes. Es diferente de un armisticio, que',1,7,NULL,'sdfsdf','2017-08-05 10:32:00','2017-08-06 11:48:18',NULL,1,'documents/August2017/fXy5Ep7XXcLF72hVRpEp.pdf','','','');
+INSERT INTO `documents` VALUES (1,'Tratado de Paz de la Republica de El Salvador','Juan Manuel Cañas','1993-12-01','Un Tratado de Paz es un acuerdo entre dos o más partes hostiles, por lo general países o gobiernos, que culmina formalmente un estado de guerra entre las partes. Es diferente de un armisticio','Un Tratado de Paz es un acuerdo entre dos o más partes hostiles, por lo general países o gobiernos, que culmina formalmente un estado de guerra entre las partes. Es diferente de un armisticio, que',1,7,NULL,'sdfsdf','2017-08-05 10:32:00','2017-08-06 11:48:18',NULL,1,'documents/August2017/fXy5Ep7XXcLF72hVRpEp.pdf','','','');
 /*!40000 ALTER TABLE `documents` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -365,7 +366,7 @@ CREATE TABLE `formations` (
 
 LOCK TABLES `formations` WRITE;
 /*!40000 ALTER TABLE `formations` DISABLE KEYS */;
-INSERT INTO `formations` VALUES (1,'Capacitación: programa de gestión medio ambiental','16 Horas','Salón Audiovisuales, Universidad Centroamericana José Simeón Cañas','2017-07-10','2017-07-11','Todo Publico','Universidad Simeon Cañas','Lic. Juan Rodriguez','Profesor de Fisica Cuantica','example@uca.edu.sv','www.uca.com.sv','http://laravel.com',1,'El programa es desarrollado por la Universidad Centroamericana “José Simeón Cañas” (UCA) y tiene como objetivo proporcionar a los participantes una visión global, actualizada e integradora sobre los conocimientos, habilidades y actitudes.',1,1,1,'2017-08-04 09:12:55','2017-08-04 09:23:06',NULL);
+INSERT INTO `formations` VALUES (1,'Capacitación: programa de gestión medio ambiental','16 Horas','Salón Audiovisuales, Universidad Centroamericana José Simeón Cañas','2017-07-10','2017-07-11','Todo Publico','Universidad Simeon Cañas','Lic. Juan Rodriguez','Profesor de Fisica Cuantica','example@uca.edu.sv','www.uca.com.sv','http://laravel.com',1,'El programa es desarrollado por la Universidad Centroamericana “José Simeón Cañas” (UCA) y tiene como objetivo proporcionar a los participantes una visión global, actualizada e integradora sobre los conocimientos, habilidades y actitudes.',1,1,1,'2017-08-04 09:12:55','2017-08-10 05:27:24',NULL);
 /*!40000 ALTER TABLE `formations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -814,6 +815,43 @@ INSERT INTO `roles` VALUES (1,'admin','Administrator','2017-08-02 04:09:53','201
 UNLOCK TABLES;
 
 --
+-- Table structure for table `search_contents`
+--
+
+DROP TABLE IF EXISTS `search_contents`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `search_contents` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(191) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `name` varchar(191) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8_unicode_ci,
+  `long_description` text COLLATE utf8_unicode_ci,
+  `place` varchar(191) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email` varchar(191) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `website` varchar(191) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `sourceable_id` int(10) unsigned DEFAULT NULL,
+  `sourceable_type` varchar(191) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `author` varchar(191) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `active` int(11) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `search_contents`
+--
+
+LOCK TABLES `search_contents` WRITE;
+/*!40000 ALTER TABLE `search_contents` DISABLE KEYS */;
+INSERT INTO `search_contents` VALUES (10,NULL,'Nombre','descripcion',NULL,NULL,'cesar@email.com',NULL,'2017-08-10 03:23:52','2017-08-10 03:23:52',NULL,8,'App\\Organization',NULL,0),(11,'Tratado de Paz de la Republica de El Salvador',NULL,'Un Tratado de Paz es un acuerdo entre dos o más partes hostiles, por lo general países o gobiernos, que culmina formalmente un estado de guerra entre las partes. Es diferente de un armisticio','Un Tratado de Paz es un acuerdo entre dos o más partes hostiles, por lo general países o gobiernos, que culmina formalmente un estado de guerra entre las partes. Es diferente de un armisticio, que',NULL,NULL,NULL,'2017-08-10 03:40:30','2017-08-10 03:40:30',NULL,1,'App\\Document','Juan Manuel Cañas',1),(12,'Capacitación: programa de gestión medio ambiental',NULL,'El programa es desarrollado por la Universidad Centroamericana “José Simeón Cañas” (UCA) y tiene como objetivo proporcionar a los participantes una visión global, actualizada e integradora sobre los conocimientos, habilidades y actitudes.',NULL,'Salón Audiovisuales, Universidad Centroamericana José Simeón Cañas','example@uca.edu.sv','www.uca.com.sv','2017-08-10 05:11:54','2017-08-10 05:27:24',NULL,1,'App\\Formation',NULL,1),(13,NULL,'Universidad Jose Simeon Cañas','Institución Salesiana de educación superior',NULL,NULL,'email@uca.edu.sv','ssdfsf','2017-08-10 05:12:22','2017-08-10 05:12:22',NULL,7,'App\\Organization',NULL,1);
+/*!40000 ALTER TABLE `search_contents` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `settings`
 --
 
@@ -970,4 +1008,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-08-08  8:35:47
+-- Dump completed on 2017-08-09 17:57:45

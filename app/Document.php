@@ -8,6 +8,7 @@ use Iw\Api\Traits\Models\Searcheable;
 class Document extends Model
 {
     use Searcheable;
+    use \App\Traits\Models\SearchContentDocument;
 
     protected $fillable = [
         'title',
@@ -77,5 +78,10 @@ class Document extends Model
     public function Topics()
     {
         return $this->belongsToMany(Topic::class, 'document_topics');
+    }
+
+    public function searchContent()
+    {
+        return $this->morphOne('App\SearchContent', 'sourceable');
     }
 }

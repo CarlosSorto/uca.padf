@@ -13,10 +13,14 @@ use App\Modality;
 use App\Organization;
 use App\Topic;
 use App\WorkArea;
+use App\SearchContent;
+use Illuminate\Http\Request;
+
 
 class SiteController extends Controller
 {
     protected $formation;
+    protected $searchContent;
     protected $document;
     protected $organization;
     protected $country;
@@ -39,7 +43,8 @@ class SiteController extends Controller
             Founder $founder,
             Gallery $gallery,
             Modality $modality,
-            FormationType $formationType)
+            FormationType $formationType,
+            SearchContent $searchContent)
     {
         $this->formation      = $formation;
         $this->document       = $document;
@@ -52,6 +57,7 @@ class SiteController extends Controller
         $this->gallery        = $gallery;
         $this->modality       = $modality;
         $this->formationType  = $formationType;
+        $this->searchContent  = $searchContent;
     }
 
     public function home()
@@ -135,4 +141,15 @@ class SiteController extends Controller
     {
         return view('site.contact');
     }
+
+    public function search(Request $request)
+    {
+        $search = $request;
+        $query = $request["q"];
+        $search_contents = $this->searchContent->where('active', 1)->search($query)->paginate(25);
+
+        return view('site.search', compact("search_contents", "search"));
+    }
+
+
 }

@@ -8,6 +8,7 @@ use Iw\Api\Traits\Models\Searcheable;
 class Organization extends Model
 {
     use Searcheable;
+    use \App\Traits\Models\SearchContentOrganization;
 
     protected $fillable= [
         'name',
@@ -69,5 +70,10 @@ class Organization extends Model
     public function work_areas()
     {
         return $this->belongsToMany(WorkArea::class, 'organization_work_areas');
+    }
+
+    public function searchContent()
+    {
+        return $this->morphOne('App\SearchContent', 'sourceable');
     }
 }

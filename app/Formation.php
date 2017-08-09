@@ -8,6 +8,7 @@ use Iw\Api\Traits\Models\Searcheable;
 class Formation extends Model
 {
     use Searcheable;
+    use \App\Traits\Models\SearchContentFormation;
 
     protected $fillable = [
         'title',
@@ -65,6 +66,11 @@ class Formation extends Model
     public function formationTypeId()
     {
         return $this->belongsTo(FormationType::class);
+    }
+
+    public function searchContent()
+    {
+        return $this->morphOne('App\SearchContent', 'sourceable');
     }
 
     protected $dates = [
