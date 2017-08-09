@@ -24,6 +24,11 @@ class Country extends Model
           ],
     ];
 
+    public function getKeyRouteName()
+    {
+        return 'iso';
+    }
+
     public function scopeDefaultSort($q)
     {
         return $q->orderBy('sp_name', 'asc');

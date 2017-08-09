@@ -33,8 +33,11 @@ class Organization extends Model
           'name' => [
             'type'=> 'string',
           ],
-          'actiev' => [
+          'active' => [
             'type'=> 'boolean',
+          ],
+          'country_id' => [
+            'type'=> 'integer',
           ],
     ];
 

@@ -4,22 +4,18 @@
         <div class="center tc">
             <h1 class="text--blue f2 fw4">Inicia tu Búsqueda</h1>
             <div class="w-80 center">
-                <select name="" id="" class="pa2 input-reset ba bg-transparent b--silver silver w-30-l w-100 text--light-blue-50 mh0">
+                <select class="pa2 input-reset ba bg-transparent b--silver silver w-30-l w-100 text--light-blue-50 mh0">
                     <option value="" class="text--light-blue-50">Áreas de especialización</option>
-                    <option value="SV" class="text--light-blue-50">El Salvador</option>
-                    <option value="HN" class="text--light-blue-50">Honduras</option>
-                    <option value="GT" class="text--light-blue-50">Guatemala</option>
-                    <option value="CR" class="text--light-blue-50">Costa Rica</option>
                 </select>
-                <select name="" id="" class="pa2 input-reset ba bg-transparent b--silver silver w-30-l w-100 text--light-blue-50 mh0">
+                <select class="pa2 input-reset ba bg-transparent b--silver silver w-30-l w-100 text--light-blue-50 mh0" v-model="organization">
                     <option value="" class="text--light-blue-50">Nombre de la Organización</option>
-                    <option :value="organization.id" class="text--light-blue-50" v-for="organization in organizations">{{ organization.name }}</option>
+                    <option :value="organization.id" class="text--light-blue-50" v-for="organization in list_organizations">{{ organization.name }}</option>
                 </select>
-                <select name="" id="" class="pa2 input-reset ba bg-transparent b--silver silver w-30-l w-100 mb2 text--light-blue-50 mh0" v-on:change="selectVmapRegion">
+                <select class="pa2 input-reset ba bg-transparent b--silver silver w-30-l w-100 mb2 text--light-blue-50 mh0" v-model="country">
                     <option value="" class="text--light-blue-50">Seleccione un País</option>
                     <option :value="country.iso" class="text--light-blue-50" v-for="country in countries">{{ country.name }}</option>
                 </select>
-                <a href="#" class="f5 bo--purple fw4 db link ba bw1 pv2 ph3-l text--purple hover-bg--purple hover-white bg-animate tc di-l"><span class="icon-search"></span></a>
+                <a class="f5 bo--purple fw4 db link ba bw1 pv2 ph3-l text--purple hover-bg--purple hover-white bg-animate tc di-l" @click="get"><span class="icon-search"></span></a>
             </div>
             <div class="cf w-90 mt4">
                 <div class="fl w-60 dn db-l pa2">
@@ -42,19 +38,24 @@
         data() {
             return {
                 organizations: [],
+                list_organizations: [],
+                organization: null,
                 meta: [],
                 mapEl: null,
+                country: null,
+                isos: [],
                 countries: [],
                 queryCountry: {
-                        "filter[q][iso|in][]": ['SV', 'GT', 'HN'],
-                        "filter[q][DefaultSort|scp]": 1
+                    "filter[q][iso|in][]": ['SV', 'GT', 'HN'],
+                    "filter[q][DefaultSort|scp]": 1
                 },
                 queryOrganization: {
-                        "filter[q][active|eq]": 1,
+                    "filter[q][active|eq]": 1,
                 },
             }
         },
         mounted() {
+            this.getOrganizations()
             this.get()
             this.initialize()
             this.getCountries()
@@ -63,9 +64,23 @@
         methods: {
             get() {
                 axios.get('/api/organizations', {
-                    params: this.queryOrganization
+                    params: {
+                        "filter[q][active|eq]": 1,
+                        "filter[q][country_id|eq]": this.country != null ? this.countries.find(d => d.iso == this.country).id : null,
+                        "filter[q][id|eq]": this.organization
+                    }
                 }).then((response) => {
                     this.organizations = response.data.data
+                    this.meta = response.data.meta
+                });
+            },
+            getOrganizations() {
+                axios.get('/api/organizations', {
+                    params: {
+                        "filter[q][active|eq]": 1,
+                    }
+                }).then((response) => {
+                    this.list_organizations = response.data.data
                     this.meta = response.data.meta
                 });
             },
@@ -77,6 +92,7 @@
                   zoomOnScroll: true,
                   regionsSelectable: true,
                   regionsSelectableOne: true,
+                  onRegionSelected: this.regionSelected
                 });
                 return this.vmap = this.mapEl.vectorMap('get', 'mapObject');
             },
@@ -86,6 +102,13 @@
                     params: this.queryCountry
                   }).then( (response) => {
                     this.countries = response.data.data
+                    this.getIsos(response.data.data)
+                })
+            },
+            getIsos(arr)
+            {
+                arr.forEach((element) => {
+                    this.isos.push(element.iso)
                 })
             },
             setVmapFocusRegion(value){
@@ -93,10 +116,25 @@
               return this.mapEl.vectorMap('set', 'focus', {region: value});
             },
             selectVmapRegion(e){
-                var value = $(e.target).val();
-                if (value == null) { value = 'SV'; }
-                return this.vmap['regions'][value].element.setSelected(true);
-             }
+                var value = this.country;
+                if (value == null || value == '') {
+                    this.vmap.clearSelectedRegions()
+                }
+                else {
+                    this.vmap.clearSelectedRegions();
+                    return this.vmap['regions'][value].element.setSelected(true);
+                    this.get()
+                }
+            },
+            regionSelected(event, code, isSelected, selectedRegions) {
+                console.log(this.isos.indexOf(code));
+                if (isSelected) {
+                    if (this.isos.indexOf(code) >= 0) {
+                        this.country = code
+                        this.get()
+                    }
+                }
+            },
         }
     }
 </script>

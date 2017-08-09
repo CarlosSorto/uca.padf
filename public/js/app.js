@@ -64196,7 +64196,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Enter and leave animations can use different */\n/* durations and timing functions.              */\n.slide-fade-enter-active {\n    transition: all .3s ease;\n}\n.slide-fade-leave-active {\n    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);\n}\n.slide-fade-enter, .slide-fade-leave-to\n/* .slide-fade-leave-active below version 2.1.8 */ {\n    transform: translateX(10px);\n    opacity: 0;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Enter and leave animations can use different */\n/* durations and timing functions.              */\n.slide-fade-enter-active {\n    transition: all .3s ease;\n}\n.slide-fade-leave-active {\n    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);\n}\n.slide-fade-enter, .slide-fade-leave-to\n/* .slide-fade-leave-active below version 2.1.8 */ {\n    transform: translateX(10px);\n    opacity: 0;\n}\n", ""]);
 
 // exports
 
@@ -64242,17 +64242,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             organizations: [],
+            list_organizations: [],
+            organization: null,
             meta: [],
             mapEl: null,
+            country: null,
+            isos: [],
             countries: [],
             queryCountry: {
                 "filter[q][iso|in][]": ['SV', 'GT', 'HN'],
@@ -64264,6 +64264,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
     mounted: function mounted() {
+        this.getOrganizations();
         this.get();
         this.initialize();
         this.getCountries();
@@ -64275,10 +64276,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             axios.get('/api/organizations', {
-                params: this.queryOrganization
+                params: {
+                    "filter[q][active|eq]": 1,
+                    "filter[q][country_id|eq]": this.country != null ? this.countries.find(function (d) {
+                        return d.iso == _this.country;
+                    }).id : null,
+                    "filter[q][id|eq]": this.organization
+                }
             }).then(function (response) {
                 _this.organizations = response.data.data;
                 _this.meta = response.data.meta;
+            });
+        },
+        getOrganizations: function getOrganizations() {
+            var _this2 = this;
+
+            axios.get('/api/organizations', {
+                params: {
+                    "filter[q][active|eq]": 1
+                }
+            }).then(function (response) {
+                _this2.list_organizations = response.data.data;
+                _this2.meta = response.data.meta;
             });
         },
         initialize: function initialize() {
@@ -64287,17 +64306,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 map: 'world_mill',
                 zoomOnScroll: true,
                 regionsSelectable: true,
-                regionsSelectableOne: true
+                regionsSelectableOne: true,
+                onRegionSelected: this.regionSelected
             });
             return this.vmap = this.mapEl.vectorMap('get', 'mapObject');
         },
         getCountries: function getCountries() {
-            var _this2 = this;
+            var _this3 = this;
 
             axios.get('/api/countries', {
                 params: this.queryCountry
             }).then(function (response) {
-                _this2.countries = response.data.data;
+                _this3.countries = response.data.data;
+                _this3.getIsos(response.data.data);
+            });
+        },
+        getIsos: function getIsos(arr) {
+            var _this4 = this;
+
+            arr.forEach(function (element) {
+                _this4.isos.push(element.iso);
             });
         },
         setVmapFocusRegion: function setVmapFocusRegion(value) {
@@ -64307,11 +64335,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return this.mapEl.vectorMap('set', 'focus', { region: value });
         },
         selectVmapRegion: function selectVmapRegion(e) {
-            var value = $(e.target).val();
-            if (value == null) {
-                value = 'SV';
+            var value = this.country;
+            if (value == null || value == '') {
+                this.vmap.clearSelectedRegions();
+            } else {
+                this.vmap.clearSelectedRegions();
+                return this.vmap['regions'][value].element.setSelected(true);
+                this.get();
             }
-            return this.vmap['regions'][value].element.setSelected(true);
+        },
+        regionSelected: function regionSelected(event, code, isSelected, selectedRegions) {
+            console.log(this.isos.indexOf(code));
+            if (isSelected) {
+                if (this.isos.indexOf(code) >= 0) {
+                    this.country = code;
+                    this.get();
+                }
+            }
         }
     }
 });
@@ -64330,17 +64370,30 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("Inicia tu Búsqueda")]), _vm._v(" "), _c('div', {
     staticClass: "w-80 center"
   }, [_vm._m(0), _vm._v(" "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.organization),
+      expression: "organization"
+    }],
     staticClass: "pa2 input-reset ba bg-transparent b--silver silver w-30-l w-100 text--light-blue-50 mh0",
-    attrs: {
-      "name": "",
-      "id": ""
+    on: {
+      "change": function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.organization = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }
     }
   }, [_c('option', {
     staticClass: "text--light-blue-50",
     attrs: {
       "value": ""
     }
-  }, [_vm._v("Nombre de la Organización")]), _vm._v(" "), _vm._l((_vm.organizations), function(organization) {
+  }, [_vm._v("Nombre de la Organización")]), _vm._v(" "), _vm._l((_vm.list_organizations), function(organization) {
     return _c('option', {
       staticClass: "text--light-blue-50",
       domProps: {
@@ -64348,13 +64401,23 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }, [_vm._v(_vm._s(organization.name))])
   })], 2), _vm._v(" "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.country),
+      expression: "country"
+    }],
     staticClass: "pa2 input-reset ba bg-transparent b--silver silver w-30-l w-100 mb2 text--light-blue-50 mh0",
-    attrs: {
-      "name": "",
-      "id": ""
-    },
     on: {
-      "change": _vm.selectVmapRegion
+      "change": function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.country = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }
     }
   }, [_c('option', {
     staticClass: "text--light-blue-50",
@@ -64368,9 +64431,16 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "value": country.iso
       }
     }, [_vm._v(_vm._s(country.name))])
-  })], 2), _vm._v(" "), _vm._m(1)]), _vm._v(" "), _c('div', {
+  })], 2), _vm._v(" "), _c('a', {
+    staticClass: "f5 bo--purple fw4 db link ba bw1 pv2 ph3-l text--purple hover-bg--purple hover-white bg-animate tc di-l",
+    on: {
+      "click": _vm.get
+    }
+  }, [_c('span', {
+    staticClass: "icon-search"
+  })])]), _vm._v(" "), _c('div', {
     staticClass: "cf w-90 mt4"
-  }, [_vm._m(2), _vm._v(" "), _vm._l((_vm.organizations), function(organization) {
+  }, [_vm._m(1), _vm._v(" "), _vm._l((_vm.organizations), function(organization) {
     return _c('div', {
       staticClass: "fl w-100 w-40-l pa2 shadow-4 bg-light-gray mt2"
     }, [_c('div', {
@@ -64378,7 +64448,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_c('img', {
       staticClass: "w-20 absolute top-0 left-1",
       attrs: {
-        "src": organization.logo,
+        "src": 'storage/' + organization.logo,
         "alt": ""
       }
     }), _vm._v(" "), _c('p', {
@@ -64395,46 +64465,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   })], 2)])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('select', {
-    staticClass: "pa2 input-reset ba bg-transparent b--silver silver w-30-l w-100 text--light-blue-50 mh0",
-    attrs: {
-      "name": "",
-      "id": ""
-    }
+    staticClass: "pa2 input-reset ba bg-transparent b--silver silver w-30-l w-100 text--light-blue-50 mh0"
   }, [_c('option', {
     staticClass: "text--light-blue-50",
     attrs: {
       "value": ""
     }
-  }, [_vm._v("Áreas de especialización")]), _vm._v(" "), _c('option', {
-    staticClass: "text--light-blue-50",
-    attrs: {
-      "value": "SV"
-    }
-  }, [_vm._v("El Salvador")]), _vm._v(" "), _c('option', {
-    staticClass: "text--light-blue-50",
-    attrs: {
-      "value": "HN"
-    }
-  }, [_vm._v("Honduras")]), _vm._v(" "), _c('option', {
-    staticClass: "text--light-blue-50",
-    attrs: {
-      "value": "GT"
-    }
-  }, [_vm._v("Guatemala")]), _vm._v(" "), _c('option', {
-    staticClass: "text--light-blue-50",
-    attrs: {
-      "value": "CR"
-    }
-  }, [_vm._v("Costa Rica")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('a', {
-    staticClass: "f5 bo--purple fw4 db link ba bw1 pv2 ph3-l text--purple hover-bg--purple hover-white bg-animate tc di-l",
-    attrs: {
-      "href": "#"
-    }
-  }, [_c('span', {
-    staticClass: "icon-search"
-  })])
+  }, [_vm._v("Áreas de especialización")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "fl w-60 dn db-l pa2"
