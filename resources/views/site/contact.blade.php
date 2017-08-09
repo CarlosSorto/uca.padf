@@ -62,7 +62,7 @@
                         <div class="white relative pl4">
                             <span class="icon-phone mt2 f4 absolute top-0 left-0"></span>
                             <p>Teléfono</p>
-                            <p class="fw3 f6">{{ app('voyager')->setting('contact_phone') }}</p>
+                            <p class="fw3 f6">{{ app('voyager')->setting('contact_email') }}</p>
                         </div>
                     </div>
                 </div>
