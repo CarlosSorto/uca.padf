@@ -3,7 +3,7 @@
         <div class="center w-60-l w-80">
             <h1 class="tc text--blue fw4 f2">Inicia tu búsqueda</h1>
             <div>
-                <input type="text" class="pa2 input-reset ba bg-transparent b--silver silver w-30-l w-100 mh0" placeholder="Palabra Clave" v-model="keyword">
+                <input type="text" class="pa2 input-reset ba bg-transparent b--silver silver w-60-l w-100 mh0" placeholder="Palabra Clave" v-model="keyword">
                 <select name="" id="" class="pa2 input-reset ba bg-transparent b--silver silver w-30-l w-100 text--light-blue-50 mh0" v-model="country_id">
                     <option value="" class="text--light-blue-50">Selecciones un País</option>
                     <option :value="country.id" class="text--light-blue-50" v-for="country in countries" v-text="country.name"></option>
