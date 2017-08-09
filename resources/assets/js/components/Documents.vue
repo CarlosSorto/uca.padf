@@ -76,6 +76,7 @@
                 grid: true,
                 list: false,
                 keyword: '',
+                page: 1,
                 country_id: '',
                 countries: [],
                 queryCountry: {
@@ -96,7 +97,8 @@
                         "filter[q][country_id|eq]": this.country_id,
                         "filter[q][title|cont]": this.keyword,
                         "filter[q][description|cont]": this.keyword,
-                        "filter[per_page]": 9
+                        "filter[per_page]": 6,
+                        "filter[page]": this.page
                     }
                 }).then((response) => {
                     this.documents = response.data.data
@@ -121,7 +123,8 @@
                 })
             },
             clickCallback (pageNum) {
-              console.log(pageNum)
+                this.page = pageNum
+                this.get()
             }
         }
     }
@@ -139,5 +142,9 @@
     /* .slide-fade-leave-active below version 2.1.8 */ {
         transform: translateX(10px);
         opacity: 0;
+    }
+    .active > a {
+        color: #33425b;
+        font-weight: 600;
     }
 </style>
