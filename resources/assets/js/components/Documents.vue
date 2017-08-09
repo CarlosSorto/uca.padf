@@ -8,12 +8,6 @@
                     <option value="" class="text--light-blue-50">Selecciones un País</option>
                     <option :value="country.id" class="text--light-blue-50" v-for="country in countries" v-text="country.name"></option>
                 </select>
-                <select name="" id="" class="pa2 input-reset ba bg-transparent b--silver silver w-30-l w-100 mb2 text--light-blue-50 mh0">
-                    <option value="" class="text--light-blue-50">Año de Publicación</option>
-                    <option value="1" class="text--light-blue-50">2015</option>
-                    <option value="2" class="text--light-blue-50">2016</option>
-                    <option value="3" class="text--light-blue-50">2017</option>
-                </select>
                 <a @click="get" class="f5 bo--purple fw4 db link ba bw1 pv2-l ph3-l text--purple hover-bg--purple hover-white bg-animate tc di-l"><span class="icon-search"></span></a>
             </div>
             <div v-if="documents.length">
