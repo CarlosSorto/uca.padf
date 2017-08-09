@@ -41,8 +41,8 @@
                     </div>
             </div>
             <div class="center tc">
-                    <paginate   :page-count="parseInt(meta.total)"
-                                :page-range="6"
+                    <paginate   :page-count="meta.last_page"
+                                :page-range="per_page"
                                 :next-class="'dib tc mh2'"
                                 :next-link-class="'link'"
                                 :prev-class="'dib tc mh2'"
@@ -76,6 +76,7 @@
                 list: false,
                 meta: [],
                 page: 1,
+                per_page: 6,
             }
         },
         mounted() {
@@ -89,7 +90,7 @@
                         "filter[q][modality_id|eq]": this.modality,
                         "filter[q][type_id|eq]": this.type,
                         "filter[q][title|cont]": this.keyword,
-                        "filter[per_page]": 6,
+                        "filter[per_page]": this.per_page,
                         "filter[page]": this.page,
                     }
                 }).then((response) => {

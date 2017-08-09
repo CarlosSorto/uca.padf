@@ -45,8 +45,8 @@
                         </div>
                 </div>
                 <div class="center tc">
-                    <paginate   :page-count="2"
-                                :page-range="1"
+                    <paginate   :page-count="meta.last_page"
+                                :page-range="per_page"
                                 :next-class="'dib tc mh2'"
                                 :next-link-class="'link'"
                                 :prev-class="'dib tc mh2'"
@@ -79,6 +79,7 @@
                 page: 1,
                 country_id: '',
                 countries: [],
+                per_page: 6,
                 queryCountry: {
                     "filter[q][iso|in][]": ['SV', 'GT', 'HN'],
                     "filter[q][DefaultSort|scp]": 1
@@ -97,7 +98,7 @@
                         "filter[q][country_id|eq]": this.country_id,
                         "filter[q][title|cont]": this.keyword,
                         "filter[q][description|cont]": this.keyword,
-                        "filter[per_page]": 6,
+                        "filter[per_page]": this.per_page,
                         "filter[page]": this.page
                     }
                 }).then((response) => {
