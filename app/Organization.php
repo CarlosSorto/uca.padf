@@ -26,6 +26,18 @@ class Organization extends Model
         'position',
     ];
 
+    protected static $searcheable_fields = [
+          'id' => [
+            'type'=> 'integer',
+          ],
+          'name' => [
+            'type'=> 'string',
+          ],
+          'actiev' => [
+            'type'=> 'boolean',
+          ],
+    ];
+
     public function countryId()
     {
         return $this->belongsTo(Country::class);

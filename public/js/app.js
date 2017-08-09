@@ -64149,7 +64149,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Enter and leave animations can use different */\n/* durations and timing functions.              */\n.slide-fade-enter-active {\n    transition: all .3s ease;\n}\n.slide-fade-leave-active {\n    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);\n}\n.slide-fade-enter, .slide-fade-leave-to\n/* .slide-fade-leave-active below version 2.1.8 */ {\n    transform: translateX(10px);\n    opacity: 0;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Enter and leave animations can use different */\n/* durations and timing functions.              */\n.slide-fade-enter-active {\n    transition: all .3s ease;\n}\n.slide-fade-leave-active {\n    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);\n}\n.slide-fade-enter, .slide-fade-leave-to\n/* .slide-fade-leave-active below version 2.1.8 */ {\n    transform: translateX(10px);\n    opacity: 0;\n}\n", ""]);
 
 // exports
 
@@ -64160,6 +64160,9 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
 //
 //
 //
@@ -64207,6 +64210,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             queryCountry: {
                 "filter[q][iso|in][]": ['SV', 'GT', 'HN'],
                 "filter[q][DefaultSort|scp]": 1
+            },
+            queryOrganization: {
+                "filter[q][active|eq]": 1
             }
         };
     },
@@ -64221,7 +64227,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         get: function get() {
             var _this = this;
 
-            axios.get('/api/organizations').then(function (response) {
+            axios.get('/api/organizations', {
+                params: this.queryOrganization
+            }).then(function (response) {
                 _this.organizations = response.data.data;
                 _this.meta = response.data.meta;
             });
@@ -64252,9 +64260,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return this.mapEl.vectorMap('set', 'focus', { region: value });
         },
         selectVmapRegion: function selectVmapRegion(e) {
-            console.log(e);
             var value = $(e.target).val();
-            console.log(value);
             if (value == null) {
                 value = 'SV';
             }
@@ -64276,7 +64282,25 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "text--blue f2 fw4"
   }, [_vm._v("Inicia tu Búsqueda")]), _vm._v(" "), _c('div', {
     staticClass: "w-80 center"
-  }, [_vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('select', {
+  }, [_vm._m(0), _vm._v(" "), _c('select', {
+    staticClass: "pa2 input-reset ba bg-transparent b--silver silver w-30-l w-100 text--light-blue-50 mh0",
+    attrs: {
+      "name": "",
+      "id": ""
+    }
+  }, [_c('option', {
+    staticClass: "text--light-blue-50",
+    attrs: {
+      "value": ""
+    }
+  }, [_vm._v("Nombre de la Organización")]), _vm._v(" "), _vm._l((_vm.organizations), function(organization) {
+    return _c('option', {
+      staticClass: "text--light-blue-50",
+      domProps: {
+        "value": organization.id
+      }
+    }, [_vm._v(_vm._s(organization.name))])
+  })], 2), _vm._v(" "), _c('select', {
     staticClass: "pa2 input-reset ba bg-transparent b--silver silver w-30-l w-100 mb2 text--light-blue-50 mh0",
     attrs: {
       "name": "",
@@ -64285,16 +64309,21 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "change": _vm.selectVmapRegion
     }
-  }, _vm._l((_vm.countries), function(country) {
+  }, [_c('option', {
+    staticClass: "text--light-blue-50",
+    attrs: {
+      "value": ""
+    }
+  }, [_vm._v("Seleccione un País")]), _vm._v(" "), _vm._l((_vm.countries), function(country) {
     return _c('option', {
       staticClass: "text--light-blue-50",
       domProps: {
         "value": country.iso
       }
     }, [_vm._v(_vm._s(country.name))])
-  })), _vm._v(" "), _vm._m(2)]), _vm._v(" "), _c('div', {
+  })], 2), _vm._v(" "), _vm._m(1)]), _vm._v(" "), _c('div', {
     staticClass: "cf w-90 mt4"
-  }, [_vm._m(3), _vm._v(" "), _vm._l((_vm.organizations), function(organization) {
+  }, [_vm._m(2), _vm._v(" "), _vm._l((_vm.organizations), function(organization) {
     return _c('div', {
       staticClass: "fl w-100 w-40-l pa2 shadow-4"
     }, [_c('div', {
@@ -64350,19 +64379,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "value": "CR"
     }
   }, [_vm._v("Costa Rica")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('select', {
-    staticClass: "pa2 input-reset ba bg-transparent b--silver silver w-30-l w-100 text--light-blue-50 mh0",
-    attrs: {
-      "name": "",
-      "id": ""
-    }
-  }, [_c('option', {
-    staticClass: "text--light-blue-50",
-    attrs: {
-      "value": ""
-    }
-  }, [_vm._v("Nombre de la Organización")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('a', {
     staticClass: "f5 bo--purple fw4 db link ba bw1 pv2 ph3-l text--purple hover-bg--purple hover-white bg-animate tc di-l",

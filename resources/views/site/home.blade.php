@@ -64,7 +64,7 @@
                     @foreach ($organizations as $organization)
                         <div class="ba bg-white b--black-10 mv4 w-100 mw6 center pa4 h6 shadow-5">
                             <a href="{{ route('organization', $organization->id) }}">
-                                <img src="{{ $organization->image }}" alt="" width="100%">
+                                <img src="storage/{{ $organization->image }}" alt="" width="100%">
                             </a>
                             <h4 class="fw6 text--blue f4 h3">{{ $organization->name }}</h4>
                             <p class="silver lh-copy f6 h3 mb4">{{ $organization->description }}</p>

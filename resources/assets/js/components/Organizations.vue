@@ -13,8 +13,10 @@
                 </select>
                 <select name="" id="" class="pa2 input-reset ba bg-transparent b--silver silver w-30-l w-100 text--light-blue-50 mh0">
                     <option value="" class="text--light-blue-50">Nombre de la Organización</option>
+                    <option :value="organization.id" class="text--light-blue-50" v-for="organization in organizations">{{ organization.name }}</option>
                 </select>
                 <select name="" id="" class="pa2 input-reset ba bg-transparent b--silver silver w-30-l w-100 mb2 text--light-blue-50 mh0" v-on:change="selectVmapRegion">
+                    <option value="" class="text--light-blue-50">Seleccione un País</option>
                     <option :value="country.iso" class="text--light-blue-50" v-for="country in countries">{{ country.name }}</option>
                 </select>
                 <a href="#" class="f5 bo--purple fw4 db link ba bw1 pv2 ph3-l text--purple hover-bg--purple hover-white bg-animate tc di-l"><span class="icon-search"></span></a>
@@ -46,7 +48,10 @@
                 queryCountry: {
                         "filter[q][iso|in][]": ['SV', 'GT', 'HN'],
                         "filter[q][DefaultSort|scp]": 1
-                }
+                },
+                queryOrganization: {
+                        "filter[q][active|eq]": 1,
+                },
             }
         },
         mounted() {
@@ -57,7 +62,9 @@
         },
         methods: {
             get() {
-                axios.get('/api/organizations').then((response) => {
+                axios.get('/api/organizations', {
+                    params: this.queryOrganization
+                }).then((response) => {
                     this.organizations = response.data.data
                     this.meta = response.data.meta
                 });
