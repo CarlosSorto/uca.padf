@@ -19,9 +19,12 @@
 
                     @foreach ($formations as $formation)
                         <div class="ba bg-white b--black-10 mv4 w-100 mw6 center pa4 h6 shadow-5">
-                            <h4 class="fw6 text--blue f5">{{ $formation->title }}</h4>
-                            <p class="lh-copy f6 h3-l h5">{{ str_limit($formation->description, 125) }}</p>
-                            <p class="text--light-blue-50 f6 mv4"><span class="{{ $formation->modality->icon }}"></span> {{ $formation->modality->name }}</p>
+                            <h4 class="fw6 text--blue f5 h2">{{ $formation->title }}</h4>
+                            <p class="lh-copy f6 h3-l h5-l h4">{{ str_limit($formation->description, 125) }}</p>
+                            <p class="text--light-blue-50 f6 h2">
+                                <span class="{{ $formation->modality->icon }}"></span>
+                                {{ $formation->modality->name }}
+                            </p>
                             <a href="{{ route('formation', $formation->id) }}" class="f5 fw4 db tc bo--purple link ba bw1 pv2 text--purple hover-bg--purple hover-white bg-animate">Ir a Capacitación</a>
                         </div>
                     @endforeach
@@ -42,8 +45,8 @@
                     <div class="fl w-50-m w-third-ns w-100 ph5">
                         <div class="relative pl5">
                             <span class="icon-pdf f1 silver ma1 absolute top-0 left-0"></span>
-                            <h3 class="f4 fw5 text--blue">{{ $document->title }}</h3>
-                            <p class="silver f6">{{ $document->author }}, {{ $document->published_date }}</p>
+                            <h3 class="f4 fw5 text--blue h2-l h3">{{ $document->title }}</h3>
+                            <p class="silver f6 h2">{{ $document->author }}, {{ $document->published_date }}</p>
                         </div>
                         <div class="mv4">
                             <a href="{{ route('document', $document->id) }}" class="f5 fw4 db tc bo--purple link ba bw1 pv2 text--purple hover-bg--purple hover-white bg-animate">Ver más</a>
@@ -63,9 +66,11 @@
                 <div class="owl-carousel owl-theme" id="owl-organization">
                     @foreach ($organizations as $organization)
                         <div class="ba bg-white b--black-10 mv4 w-100 mw6 center pa4 h6 shadow-5">
-                            <a href="{{ route('organization', $organization->id) }}">
-                                <img src="storage/{{ $organization->image }}" alt="" width="100%">
-                            </a>
+                            <div class="pa4 vmid">
+                                <a href="{{ route('organization', $organization->id) }}">
+                                    <img src="storage/{{ $organization->image }}" alt="" class="h5">
+                                </a>
+                            </div>
                             <h4 class="fw6 text--blue f4 h3">{{ $organization->name }}</h4>
                             <p class="silver lh-copy f6 h3 mb4">{{ $organization->description }}</p>
                             <p class="text--blue f5"><span class="icon-phone mr2"></span>{{ $organization->phone }}</p>

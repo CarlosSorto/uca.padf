@@ -17,16 +17,22 @@
                 </select>
                 <a class="f5 bo--purple fw4 db link ba bw1 pv2 ph3-l text--purple hover-bg--purple hover-white bg-animate tc di-l" @click="get"><span class="icon-search"></span></a>
             </div>
-            <div class="cf w-90 mt4">
+            <div class="cf w-90-l w-100 mt4">
                 <div class="fl w-60 dn db-l pa2">
                     <div id="vmap" style="width: 600px; height: 400px;"></div>
                 </div>
                 <div class="fl w-100 w-40-l pa2 shadow-4 bg-light-gray mt2" v-for="organization in organizations">
-                    <div class="relative pl7-l pl6 mb4 w-100 tl">
-                        <img :src="'storage/' + organization.logo" alt="" class="w-20 absolute top-0 left-1">
-                        <p class="f6 w-60 fw6 text--blue h3" v-text="organization.name"></p>
-                        <a :href="'/organizaciones-afiliadas/'+ organization.id" class="f6 fw4 tc center link ba bw1 white bo--purple text--purple pv2 w-100 ph4 hover-white hover-bg--purple">Más Información</a>
+                    <div class="flex flex-column flex-row-ns">
+                        <div class="w-100 w-40-ns">
+                            <img :src="'storage/' + organization.logo" alt="" class="h4 pa2">
+                        </div>
+                        <div class="mb4 mb0-ns w-100 w-60-ns">
+                            <p class="f6 fw6 text--blue h3" v-text="organization.name"></p>
+                            <a :href="'/organizaciones-afiliadas/'+ organization.id" class="f6 fw4 tc center link ba bw1 white bo--purple text--purple pv2 w-100 ph4 hover-white hover-bg--purple">Más Información</a>
+                        </div>
                     </div>
+                    <!-- <div class="relative pl7-l pl6 mb4 w-100 tl">
+                    </div> -->
                 </div>
             </div>
         </div>
