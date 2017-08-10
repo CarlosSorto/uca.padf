@@ -40,13 +40,15 @@
                             </select>
                         </div>
                         <div class="mb4">
-                            <select class="w-100 f-select text--light-blue-50" name="topic_id">
-                                <option value="" class="text--light-blue-50">Selecciones una Categorización temática</option>
-                                @foreach ($topics as $topic)
-                                    <option value="{{ $topic->id }}" class="text--light-blue-50">
-                                        {{ $topic->name }}
+                            <select class="w-100" name="topics[]" id="document_topics" multiple="true" data-placeholder="Choose a country...">
+                                <option value="1">Service 1</option>
+                                <option value="2" selected>Service 2</option>
+                                {{-- <option value="" class="text--light-blue-50">Selecciones una Categorización temática</option>
+                                @foreach ($topics as $key => $value)
+                                    <option value="{{ $key }}" class="text--light-blue-50" {{ (collect(old('topics'))->contains($key)) ? 'selected':'' }}>
+                                        {{ $value->name }}
                                     </option>
-                                @endforeach
+                                @endforeach --}}
                             </select>
                         </div>
                         <div class="mb4">
