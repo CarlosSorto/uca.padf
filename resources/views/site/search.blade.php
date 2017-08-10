@@ -3,18 +3,15 @@
 @section('content')
   <section class="pv5 ">
     <div class="center w-60-l w-80 mv6 ">
+    <form action="{{ route('search') }}" method="get">
+        <div class="tc">
+            <input type="text" name="q" value="{{ $query }}" class="dib pa2 input-reset ba bg-transparent b--silver silver w-80 mh0">
+            <button type="submit" class="dib f5 bo--purple fw4 db link ba bw1 pv2-l ph3-l text--purple hover-bg--purple hover-white bg-animate tc di-l w-15">
+                <span class="icon-search"></span>
+            </button>            
+        </div>
+    </form>
 
-      {!! BootForm::open()->action(route("search"))->get() !!}
-        {!! BootForm::bind($search) !!}
-
-        {!! BootForm::text('', 'q')->hideLabel()->autocomplete("off")->addClass("pa2 input-reset ba bg-transparent b--silver silver w-100 mh0")->group()->addClass("dib")->placeholder("Buscar") !!}
-
-
-        <button type="submit" class="f5 bo--purple fw4 db link ba bw1 pv2-l ph3-l text--purple hover-bg--purple hover-white bg-animate tc di-l">
-          <span class="icon-search"></span>
-        </button>
-
-      {!! BootForm::close() !!}
 
       @foreach ($search_contents as $search_content)
 

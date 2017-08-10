@@ -11,11 +11,10 @@ use App\Founder;
 use App\Gallery;
 use App\Modality;
 use App\Organization;
+use App\SearchContent;
 use App\Topic;
 use App\WorkArea;
-use App\SearchContent;
 use Illuminate\Http\Request;
-
 
 class SiteController extends Controller
 {
@@ -144,12 +143,12 @@ class SiteController extends Controller
 
     public function search(Request $request)
     {
-        $search = $request;
-        $query = $request["q"];
-        $search_contents = $this->searchContent->where('active', 1)->search($query)->paginate(25);
+        $query           = $request->get('q');
+        $search_contents = $this->searchContent
+                                ->where('active', 1)
+                                ->search($query)
+                                ->paginate(25);
 
-        return view('site.search', compact("search_contents", "search"));
+        return view('site.search', compact('search_contents', 'search', 'query'));
     }
-
-
 }
