@@ -24,18 +24,19 @@ class DocumentRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'            => ['required'],
-            'author'           => ['required'],
-            'description'      => ['required'],
-            'long_description' => ['required'],
-            'published_date'   => ['required'],
-            'country_id'       => ['required', 'integer', 'exists:countries,id'],
-            'organization_id'  => ['required', 'integer', 'exists:organizations,id'],
-            'keywords'         => ['required'],
-            'file'             => ['required', 'file'],
-            'name_applicant'   => ['required'],
-            'institution'      => ['required'],
-            'position'         => ['required'],
+            'title'             => ['required'],
+            'author'            => ['required'],
+            'description'       => ['required'],
+            'long_description'  => ['required'],
+            'published_date'    => ['required'],
+            'country_id'        => ['required', 'integer', 'exists:countries,id'],
+            'organization_id'   => ['required', 'integer', 'exists:organizations,id'],
+            'keywords'          => ['required'],
+            'file'              => ['required', 'file'],
+            'name_applicant'    => ['required'],
+            'institution'       => ['required'],
+            'position'          => ['required'],
+            'topics'            => ['required'],
         ];
     }
 }

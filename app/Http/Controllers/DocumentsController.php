@@ -33,6 +33,7 @@ class DocumentsController extends Controller
      */
     public function store(DocumentRequest $request)
     {
+        // dd($request->all());
         $this->document->fill($request->all());
         if ($request->file('file')) {
             $name                 = uniqid().'.'.$request->file->extension();
@@ -41,6 +42,8 @@ class DocumentsController extends Controller
         }
 
         if ($this->document->save()) {
+            $this->document->topics()->sync($request->get('topics'));
+
             return redirect(route('repositories'));
         }
 

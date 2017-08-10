@@ -1164,9 +1164,6 @@ window.Pikaday = __webpack_require__(180);
 __webpack_require__(183);
 __webpack_require__(185);
 __webpack_require__(186);
-__webpack_require__(35);
-__webpack_require__(36);
-__webpack_require__(41);
 
 window.Vue = __webpack_require__(42);
 window.vueFilter = __webpack_require__(44);
@@ -1179,9 +1176,13 @@ Vue.component('documents', __webpack_require__(46));
 Vue.component('formations', __webpack_require__(52));
 Vue.component('organizations', __webpack_require__(57));
 
-var app = new Vue({
+new Vue({
     el: '#app'
 });
+
+__webpack_require__(35);
+__webpack_require__(36);
+__webpack_require__(41);
 
 /***/ }),
 /* 13 */
@@ -14356,7 +14357,7 @@ $(function () {
     var picker3 = new Pikaday({ field: $('#until_date')[0] });
 });
 
-$('#document_topics').chosen();
+$('.select-chosen').chosen();
 
 /***/ }),
 /* 42 */

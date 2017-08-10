@@ -18,7 +18,6 @@ class Document extends Model
         'published_date',
         'country_id',
         'organization_id',
-        'topics',
         'keywords',
         'file',
         'name_applicant',

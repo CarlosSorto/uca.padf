@@ -4,4 +4,4 @@ $(function() {
     var picker3 = new Pikaday({ field: $('#until_date')[0] });
 })
 
-$('#document_topics').chosen();
+$('.select-chosen').chosen();

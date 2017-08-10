@@ -5,6 +5,11 @@
     {{ csrf_field() }}
     <section class="pt6-l pt6 pb5 bg--light-blue">
         <div class="w-60-l w-80 center mt5">
+            @if($errors)
+                @foreach ($errors->all() as $error)
+                    {{ $error }}
+                @endforeach
+            @endif
             <h1 class="text--blue fw4 f2">Registro de Documentos</h1>
             <div class="bg-white pa3 mb5">
                 <h2 class="text--blue fw4 f3">Datos de documento</h2>
@@ -40,15 +45,12 @@
                             </select>
                         </div>
                         <div class="mb4">
-                            <select class="w-100" name="topics[]" id="document_topics" multiple="true" data-placeholder="Choose a country...">
-                                <option value="1">Service 1</option>
-                                <option value="2" selected>Service 2</option>
-                                {{-- <option value="" class="text--light-blue-50">Selecciones una Categorización temática</option>
-                                @foreach ($topics as $key => $value)
-                                    <option value="{{ $key }}" class="text--light-blue-50" {{ (collect(old('topics'))->contains($key)) ? 'selected':'' }}>
+                            <select class="w-100 select-chosen" name="topics[]" multiple="true" data-placeholder="Seleccione un Categoría Tematica">
+                                @foreach ($topics as $value)
+                                    <option value="{{ $value->id }}" class="text--light-blue-50" {{ (collect(old('topics'))->contains($value->id)) ? 'selected':'' }}>
                                         {{ $value->name }}
                                     </option>
-                                @endforeach --}}
+                                @endforeach
                             </select>
                         </div>
                         <div class="mb4">

@@ -45,8 +45,7 @@
                             </select>
                         </div>
                         <div class="mb4">
-                            <select class="w-100 f-select text--light-blue-50" name="workares">
-                                <option value="" class="text--light-blue-50">Seleccione una Área de especialización</option>
+                            <select class="w-100 f-select text--light-blue-50 select-chosen" multiple data-placeholder="Seleccione un Área de Especialización" name="workareas[]">
                                 @foreach ($work_areas as $work_area)
                                     <option value="{{ $work_area->id }}" class="text--light-blue-50" {{ (old("work_area_id") == $work_area->id ? "selected":"") }}>
                                         {{ $work_area->name }}

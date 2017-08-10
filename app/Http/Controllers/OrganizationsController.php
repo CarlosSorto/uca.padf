@@ -41,6 +41,8 @@ class OrganizationsController extends Controller
         }
 
         if ($this->organization->save()) {
+            $this->organization->work_areas()->sync($request->get('workareas'));
+
             return redirect()->route('organizations');
         }
 
