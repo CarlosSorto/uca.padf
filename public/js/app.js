@@ -63368,7 +63368,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Enter and leave animations can use different */\n/* durations and timing functions.              */\n.slide-fade-enter-active {\n    transition: all .3s ease;\n}\n.slide-fade-leave-active {\n    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);\n}\n.slide-fade-enter, .slide-fade-leave-to\n/* .slide-fade-leave-active below version 2.1.8 */ {\n    transform: translateX(10px);\n    opacity: 0;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Enter and leave animations can use different */\n/* durations and timing functions.              */\n.slide-fade-enter-active {\n    transition: all .3s ease;\n}\n.slide-fade-leave-active {\n    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);\n}\n.slide-fade-enter, .slide-fade-leave-to\n/* .slide-fade-leave-active below version 2.1.8 */ {\n    transform: translateX(10px);\n    opacity: 0;\n}\n.active > a {\n    color: #33425b;\n    font-weight: 600;\n}\n", ""]);
 
 // exports
 
@@ -63481,12 +63481,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -63496,8 +63490,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             grid: true,
             list: false,
             keyword: '',
+            page: 1,
             country_id: '',
             countries: [],
+            per_page: 6,
             queryCountry: {
                 "filter[q][iso|in][]": ['SV', 'GT', 'HN'],
                 "filter[q][DefaultSort|scp]": 1
@@ -63519,7 +63515,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     "filter[q][country_id|eq]": this.country_id,
                     "filter[q][title|cont]": this.keyword,
                     "filter[q][description|cont]": this.keyword,
-                    "filter[per_page]": 9
+                    "filter[per_page]": this.per_page,
+                    "filter[page]": this.page
                 }
             }).then(function (response) {
                 _this.documents = response.data.data;
@@ -63545,7 +63542,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         clickCallback: function clickCallback(pageNum) {
-            console.log(pageNum);
+            this.page = pageNum;
+            this.get();
         }
     }
 });
@@ -63571,7 +63569,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.keyword),
       expression: "keyword"
     }],
-    staticClass: "pa2 input-reset ba bg-transparent b--silver silver w-30-l w-100 mh0",
+    staticClass: "pa2 input-reset ba bg-transparent b--silver silver w-60-l w-100 mh0",
     attrs: {
       "type": "text",
       "placeholder": "Palabra Clave"
@@ -63621,7 +63619,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "textContent": _vm._s(country.name)
       }
     })
-  })], 2), _vm._v(" "), _vm._m(0), _vm._v(" "), _c('a', {
+  })], 2), _vm._v(" "), _c('a', {
     staticClass: "f5 bo--purple fw4 db link ba bw1 pv2-l ph3-l text--purple hover-bg--purple hover-white bg-animate tc di-l",
     on: {
       "click": _vm.get
@@ -63710,8 +63708,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "center tc"
   }, [_c('paginate', {
     attrs: {
-      "page-count": 2,
-      "page-range": 1,
+      "page-count": _vm.meta.last_page,
+      "page-range": _vm.per_page,
       "next-class": 'dib tc mh2',
       "next-link-class": 'link',
       "prev-class": 'dib tc mh2',
@@ -63732,35 +63730,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('p', {
     staticClass: "f4"
   }, [_vm._v("No se encontraron coincidencias.")])])])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('select', {
-    staticClass: "pa2 input-reset ba bg-transparent b--silver silver w-30-l w-100 mb2 text--light-blue-50 mh0",
-    attrs: {
-      "name": "",
-      "id": ""
-    }
-  }, [_c('option', {
-    staticClass: "text--light-blue-50",
-    attrs: {
-      "value": ""
-    }
-  }, [_vm._v("Año de Publicación")]), _vm._v(" "), _c('option', {
-    staticClass: "text--light-blue-50",
-    attrs: {
-      "value": "1"
-    }
-  }, [_vm._v("2015")]), _vm._v(" "), _c('option', {
-    staticClass: "text--light-blue-50",
-    attrs: {
-      "value": "2"
-    }
-  }, [_vm._v("2016")]), _vm._v(" "), _c('option', {
-    staticClass: "text--light-blue-50",
-    attrs: {
-      "value": "3"
-    }
-  }, [_vm._v("2017")])])
-}]}
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -63848,7 +63818,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Enter and leave animations can use different */\n/* durations and timing functions.              */\n.slide-fade-enter-active {\n    transition: all .3s ease;\n}\n.slide-fade-leave-active {\n    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);\n}\n.slide-fade-enter, .slide-fade-leave-to\n/* .slide-fade-leave-active below version 2.1.8 */ {\n    transform: translateX(10px);\n    opacity: 0;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Enter and leave animations can use different */\n/* durations and timing functions.              */\n.slide-fade-enter-active {\n    transition: all .3s ease;\n}\n.slide-fade-leave-active {\n    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);\n}\n.slide-fade-enter, .slide-fade-leave-to\n/* .slide-fade-leave-active below version 2.1.8 */ {\n    transform: translateX(10px);\n    opacity: 0;\n}\n.active > a {\n    color: #33425b;\n    font-weight: 600;\n}\n", ""]);
 
 // exports
 
@@ -63859,6 +63829,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //
@@ -63934,7 +63905,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             keyword: null,
             grid: true,
             list: false,
-            meta: []
+            meta: [],
+            page: 1,
+            per_page: 6
         };
     },
     mounted: function mounted() {
@@ -63947,10 +63920,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             axios.get('/api/formations', {
                 params: {
-                    "filter[q][active|eq][]": 1,
+                    "filter[q][active|eq]": 1,
                     "filter[q][modality_id|eq]": this.modality,
                     "filter[q][type_id|eq]": this.type,
-                    "filter[q][title|cont]": this.keyword
+                    "filter[q][title|cont]": this.keyword,
+                    "filter[per_page]": this.per_page,
+                    "filter[page]": this.page
                 }
             }).then(function (response) {
                 _this.formations = response.data.data;
@@ -63965,6 +63940,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 this.grid = false;
                 this.list = true;
             }
+        },
+        clickCallback: function clickCallback(pageNum) {
+            this.page = pageNum;
+            this.get();
         }
     }
 });
@@ -64158,11 +64137,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "center tc"
   }, [_c('paginate', {
     attrs: {
-      "page-count": parseInt(_vm.meta.total),
-      "page-range": 6,
+      "page-count": _vm.meta.last_page,
+      "page-range": _vm.per_page,
       "next-class": 'dib tc mh2',
       "next-link-class": 'link',
       "prev-class": 'dib tc mh2',
+      "click-handler": _vm.clickCallback,
       "prev-link-class": 'link',
       "page-link-class": 'link silver hover-text--purple f4',
       "page-class": 'dib tc mh2',
@@ -64267,7 +64247,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Enter and leave animations can use different */\n/* durations and timing functions.              */\n.slide-fade-enter-active {\n    transition: all .3s ease;\n}\n.slide-fade-leave-active {\n    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);\n}\n.slide-fade-enter, .slide-fade-leave-to\n/* .slide-fade-leave-active below version 2.1.8 */ {\n    transform: translateX(10px);\n    opacity: 0;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Enter and leave animations can use different */\n/* durations and timing functions.              */\n.slide-fade-enter-active {\n    transition: all .3s ease;\n}\n.slide-fade-leave-active {\n    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);\n}\n.slide-fade-enter, .slide-fade-leave-to\n/* .slide-fade-leave-active below version 2.1.8 */ {\n    transform: translateX(10px);\n    opacity: 0;\n}\n.active > a {\n    color: #33425b;\n    font-weight: 600;\n}\n", ""]);
 
 // exports
 

@@ -3,16 +3,10 @@
         <div class="center w-60-l w-80">
             <h1 class="tc text--blue fw4 f2">Inicia tu búsqueda</h1>
             <div>
-                <input type="text" class="pa2 input-reset ba bg-transparent b--silver silver w-30-l w-100 mh0" placeholder="Palabra Clave" v-model="keyword">
+                <input type="text" class="pa2 input-reset ba bg-transparent b--silver silver w-60-l w-100 mh0" placeholder="Palabra Clave" v-model="keyword">
                 <select name="" id="" class="pa2 input-reset ba bg-transparent b--silver silver w-30-l w-100 text--light-blue-50 mh0" v-model="country_id">
                     <option value="" class="text--light-blue-50">Selecciones un País</option>
                     <option :value="country.id" class="text--light-blue-50" v-for="country in countries" v-text="country.name"></option>
-                </select>
-                <select name="" id="" class="pa2 input-reset ba bg-transparent b--silver silver w-30-l w-100 mb2 text--light-blue-50 mh0">
-                    <option value="" class="text--light-blue-50">Año de Publicación</option>
-                    <option value="1" class="text--light-blue-50">2015</option>
-                    <option value="2" class="text--light-blue-50">2016</option>
-                    <option value="3" class="text--light-blue-50">2017</option>
                 </select>
                 <a @click="get" class="f5 bo--purple fw4 db link ba bw1 pv2-l ph3-l text--purple hover-bg--purple hover-white bg-animate tc di-l"><span class="icon-search"></span></a>
             </div>
@@ -51,8 +45,8 @@
                         </div>
                 </div>
                 <div class="center tc">
-                    <paginate   :page-count="2"
-                                :page-range="1"
+                    <paginate   :page-count="meta.last_page"
+                                :page-range="per_page"
                                 :next-class="'dib tc mh2'"
                                 :next-link-class="'link'"
                                 :prev-class="'dib tc mh2'"
@@ -82,8 +76,10 @@
                 grid: true,
                 list: false,
                 keyword: '',
+                page: 1,
                 country_id: '',
                 countries: [],
+                per_page: 6,
                 queryCountry: {
                     "filter[q][iso|in][]": ['SV', 'GT', 'HN'],
                     "filter[q][DefaultSort|scp]": 1
@@ -102,7 +98,8 @@
                         "filter[q][country_id|eq]": this.country_id,
                         "filter[q][title|cont]": this.keyword,
                         "filter[q][description|cont]": this.keyword,
-                        "filter[per_page]": 9
+                        "filter[per_page]": this.per_page,
+                        "filter[page]": this.page
                     }
                 }).then((response) => {
                     this.documents = response.data.data
@@ -127,7 +124,8 @@
                 })
             },
             clickCallback (pageNum) {
-              console.log(pageNum)
+                this.page = pageNum
+                this.get()
             }
         }
     }
@@ -145,5 +143,9 @@
     /* .slide-fade-leave-active below version 2.1.8 */ {
         transform: translateX(10px);
         opacity: 0;
+    }
+    .active > a {
+        color: #33425b;
+        font-weight: 600;
     }
 </style>

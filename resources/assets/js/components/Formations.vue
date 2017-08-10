@@ -41,11 +41,12 @@
                     </div>
             </div>
             <div class="center tc">
-                    <paginate   :page-count="parseInt(meta.total)"
-                                :page-range="6"
+                    <paginate   :page-count="meta.last_page"
+                                :page-range="per_page"
                                 :next-class="'dib tc mh2'"
                                 :next-link-class="'link'"
                                 :prev-class="'dib tc mh2'"
+                                :click-handler="clickCallback"
                                 :prev-link-class="'link'"
                                 :page-link-class="'link silver hover-text--purple f4'"
                                 :page-class="'dib tc mh2'"
@@ -74,6 +75,8 @@
                 grid: true,
                 list: false,
                 meta: [],
+                page: 1,
+                per_page: 6,
             }
         },
         mounted() {
@@ -83,10 +86,12 @@
             get() {
                 axios.get('/api/formations',{
                     params: {
-                        "filter[q][active|eq][]": 1,
+                        "filter[q][active|eq]": 1,
                         "filter[q][modality_id|eq]": this.modality,
                         "filter[q][type_id|eq]": this.type,
                         "filter[q][title|cont]": this.keyword,
+                        "filter[per_page]": this.per_page,
+                        "filter[page]": this.page,
                     }
                 }).then((response) => {
                     this.formations = response.data.data
@@ -102,6 +107,10 @@
                     this.grid = false
                     this.list = true
                 }
+            },
+            clickCallback (pageNum) {
+                this.page = pageNum
+                this.get()
             }
         }
     }
@@ -119,5 +128,9 @@
     /* .slide-fade-leave-active below version 2.1.8 */ {
         transform: translateX(10px);
         opacity: 0;
+    }
+    .active > a {
+        color: #33425b;
+        font-weight: 600;
     }
 </style>
