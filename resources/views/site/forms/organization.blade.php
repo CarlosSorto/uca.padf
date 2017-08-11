@@ -119,13 +119,7 @@
                     </div>
                 </div>
             </div>
-                {{-- <div class="">
-                    <input id="latitude" type="text" name="" value="">
-                </div>
-                <div class="">
-                    <input id="longitude" type="text" name="" value="">
-                </div> --}}
-                <gmap :height="300" :marker="{lat: 13.6915591, lng: -89.2497137}" @marker:dragend="updateInputs"></gmap>
+            <gmap :height="300" :marker="{lat: 13.6915591, lng: -89.2497137}" @marker:dragend="updateInputs" :draggable="true"></gmap>
             <div class="bg-white pa3">
                 <h2 class="text--blue fw4 f3">Datos del solicitante</h2>
                 <div class="cf">

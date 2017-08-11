@@ -37,6 +37,8 @@ class OrganizationRequest extends FormRequest
             'position'          => ['required'],
             'workareas'         => ['required'],
             'website'           => ['required'],
+            'longitude'           => ['required'],
+            'latitude'           => ['required'],
         ];
     }
 }

@@ -50872,6 +50872,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       default: 200,
       type: Number
     },
+    draggable: true,
     lat: {
       default: 13.6915591
     },
@@ -50887,14 +50888,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
     }
   },
-
-  beforeMount: function beforeMount() {},
   mounted: function mounted() {
     var _this = this;
 
     this.map = this.$el;
     this.map.style.height = this.height + "px";
-    console.log(this.$el);
     this.gmap = new GMaps({
       div: this.$el,
       lat: this.lat,
@@ -50906,7 +50904,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       return this.gMarker = this.gmap.addMarker({
         lat: this.marker != null ? this.marker.lat : undefined,
         lng: this.marker != null ? this.marker.lng : undefined,
-        draggable: true,
+        draggable: this.draggable,
         dragend: function dragend(position) {
           _this.gmap.setCenter(position.latLng.lat(), position.latLng.lng());
           return _this.$emit("marker:dragend", {
