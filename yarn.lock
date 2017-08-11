@@ -3121,7 +3121,7 @@ jquery-mousewheel@~3.1.13:
   version "3.1.13"
   resolved "https://registry.yarnpkg.com/jquery-mousewheel/-/jquery-mousewheel-3.1.13.tgz#06f0335f16e353a695e7206bf50503cb523a6ee5"
 
-jquery@^3.2.1:
+jquery@>=1.8.3, jquery@^3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.2.1.tgz#5c4d9de652af6cd0a770154a631bba12b015c787"
 
@@ -4100,6 +4100,12 @@ osenv@0, osenv@^0.1.4:
   dependencies:
     os-homedir "^1.0.0"
     os-tmpdir "^1.0.0"
+
+owl.carousel@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/owl.carousel/-/owl.carousel-2.2.0.tgz#f3598d01e60757bc107b2b3c61231b1140cf360c"
+  dependencies:
+    jquery ">=1.8.3"
 
 p-finally@^1.0.0:
   version "1.0.0"
@@ -5472,6 +5478,10 @@ svgo@^0.7.0:
     mkdirp "~0.5.1"
     sax "~1.2.1"
     whet.extend "~0.9.9"
+
+tachyons@^4.7.4:
+  version "4.7.4"
+  resolved "https://registry.yarnpkg.com/tachyons/-/tachyons-4.7.4.tgz#eca4ffa15c1f06a357f088c6d0e687fc5f0408cc"
 
 tapable@^0.2.7:
   version "0.2.8"
