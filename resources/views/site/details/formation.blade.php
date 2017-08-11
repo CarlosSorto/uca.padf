@@ -15,14 +15,9 @@
                     </div>
                     <div class="mv1">
                         <h4 class="tb f6">Contacto</h4>
-                        <p><span class="icon-web text--light-blue-50 mr2"></span> <a href="" class="link silver">{{ $formation->email }}</a></p>
+                        <p><span class="icon-web text--light-blue-50 mr2"></span> <a href="mailto:{{ $formation->email }}" class="link silver">{{ $formation->email }}</a></p>
                         <p><span class="icon-mail text--light-blue-50 mr2"></span> <a href="" class="link silver">{{ $formation->website }}</a></p>
                     </div>
-                    {{-- <div class="mv4">
-                        <h4 class="tb f6">Categorías</h4>
-                        <p class="ba br1 dib-l tc bw1 pa2 silver b--silver f6 mr1">Seminarios y Cursos</p>
-                        <p class="ba br1 dib-l tc bw1 pa2 silver b--silver f6 mr1">Congresos y Encuentros</p>
-                    </div> --}}
                 </div>
                 <div class="dtc-l w-100 w-30-ns bg--light-blue-50 pv4 ph5-l ph3">
                     <h1 class="f2 fw4 white mb0">Detalles</h1>

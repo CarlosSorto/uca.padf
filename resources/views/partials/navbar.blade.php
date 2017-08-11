@@ -1,6 +1,6 @@
 <header class="w-100 fixed z-5 dn db-l bg-white">
     <nav class="pt1 dt center mw8">
-        <a class="link dtc v-mid pl4" href="/" title="Inicio">
+        <a class="link dtc v-mid pl4 pb1" href="/" title="Inicio">
             <div class="dib-l mw3">
                 <img src="{{ config('app.url') .'/storage/'. app('voyager')->setting('logo') }}" alt="Logo" class="w-100">
             </div>

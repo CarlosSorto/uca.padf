@@ -47678,8 +47678,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             formations: [],
-            modality: null,
-            type: null,
+            modality: '',
+            type: '',
             keyword: null,
             grid: true,
             list: false,
@@ -49723,8 +49723,18 @@ module.exports = "/images/vendor/chosen-js/chosen-sprite@2x.png?614fad616d014daf
 
 $(document).ready(function () {
     var picker = new Pikaday({ field: $('#published_date')[0] });
-    var picker2 = new Pikaday({ field: $('#since_date')[0] });
-    var picker3 = new Pikaday({ field: $('#until_date')[0] });
+    var since = new Pikaday({
+        field: $('#since_date')[0],
+        onSelect: function onSelect() {
+            // reset the minDate for the secondary picker
+            until.config({ minDate: this.getDate() });
+        }
+    });
+
+    var until = new Pikaday({
+        field: $('#until_date')[0]
+    });
+
     $('#owl-header').owlCarousel({
         items: 1,
         animateOut: 'fadeOut',

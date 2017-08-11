@@ -1,7 +1,17 @@
 $(document).ready(function(){
     var picker = new Pikaday({ field: $('#published_date')[0] });
-    var picker2 = new Pikaday({ field: $('#since_date')[0] });
-    var picker3 = new Pikaday({ field: $('#until_date')[0] });
+    var since = new Pikaday({
+        field: $('#since_date')[0],
+        onSelect: function() {
+            // reset the minDate for the secondary picker
+            until.config({minDate: this.getDate()});
+        }
+    });
+
+    var until = new Pikaday({
+        field: $('#until_date')[0]
+    });
+
   $('#owl-header').owlCarousel({
     items:1,
     animateOut: 'fadeOut',

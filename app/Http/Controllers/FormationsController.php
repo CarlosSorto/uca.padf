@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Formation;
 use App\Http\Requests\FormationRequest;
-use Illuminate\Http\Request;
 
 class FormationsController extends Controller
 {
@@ -43,56 +42,11 @@ class FormationsController extends Controller
     public function store(FormationRequest $request)
     {
         $this->formation->fill($request->all());
-        // dd($this->formation);
+
         if ($this->formation->save()) {
-            return redirect()->route('formations');
+            return redirect(route('create.formation'))->with('success', 'success send');
         }
 
-        return redirect()->back();
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param \App\Formation $formation
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Formation $formation)
-    {
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param \App\Formation $formation
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Formation $formation)
-    {
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Formation           $formation
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Formation $formation)
-    {
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param \App\Formation $formation
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Formation $formation)
-    {
+        return back();
     }
 }

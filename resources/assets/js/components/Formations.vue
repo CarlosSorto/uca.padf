@@ -69,8 +69,8 @@
         data() {
             return {
                 formations: [],
-                modality: null,
-                type: null,
+                modality: '',
+                type: '',
                 keyword:null,
                 grid: true,
                 list: false,

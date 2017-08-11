@@ -1,7 +1,7 @@
 @extends('layouts.site')
 
 @section('content')
-<form method="post" action="{{ route('document.store') }}" enctype="multipart/form-data" validation>
+<form method="post" action="{{ route('document.store') }}" enctype="multipart/form-data">
     {{ csrf_field() }}
     <section class="pt6-l pt6 pb5 bg--light-blue">
         <div class="w-60-l w-80 center mt5">
