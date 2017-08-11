@@ -4,8 +4,9 @@
         <div class="center tc">
             <h1 class="text--blue f2 fw4">Inicia tu Búsqueda</h1>
             <div class="w-80 center">
-                <select class="pa2 input-reset ba bg-transparent b--silver silver w-30-l w-100 text--light-blue-50 mh0">
+                <select class="pa2 input-reset ba bg-transparent b--silver silver w-30-l w-100 text--light-blue-50 mh0" v-model="workarea">
                     <option value="" class="text--light-blue-50">Áreas de especialización</option>
+                    <option :value="workarea.id" class="text--light-blue-50" v-for="workarea in workareas">{{ workarea.name }}</option>
                 </select>
                 <select class="pa2 input-reset ba bg-transparent b--silver silver w-30-l w-100 text--light-blue-50 mh0" v-model="organization">
                     <option value="" class="text--light-blue-50">Nombre de la Organización</option>
@@ -18,21 +19,21 @@
                 <a class="f5 bo--purple fw4 db link ba bw1 pv2 ph3-l text--purple hover-bg--purple hover-white bg-animate tc di-l" @click="get"><span class="icon-search"></span></a>
             </div>
             <div class="cf w-90-l w-100 mt4">
-                <div class="fl w-60 dn db-l pa2">
-                    <div id="vmap" style="width: 600px; height: 400px;"></div>
+                <div class="fl w-60 dn db-l pl6">
+                    <div id="vmap" style="width: 500px; height: 400px"></div>
                 </div>
-                <div class="fl w-100 w-40-l pa2 shadow-4 bg-light-gray mt2" v-for="organization in organizations">
-                    <div class="flex flex-column flex-row-ns">
+                <div class="fl w-100 w-40-l pa2 overflow-auto h6" >
+                    <div class="flex flex-column flex-row-ns shadow-4 bg-white mb2" v-for="organization in organizations">
                         <div class="w-100 w-40-ns">
                             <img :src="'storage/' + organization.logo" alt="" class="h4 pa2">
                         </div>
                         <div class="mb4 mb0-ns w-100 w-60-ns">
-                            <p class="f6 fw6 text--blue h3" v-text="organization.name"></p>
+                            <a :href="organization.website" target="_blank" class="link">
+                                <p class="f6 fw6 text--blue h3" v-text="organization.name"></p>
+                            </a>
                             <a :href="'/organizaciones-afiliadas/'+ organization.id" class="f6 fw4 tc center link ba bw1 white bo--purple text--purple pv2 w-100 ph4 hover-white hover-bg--purple">Más Información</a>
                         </div>
                     </div>
-                    <!-- <div class="relative pl7-l pl6 mb4 w-100 tl">
-                    </div> -->
                 </div>
             </div>
         </div>
@@ -41,14 +42,16 @@
 
 <script>
     export default {
+        props: ['workareas'],
         data() {
             return {
                 organizations: [],
                 list_organizations: [],
                 organization: '',
+                country: '',
+                workarea: '',
                 meta: [],
                 mapEl: null,
-                country: '',
                 isos: [],
                 countries: [],
                 queryCountry: {
@@ -94,7 +97,7 @@
             {
                 this.mapEl = $('#vmap');
                 this.mapEl.vectorMap({
-                  backgroundColor: "white",
+                  backgroundColor: "#F5F9FF",
                   regionStyle: {
                     initial: {
                       fill: 'rgb(153, 153, 153)',
@@ -105,14 +108,12 @@
                     },
                     hover: {
                       "fill-opacity": 0.8,
-                      fill: '#e32727',
+                      fill: 'rgb(82, 109, 208)',
                       cursor: 'pointer'
                     },
                     selected: {
-                      fill: '#e32727'
+                      fill: 'rgb(82, 109, 208)'
                     },
-                    selectedHover: {
-                    }
                   },
                   map: 'world_mill',
                   zoomOnScroll: true,
@@ -180,5 +181,9 @@
     .active > a {
         color: #33425b;
         font-weight: 600;
+    }
+
+    .h6 {
+        height: 25rem;
     }
 </style>

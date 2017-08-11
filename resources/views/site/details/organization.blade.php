@@ -6,7 +6,7 @@
             <h1 class="text--blue fw4 f2">Directorio de Organizaciones</h1>
             <div class="fl w-100 w-40-l pa2">
                 <div class="pa5 shadow-5">
-                    <img src="/storage/{{ $organization->image }}" alt="">
+                    <img src="/storage/{{ $organization->image }}" alt="{{ $organization->name }}" width="100%">
                 </div>
             </div>
             <div class="fl w-100 w-60-l ph4">
@@ -15,6 +15,10 @@
                 <p class="lh-copy silver">{{ $organization->description }}</p>
                 <p class="f5 fw6">Clasificación contemporanea</p>
                 <p class="silver lh-copy">{{ $organization->classification->name }}</p>
+                <p class="f5 fw6">Sitio Web</p>
+                <a href="{{ $organization->website }}" target="_blank" class="link">
+                    <p class="silver lh-copy">{{ $organization->website }}</p>
+                </a>
                 <div class="mv4">
                     <p class="ttu text--light-blue-50 fw6 f5">Áreas de Trabajo</p>
                     @foreach ($organization->work_areas()->get() as $work_area)
@@ -41,7 +45,7 @@
                     <div class="relative pl4 mb4">
                         <span class="icon-phone silver f4 absolute top-0 left-0"></span>
                         <p class="silver fw6 f6 mb2">Teléfono</p>
-                        <p class="fw3 silver f6 ma0">{{ $organization->phone }}</p>
+                        <a href="tel: {{ $organization->phone }}" class="link"><p class="fw3 silver f6 ma0">{{ $organization->phone }}</p></a>
                     </div>
                     <div class="relative pl4">
                         <span class="icon-ubicacion silver f4 absolute top-0 left-0"></span>

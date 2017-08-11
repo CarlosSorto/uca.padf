@@ -99,7 +99,9 @@ class SiteController extends Controller
 
     public function organizations()
     {
-        return view('site.organizations');
+        $workareas= $this->workArea->all();
+
+        return view('site.organizations', compact('workareas'));
     }
 
     public function organization(Organization $organization)

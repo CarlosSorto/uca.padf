@@ -2,13 +2,14 @@
 
 namespace App;
 
+use App\Traits\Models\SearchContentOrganization;
 use Illuminate\Database\Eloquent\Model;
 use Iw\Api\Traits\Models\Searcheable;
 
 class Organization extends Model
 {
     use Searcheable;
-    use \App\Traits\Models\SearchContentOrganization;
+    use SearchContentOrganization;
 
     protected $fillable= [
         'name',

@@ -48025,7 +48025,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Enter and leave animations can use different */\n/* durations and timing functions.              */\n.slide-fade-enter-active {\n    transition: all .3s ease;\n}\n.slide-fade-leave-active {\n    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);\n}\n.slide-fade-enter, .slide-fade-leave-to\n/* .slide-fade-leave-active below version 2.1.8 */ {\n    transform: translateX(10px);\n    opacity: 0;\n}\n.active > a {\n    color: #33425b;\n    font-weight: 600;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Enter and leave animations can use different */\n/* durations and timing functions.              */\n.slide-fade-enter-active {\n    transition: all .3s ease;\n}\n.slide-fade-leave-active {\n    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);\n}\n.slide-fade-enter, .slide-fade-leave-to\n/* .slide-fade-leave-active below version 2.1.8 */ {\n    transform: translateX(10px);\n    opacity: 0;\n}\n.active > a {\n    color: #33425b;\n    font-weight: 600;\n}\n.h6 {\n    height: 25rem;\n}\n", ""]);
 
 // exports
 
@@ -48077,16 +48077,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['workareas'],
     data: function data() {
         return {
             organizations: [],
             list_organizations: [],
             organization: '',
+            country: '',
+            workarea: '',
             meta: [],
             mapEl: null,
-            country: '',
             isos: [],
             countries: [],
             queryCountry: {
@@ -48138,7 +48141,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         initialize: function initialize() {
             this.mapEl = $('#vmap');
             this.mapEl.vectorMap({
-                backgroundColor: "white",
+                backgroundColor: "#F5F9FF",
                 regionStyle: {
                     initial: {
                         fill: 'rgb(153, 153, 153)',
@@ -48149,13 +48152,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     },
                     hover: {
                         "fill-opacity": 0.8,
-                        fill: '#e32727',
+                        fill: 'rgb(82, 109, 208)',
                         cursor: 'pointer'
                     },
                     selected: {
-                        fill: '#e32727'
-                    },
-                    selectedHover: {}
+                        fill: 'rgb(82, 109, 208)'
+                    }
                 },
                 map: 'world_mill',
                 zoomOnScroll: true,
@@ -48222,7 +48224,38 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "text--blue f2 fw4"
   }, [_vm._v("Inicia tu Búsqueda")]), _vm._v(" "), _c('div', {
     staticClass: "w-80 center"
-  }, [_vm._m(0), _vm._v(" "), _c('select', {
+  }, [_c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.workarea),
+      expression: "workarea"
+    }],
+    staticClass: "pa2 input-reset ba bg-transparent b--silver silver w-30-l w-100 text--light-blue-50 mh0",
+    on: {
+      "change": function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.workarea = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }
+    }
+  }, [_c('option', {
+    staticClass: "text--light-blue-50",
+    attrs: {
+      "value": ""
+    }
+  }, [_vm._v("Áreas de especialización")]), _vm._v(" "), _vm._l((_vm.workareas), function(workarea) {
+    return _c('option', {
+      staticClass: "text--light-blue-50",
+      domProps: {
+        "value": workarea.id
+      }
+    }, [_vm._v(_vm._s(workarea.name))])
+  })], 2), _vm._v(" "), _c('select', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -48293,11 +48326,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "icon-search"
   })])]), _vm._v(" "), _c('div', {
     staticClass: "cf w-90-l w-100 mt4"
-  }, [_vm._m(1), _vm._v(" "), _vm._l((_vm.organizations), function(organization) {
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "fl w-100 w-40-l pa2 overflow-auto h6"
+  }, _vm._l((_vm.organizations), function(organization) {
     return _c('div', {
-      staticClass: "fl w-100 w-40-l pa2 shadow-4 bg-light-gray mt2"
-    }, [_c('div', {
-      staticClass: "flex flex-column flex-row-ns"
+      staticClass: "flex flex-column flex-row-ns shadow-4 bg-white mb2"
     }, [_c('div', {
       staticClass: "w-100 w-40-ns"
     }, [_c('img', {
@@ -48308,33 +48341,30 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     })]), _vm._v(" "), _c('div', {
       staticClass: "mb4 mb0-ns w-100 w-60-ns"
+    }, [_c('a', {
+      staticClass: "link",
+      attrs: {
+        "href": organization.website,
+        "target": "_blank"
+      }
     }, [_c('p', {
       staticClass: "f6 fw6 text--blue h3",
       domProps: {
         "textContent": _vm._s(organization.name)
       }
-    }), _vm._v(" "), _c('a', {
+    })]), _vm._v(" "), _c('a', {
       staticClass: "f6 fw4 tc center link ba bw1 white bo--purple text--purple pv2 w-100 ph4 hover-white hover-bg--purple",
       attrs: {
         "href": '/organizaciones-afiliadas/' + organization.id
       }
-    }, [_vm._v("Más Información")])])])])
-  })], 2)])])
+    }, [_vm._v("Más Información")])])])
+  }))])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('select', {
-    staticClass: "pa2 input-reset ba bg-transparent b--silver silver w-30-l w-100 text--light-blue-50 mh0"
-  }, [_c('option', {
-    staticClass: "text--light-blue-50",
-    attrs: {
-      "value": ""
-    }
-  }, [_vm._v("Áreas de especialización")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    staticClass: "fl w-60 dn db-l pa2"
+    staticClass: "fl w-60 dn db-l pl6"
   }, [_c('div', {
     staticStyle: {
-      "width": "600px",
+      "width": "500px",
       "height": "400px"
     },
     attrs: {
