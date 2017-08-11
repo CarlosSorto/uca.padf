@@ -94,6 +94,26 @@
             {
                 this.mapEl = $('#vmap');
                 this.mapEl.vectorMap({
+                  backgroundColor: "white",
+                  regionStyle: {
+                    initial: {
+                      fill: 'rgb(153, 153, 153)',
+                      "fill-opacity": 1,
+                      stroke: 'none',
+                      "stroke-width": 0,
+                      "stroke-opacity": 1
+                    },
+                    hover: {
+                      "fill-opacity": 0.8,
+                      fill: '#e32727',
+                      cursor: 'pointer'
+                    },
+                    selected: {
+                      fill: '#e32727'
+                    },
+                    selectedHover: {
+                    }
+                  },
                   map: 'world_mill',
                   zoomOnScroll: true,
                   regionsSelectable: true,
