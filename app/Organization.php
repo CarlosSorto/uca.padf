@@ -79,4 +79,15 @@ class Organization extends Model
     {
         return $this->morphOne('App\SearchContent', 'sourceable');
     }
+
+    public function scopeWorkArea($q, $value)
+    {
+        if (is_null($value)) {
+            return $q;
+        }
+
+        return $q->whereHas('work_areas', function ($query) use ($value) {
+            $query->where('id', $value);
+        });
+    }
 }

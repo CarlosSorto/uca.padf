@@ -76,7 +76,8 @@
                     params: {
                         "filter[q][active|eq]": 1,
                         "filter[q][country_id|eq]": this.country != null && this.country != ''  ? this.countries.find(d => d.iso == this.country).id : null,
-                        "filter[q][id|eq]": this.organization
+                        "filter[q][id|eq]": this.organization,
+                        "filter[q][WorkArea|scp]": this.workarea
                     }
                 }).then((response) => {
                     this.organizations = response.data.data
