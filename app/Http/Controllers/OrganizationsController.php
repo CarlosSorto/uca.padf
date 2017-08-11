@@ -43,54 +43,10 @@ class OrganizationsController extends Controller
         if ($this->organization->save()) {
             $this->organization->work_areas()->sync($request->get('workareas'));
 
-            return redirect()->route('organizations');
+            return redirect(route('create.organization'))->with('success', 'success send');
         }
 
         return redirect()->back();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param \App\Organization $organization
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Organization $organization)
-    {
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param \App\Organization $organization
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Organization $organization)
-    {
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Organization        $organization
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Organization $organization)
-    {
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param \App\Organization $organization
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Organization $organization)
-    {
-    }
 }

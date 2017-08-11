@@ -98,7 +98,7 @@
                             @endif
                         </div>
                         <div class="tr mt5">
-                            <input type="file" name="file" style="cursor:pointer" class="dib absolute overflow-hidden o-0 f5 fw4 bo--purple link ba bw1 pv2  text--purple hover-bg--purple hover-white bg-animate" value="{{ old('file') }}" required lang="es">
+                            <input type="file" name="file" style="cursor:pointer" class="dib absolute overflow-hidden o-0 f5 fw4 bo--purple link ba bw1 pv2  text--purple hover-bg--purple hover-white bg-animate" value="{{ old('file') }}" lang="es">
                             <label for="" style="cursor:pointer" class="dib f5 fw4 bo--purple link ba bw1 pv2 ph5 text--purple hover-bg--purple hover-white bg-animate">Subir Documento</label><br>
                             @if($errors->has('file'))
                                 <span class="f6 red">{{ $errors->first('file') }}</span>

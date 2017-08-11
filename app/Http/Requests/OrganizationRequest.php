@@ -36,6 +36,7 @@ class OrganizationRequest extends FormRequest
             'institution'       => ['required'],
             'position'          => ['required'],
             'workareas'         => ['required'],
+            'website'           => ['required'],
         ];
     }
 }
