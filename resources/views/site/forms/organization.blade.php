@@ -51,6 +51,18 @@
                                 <span class="f6 red">{{ $errors->first('long_description') }}</span>
                             @endif
                         </div>
+                        <div class="mb4">
+                            <input id="longitude" class="input-reset f-input bn pa2 mb2 db w-100" type="text" name="longitude" placeholder="Longitud*" value="{{ old('longitude') }}">
+                            @if($errors->has('longitude'))
+                                <span class="f6 red">{{ $errors->first('longitude') }}</span>
+                            @endif
+                        </div>
+                        <div class="mb4">
+                            <input id="latitude" class="input-reset f-input bn pa2 mb2 db w-100" type="text" name="latitude" placeholder="Latitud*" value="{{ old('longitude') }}">
+                            @if($errors->has('latitude'))
+                                <span class="f6 red">{{ $errors->first('latitude') }}</span>
+                            @endif
+                        </div>
                     </div>
                     <div class="fl w-100 w-50-ns ph3">
                         <div class="mb4">
@@ -107,6 +119,13 @@
                     </div>
                 </div>
             </div>
+                {{-- <div class="">
+                    <input id="latitude" type="text" name="" value="">
+                </div>
+                <div class="">
+                    <input id="longitude" type="text" name="" value="">
+                </div> --}}
+                <gmap :height="300" :marker="{lat: 13.6915591, lng: -89.2497137}" @marker:dragend="updateInputs"></gmap>
             <div class="bg-white pa3">
                 <h2 class="text--blue fw4 f3">Datos del solicitante</h2>
                 <div class="cf">

@@ -1,9 +1,8 @@
-$(document).ready(function(){
+$(document).ready(function(){    
     var picker = new Pikaday({ field: $('#published_date')[0] });
     var since = new Pikaday({
         field: $('#since_date')[0],
         onSelect: function() {
-            // reset the minDate for the secondary picker
             until.config({minDate: this.getDate()});
         }
     });
@@ -154,6 +153,5 @@ document.getElementById('cancel').addEventListener('click', event => {
     document.getElementById('hamburger').style.transform = ''
     document.getElementById('sidebar').classList.add('transform-off')
 })
-
 
 $('.select-chosen').chosen();

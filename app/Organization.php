@@ -26,6 +26,8 @@ class Organization extends Model
         'applicant',
         'institution',
         'position',
+        'longitude',
+        'latitude',
     ];
 
     protected static $searcheable_fields = [

@@ -41,8 +41,8 @@
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSyxQcRGp-u1hiUl7iAu71dEBhr4Acz2s&callback=initMap">
         </script>
     @endif
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSyxQcRGp-u1hiUl7iAu71dEBhr4Acz2s"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.25/gmaps.js"></script> --}}
     <script src="{{ asset('js/app.js') }}"></script>
-    {{-- <script src="{{ asset('js/main.js') }}"></script>
-    <script src="{{ asset('js/vendor.js') }}"></script> --}}
 </body>
 </html>
