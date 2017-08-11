@@ -319,23 +319,44 @@
   color: #526DD0;
 }
 
+/**
+ * Overlay
+ */
 .img-overlay {
-  background: #3273d2;
   position: absolute;
   top: 0;
+  bottom: 0;
   left: 0;
-  width: 100%;
+  right: 0;
   height: 100%;
+  width: 100%;
+  opacity: 0;
+  -webkit-transition: .5s ease;
+  transition: .5s ease;
+  background-color: #3273d2;
   opacity: .6;
 }
 
-.text-overlay {
+.text-overlay-l {
+  color: white;
+  font-size: 20px;
+  position: absolute;
   top: 50%;
-  left: 25%;
-  margin: 0 auto;
+  left: 30%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+.text-overlay {
   color: white;
+  font-size: 25px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
 }
 
 /* OWL Carousel */
@@ -512,5 +533,18 @@ select option {
   .transform-off {
     -webkit-transform: none;
     transform: none;
+  }
+}
+
+/**
+ * Custom
+ */
+.pt-header {
+  padding-top: 7rem;
+}
+
+@media screen and (min-width: 60em) {
+  .pt-header-l {
+    padding-top: 10rem;
   }
 }

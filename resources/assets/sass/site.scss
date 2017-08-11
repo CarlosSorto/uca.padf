@@ -65,24 +65,42 @@ $purple: #526DD0;
 .hover-text--purple:hover,
 .hover-text--purple:focus { color: $purple; }
 
+
+/**
+ * Overlay
+ */
 .img-overlay {
-  background: #3273d2;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: .6;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: #3273d2;
+    opacity: .6;
+}
+
+.text-overlay-l {
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
 }
 
 .text-overlay {
-    @extend .db !optional;
-    @extend .absolute !optional;
-    top: 50%;
-    left: 25%;
-    margin: 0 auto;
-    transform: translate(-50%,-50%);
     color: white;
+    font-size: 25px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
 }
 
 /* OWL Carousel */
@@ -236,4 +254,19 @@ p, ul {
    -webkit-transform: none;
    transform: none;
   }
+}
+
+
+/**
+ * Custom
+ */
+
+.pt-header {
+    padding-top: 7rem;
+}
+
+@media screen and (min-width: 60em) {
+    .pt-header-l {
+        padding-top: 10rem;
+    }
 }

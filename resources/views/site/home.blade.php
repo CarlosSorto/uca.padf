@@ -1,12 +1,17 @@
 @extends('layouts.site')
 
 @section('content')
-    <section class="h-25" id="carousel">
+    <section class="pt-header pt-header-l" id="carousel">
         <div class="owl-carousel owl-theme" id="owl-header">
-            <div class="">
-                <img class="owl-lazy relative" data-src="storage/{{ $cover->get('inicio')->image }}" alt="Inicio">
+            <div>
+                <img class="owl-lazy relative" data-src="storage/{{ $cover->get('inicio')->image }}" alt="Inicio" class="db" width="100%">
                 <div class="img-overlay"></div>
-                <h1 class="white text-overlay ttu f-subheadline-l f3 lh-solid fw5 left w-50-l pl6">{{ $cover->get('inicio')->title }}</h1>
+                <div class="text-overlay-l dn db-l">
+                    <h1 class="white ttu fw6 f1 w-60">{{ $cover->get('inicio')->title }}</h1>
+                </div>
+                <div class="text-overlay dn-l db tc">
+                    <h1 class="white ttu f-subheadline-l f3 lh-solid fw6 w-50-l">{{ $cover->get('inicio')->title }}</h1>
+                </div>
             </div>
         </div>
     </section>

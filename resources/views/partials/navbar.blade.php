@@ -5,9 +5,9 @@
                 <img src="{{ config('app.url') .'/storage/'. app('voyager')->setting('logo') }}" alt="Logo" class="w-100">
             </div>
             <div class="dib-l pl1">
-                <h4 class="gray ttu fw6 w-50">
+                <h1 class="gray ttu fw6 f5 w-50">
                     {{ app('voyager')->setting('title')}}
-                </h4>
+                </h1>
             </div>
         </a>
         <div class="dtc v-mid">
