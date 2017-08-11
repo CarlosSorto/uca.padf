@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Document;
 use App\Http\Requests\DocumentRequest;
-use Illuminate\Http\Request;
 
 class DocumentsController extends Controller
 {
@@ -33,7 +32,6 @@ class DocumentsController extends Controller
      */
     public function store(DocumentRequest $request)
     {
-        // dd($request->all());
         $this->document->fill($request->all());
         if ($request->file('file')) {
             $name                 = uniqid().'.'.$request->file->extension();
@@ -44,54 +42,9 @@ class DocumentsController extends Controller
         if ($this->document->save()) {
             $this->document->topics()->sync($request->get('topics'));
 
-            return redirect(route('repositories'));
+            return redirect(route('create.document'))->with('success', 'success send');
         }
 
-        return redirect()->back();
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param \App\Document $document
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Document $document)
-    {
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param \App\Document $document
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Document $document)
-    {
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Document            $document
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Document $document)
-    {
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param \App\Document $document
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Document $document)
-    {
+        return back();
     }
 }
