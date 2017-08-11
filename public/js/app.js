@@ -48025,7 +48025,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Enter and leave animations can use different */\n/* durations and timing functions.              */\n.slide-fade-enter-active {\n    transition: all .3s ease;\n}\n.slide-fade-leave-active {\n    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);\n}\n.slide-fade-enter, .slide-fade-leave-to\n/* .slide-fade-leave-active below version 2.1.8 */ {\n    transform: translateX(10px);\n    opacity: 0;\n}\n.active > a {\n    color: #33425b;\n    font-weight: 600;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Enter and leave animations can use different */\n/* durations and timing functions.              */\n.slide-fade-enter-active {\n    transition: all .3s ease;\n}\n.slide-fade-leave-active {\n    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);\n}\n.slide-fade-enter, .slide-fade-leave-to\n/* .slide-fade-leave-active below version 2.1.8 */ {\n    transform: translateX(10px);\n    opacity: 0;\n}\n.active > a {\n    color: #33425b;\n    font-weight: 600;\n}\n", ""]);
 
 // exports
 
@@ -48083,10 +48083,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             organizations: [],
             list_organizations: [],
-            organization: null,
+            organization: '',
             meta: [],
             mapEl: null,
-            country: null,
+            country: '',
             isos: [],
             countries: [],
             queryCountry: {
@@ -48113,7 +48113,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.get('/api/organizations', {
                 params: {
                     "filter[q][active|eq]": 1,
-                    "filter[q][country_id|eq]": this.country != null ? this.countries.find(function (d) {
+                    "filter[q][country_id|eq]": this.country != null && this.country != '' ? this.countries.find(function (d) {
                         return d.iso == _this.country;
                     }).id : null,
                     "filter[q][id|eq]": this.organization
@@ -48199,7 +48199,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         },
         regionSelected: function regionSelected(event, code, isSelected, selectedRegions) {
-            console.log(this.isos.indexOf(code));
             if (isSelected) {
                 if (this.isos.indexOf(code) >= 0) {
                     this.country = code;

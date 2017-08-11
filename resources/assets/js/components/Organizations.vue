@@ -45,10 +45,10 @@
             return {
                 organizations: [],
                 list_organizations: [],
-                organization: null,
+                organization: '',
                 meta: [],
                 mapEl: null,
-                country: null,
+                country: '',
                 isos: [],
                 countries: [],
                 queryCountry: {
@@ -72,7 +72,7 @@
                 axios.get('/api/organizations', {
                     params: {
                         "filter[q][active|eq]": 1,
-                        "filter[q][country_id|eq]": this.country != null ? this.countries.find(d => d.iso == this.country).id : null,
+                        "filter[q][country_id|eq]": this.country != null && this.country != ''  ? this.countries.find(d => d.iso == this.country).id : null,
                         "filter[q][id|eq]": this.organization
                     }
                 }).then((response) => {
@@ -153,7 +153,6 @@
                 }
             },
             regionSelected(event, code, isSelected, selectedRegions) {
-                console.log(this.isos.indexOf(code));
                 if (isSelected) {
                     if (this.isos.indexOf(code) >= 0) {
                         this.country = code
