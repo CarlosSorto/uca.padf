@@ -4,12 +4,7 @@
 <form method="post" action="{{ route('organization.store') }}" enctype="multipart/form-data">
     {{ csrf_field() }}
     <section class="pt6-l pt5 pb5 bg--light-blue">
-        <div class="w-60-l w-80 center mt5">
-            @if ($errors)
-                @foreach ($errors->all() as $error)
-                    {{ $error }}<br>
-                @endforeach
-            @endif
+        <div class="w-60-l w-80 center mt5">            
             <h1 class="text--blue fw4 f2">Registro de Organización</h1>
             <div class="bg-white pa3 mb5">
                 <h2 class="text--blue fw4 f3">Datos de la institución</h2>

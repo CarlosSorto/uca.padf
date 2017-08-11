@@ -23,6 +23,7 @@ $router->get('contactenos', 'SiteController@contact')
        ->name('contact');
 $router->get('buscar', 'SiteController@search')
         ->name('search');
+$router->post('mail', 'SiteController@mail')->name('email.contact');
 /*
  * Details Pages
  */

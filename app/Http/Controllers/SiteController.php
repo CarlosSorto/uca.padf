@@ -9,6 +9,8 @@ use App\Formation;
 use App\FormationType;
 use App\Founder;
 use App\Gallery;
+use App\Http\Requests\MailRequest;
+use App\Mail\Contact;
 use App\Modality;
 use App\Organization;
 use App\SearchContent;
@@ -150,5 +152,17 @@ class SiteController extends Controller
                                 ->paginate(25);
 
         return view('site.search', compact('search_contents', 'search', 'query'));
+    }
+
+    public function mail(MailRequest $request)
+    {
+        $email = app('voyager')->setting('contact_email');
+        $send  = \Mail::to($email)->send(new Contact($request));
+
+        if (! \Mail::failures()) {
+            return redirect(route('contact'))->with('success', 'success send');
+        }
+
+        return back();
     }
 }

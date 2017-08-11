@@ -22,26 +22,48 @@
             </div>
         </div>
     </section>
-    <form method="post">
+    @if (session('success'))
+        <div class="flex items-center justify-center pa4 bg-green white">
+            <svg class="w1" data-icon="info" viewBox="0 0 32 32" style="fill:currentcolor">
+            <title>info icon</title>
+            <path d="M16 0 A16 16 0 0 1 16 32 A16 16 0 0 1 16 0 M19 15 L13 15 L13 26 L19 26 z M16 6 A3 3 0 0 0 16 12 A3 3 0 0 0 16 6"></path>
+        </svg>
+        <span class="lh-title ml3">Correo Electrónico fue enviado con exito.</span>
+        </div>
+    @endif
+    <form method="post" action="{{ route('email.contact') }}">
+        {{ csrf_field() }}
         <section class="pv4">
             <div class="center w-30-l w-80">
                 <span class="icon-mail f1 silver"></span>
                 <h1 class="f2 fw3 text--blue mt3">Escríbenos</h1>
                 <div class="mb4">
-                    <label for="name" class="f6 b db mb2 fw4 text--light-blue-50" required>Nombre *</label>
-                    <input id="name" class="input-reset f-input bn pa2 mb2 db w-100" type="text" aria-describedby="name-desc">
+                    <label for="name" class="f6 b db mb2 fw4 text--light-blue-50">Nombre *</label>
+                    <input id="name" name="name" class="input-reset f-input bn pa2 mb2 db w-100" type="text">
+                    @if($errors->has('name'))
+                        <span class="f6 red">{{ $errors->first('name') }}</span>
+                    @endif
                 </div>
                 <div class="mb4">
-                    <label for="name" class="f6 b db mb2 fw4 text--light-blue-50" required>Correo Electrónico *</label>
-                    <input id="name" class="input-reset f-input bn pa2 mb2 db w-100" type="text" aria-describedby="name-desc">
+                    <label for="email" class="f6 b db mb2 fw4 text--light-blue-50">Correo Electrónico *</label>
+                    <input id="email" name="email" class="input-reset f-input bn pa2 mb2 db w-100" type="text">
+                    @if($errors->has('email'))
+                        <span class="f6 red">{{ $errors->first('email') }}</span>
+                    @endif
                 </div>
                 <div class="mb4">
-                    <label for="name" class="f6 b db mb2 fw4 text--light-blue-50" required>Teléfono *</label>
-                    <input id="name" class="input-reset f-input bn pa2 mb2 db w-100" type="text" aria-describedby="name-desc">
+                    <label for="phone" class="f6 b db mb2 fw4 text--light-blue-50">Teléfono *</label>
+                    <input id="phone" name="phone" class="input-reset f-input bn pa2 mb2 db w-100" type="text">
+                    @if($errors->has('phone'))
+                        <span class="f6 red">{{ $errors->first('phone') }}</span>
+                    @endif
                 </div>
                 <div class="mb4">
-                    <label for="name" class="f6 b db mb2 fw4 text--light-blue-50" required>Mensaje *</label>
-                    <textarea cols="30" rows="5" class="f-textarea w-100 bo--light-blue-50"></textarea>
+                    <label for="message" class="f6 b db mb2 fw4 text--light-blue-50">Mensaje *</label>
+                    <textarea cols="30" rows="5" id="message" name="message" class="f-textarea w-100 bo--light-blue-50 black"></textarea>
+                    @if($errors->has('message'))
+                        <span class="f6 red">{{ $errors->first('message') }}</span>
+                    @endif
                 </div>
                 <div class="tc">
                     <button type="submit" class="f5 fw4 center ph5 bo--purple link ba bw1 pv2 hover-bg-white hover-text--purple bg--purple white">Enviar</button>
