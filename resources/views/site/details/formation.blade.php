@@ -15,8 +15,8 @@
                     </div>
                     <div class="mv1">
                         <h4 class="tb f6">Contacto</h4>
-                        <p><span class="icon-web text--light-blue-50 mr2"></span> <a href="mailto:{{ $formation->email }}" class="link silver">{{ $formation->email }}</a></p>
-                        <p><span class="icon-mail text--light-blue-50 mr2"></span> <a href="" class="link silver">{{ $formation->website }}</a></p>
+                        <p><span class="icon-mail text--light-blue-50 mr2"></span> <a href="mailto:{{ $formation->email }}" class="link silver">{{ $formation->email }}</a></p>
+                        <p><span class="icon-web text--light-blue-50 mr2"></span> <a href="{{ $formation->website }}" target="_blank" class="link silver">{{ $formation->website }}</a></p>
                     </div>
                 </div>
                 <div class="dtc-l w-100 w-30-ns bg--light-blue-50 pv4 ph5-l ph3">

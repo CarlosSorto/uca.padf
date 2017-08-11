@@ -17,15 +17,14 @@
     </section>
     {!!$content->get('welcome_home') !!}
     <section class="bg--light-blue" id="latest-formation">
-        <div class="pv5 w-70-l w-80 center">
+        <div class="pv5 w-80 center">
             <h1 class="text--blue fw4 f2 mh3">Últimas Actividades <br>
                 Formativas</h1>
                 <div class="owl-carousel owl-theme" id="owl-formation">
-
                     @foreach ($formations as $formation)
-                        <div class="ba bg-white b--black-10 mv4 w-100 mw6 center pa4 h6 shadow-5">
+                        <div class="ba bg-white b--black-10 mv4 pa4 shadow-5">
                             <h4 class="fw6 text--blue f5 h2">{{ $formation->title }}</h4>
-                            <p class="lh-copy f6 h3-l h5-l h4">{{ str_limit($formation->description, 125) }}</p>
+                            <p class="lh-copy f6 h4 h4">{{ str_limit($formation->description, 125) }}</p>
                             <p class="text--light-blue-50 f6 h2">
                                 <span class="{{ $formation->modality->icon }}"></span>
                                 {{ $formation->modality->name }}
@@ -48,11 +47,11 @@
             <div class="cf ph2-ns">
                 @foreach ($documents as $document)
                     <div class="fl w-50-m w-third-ns w-100 ph5">
-                        <div class="relative pl5">
+                        <div class="relative pl5 mb5">
                             <span class="icon-pdf f1 silver ma1 absolute top-0 left-0"></span>
                             <h3 class="f4 fw5 text--blue h2-l h3">{{ $document->title }}</h3>
-                            <p class="silver f6 h2">{{ $document->author }}, {{ $document->published_date }}</p>
                         </div>
+                        <p class="silver f6 h2">{{ $document->author }}, {{ $document->published_date }}</p>
                         <div class="mv4">
                             <a href="{{ route('document', $document->id) }}" class="f5 fw4 db tc bo--purple link ba bw1 pv2 text--purple hover-bg--purple hover-white bg-animate">Ver más</a>
                         </div>

@@ -44,7 +44,7 @@ class DocumentsController extends Controller
 
             return redirect(route('create.document'))->with('success', 'success send');
         }
-        dd($request);
-        return back()
+
+        return back();
     }
 }

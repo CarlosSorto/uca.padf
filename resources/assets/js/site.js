@@ -1,4 +1,4 @@
-$(document).ready(function(){    
+$(document).ready(function(){
     var picker = new Pikaday({ field: $('#published_date')[0] });
     var since = new Pikaday({
         field: $('#since_date')[0],
@@ -60,7 +60,8 @@ $(document).ready(function(){
         },
         600:{
             items:2,
-            nav:true
+            nav:false,
+            dots:true
         },
         1000:{
             items:3,
@@ -155,3 +156,6 @@ document.getElementById('cancel').addEventListener('click', event => {
 })
 
 $('.select-chosen').chosen();
+$("#form").validate({
+    errorClass: 'red f6'
+});

@@ -2,6 +2,8 @@ require('./bootstrap');
 window.Pikaday = require('pikaday');
 require('pikaday/css/pikaday.css');
 require('owl.carousel');
+require('jquery-validation');
+require('jquery-validation/dist/localization/messages_es.js')
 window.GMaps = require('gmaps');
 require('./jquery-jvectormap-2.0.3.min.js');
 require('./jquery-jvectormap-world-mill.js');

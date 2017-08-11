@@ -31,7 +31,7 @@
         <span class="lh-title ml3">Correo Electrónico fue enviado con exito.</span>
         </div>
     @endif
-    <form method="post" action="{{ route('email.contact') }}">
+    <form method="post" action="{{ route('email.contact') }}" novalidate id="form">
         {{ csrf_field() }}
         <section class="pv4">
             <div class="center w-30-l w-80">
@@ -39,28 +39,28 @@
                 <h1 class="f2 fw3 text--blue mt3">Escríbenos</h1>
                 <div class="mb4">
                     <label for="name" class="f6 b db mb2 fw4 text--light-blue-50">Nombre *</label>
-                    <input id="name" name="name" class="input-reset f-input bn pa2 mb2 db w-100" type="text">
+                    <input id="name" name="name" class="input-reset f-input bn pa2 mb2 db w-100" type="text" required>
                     @if($errors->has('name'))
                         <span class="f6 red">{{ $errors->first('name') }}</span>
                     @endif
                 </div>
                 <div class="mb4">
                     <label for="email" class="f6 b db mb2 fw4 text--light-blue-50">Correo Electrónico *</label>
-                    <input id="email" name="email" class="input-reset f-input bn pa2 mb2 db w-100" type="text">
+                    <input id="email" name="email" class="input-reset f-input bn pa2 mb2 db w-100" type="email" required>
                     @if($errors->has('email'))
                         <span class="f6 red">{{ $errors->first('email') }}</span>
                     @endif
                 </div>
                 <div class="mb4">
                     <label for="phone" class="f6 b db mb2 fw4 text--light-blue-50">Teléfono *</label>
-                    <input id="phone" name="phone" class="input-reset f-input bn pa2 mb2 db w-100" type="text">
+                    <input id="phone" name="phone" class="input-reset f-input bn pa2 mb2 db w-100" type="text" required>
                     @if($errors->has('phone'))
                         <span class="f6 red">{{ $errors->first('phone') }}</span>
                     @endif
                 </div>
                 <div class="mb4">
                     <label for="message" class="f6 b db mb2 fw4 text--light-blue-50">Mensaje *</label>
-                    <textarea cols="30" rows="5" id="message" name="message" class="f-textarea w-100 bo--light-blue-50 black"></textarea>
+                    <textarea cols="30" rows="5" id="message" name="message" class="f-textarea w-100 bo--light-blue-50 black" required></textarea>
                     @if($errors->has('message'))
                         <span class="f6 red">{{ $errors->first('message') }}</span>
                     @endif
