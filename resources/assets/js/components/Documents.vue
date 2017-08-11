@@ -1,5 +1,5 @@
 <template>
-    <section class="pv4" id="search">
+    <section class="pv4">
         <div class="center w-60-l w-80">
             <h1 class="tc text--blue fw4 f2">Inicia tu búsqueda</h1>
             <div>
@@ -79,11 +79,7 @@
                 page: 1,
                 country_id: '',
                 countries: [],
-                per_page: 6,
-                queryCountry: {
-                    "filter[q][iso|in][]": ['SV', 'GT', 'HN'],
-                    "filter[q][DefaultSort|scp]": 1
-                },
+                per_page: 6
             }
         },
         mounted() {
@@ -118,7 +114,10 @@
             },
             getCountries() {
                 axios.get('/api/countries', {
-                    params: this.queryCountry
+                    params: {
+                        "filter[q][iso|in][]": ['SV', 'GT', 'HN', 'CR', 'PA', 'NI'],
+                        "filter[q][DefaultSort|scp]": 1
+                    }
                 }).then( (response) => {
                     this.countries = response.data.data
                 })

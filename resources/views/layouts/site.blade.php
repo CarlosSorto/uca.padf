@@ -14,12 +14,13 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
-        @include('partials.navbar')
-        @yield('content')
-        @include('partials.footer')
-    </div>
-
+    <main>
+        <div id="app">
+            @include('partials.navbar')
+            @yield('content')
+            @include('partials.footer')
+        </div>
+    </main>
     <!-- Scripts -->
     @if (request()->is('contactenos'))
         <script>

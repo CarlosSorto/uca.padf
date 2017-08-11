@@ -21,7 +21,7 @@
             </div>
             <div class="fl w-100 w-30-ns pa2">
                 <img src="/storage/documents/o75e3ykM05QMezijEwm1SzIdeXzH4BXIqSVz8dR3.png" alt="">
-                <a href="/{{ $document->file }}" target="_blank" class="f5 fw4 ph2 db mt4 tc bo--purple link ba bw1 pv2 text--purple hover-bg--purple hover-white bg-animate">Descargar (75.41 kB)</a>
+                <a href="/{{ $document->file }}" target="_blank" class="f5 fw4 ph2 db mt4 tc bo--purple link ba bw1 pv2 text--purple hover-bg--purple hover-white bg-animate" download>Descargar {{ filesize('storage/'.$document->file) }} bytes</a>
             </div>
         </div>
     </section>

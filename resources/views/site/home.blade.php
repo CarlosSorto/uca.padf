@@ -1,8 +1,8 @@
 @extends('layouts.site')
 
 @section('content')
-    <section class="h-25 pt6-l pt5" id="carousel">
-        <div class="owl-carousel owl-theme mt4 mt3-l" id="owl-header">
+    <section class="h-25" id="carousel">
+        <div class="owl-carousel owl-theme" id="owl-header">
             <div class="">
                 <img class="owl-lazy relative" data-src="storage/{{ $cover->get('inicio')->image }}" alt="Inicio">
                 <div class="img-overlay"></div>

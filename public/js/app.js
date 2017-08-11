@@ -47092,7 +47092,7 @@ var Component = __webpack_require__(6)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/linux-data/work/UCA/padf/uca.padf/resources/assets/js/components/Documents.vue"
+Component.options.__file = "/home/cesar/Code/iw/PADF/uca.padf/resources/assets/js/components/Documents.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Documents.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -47150,7 +47150,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Enter and leave animations can use different */\n/* durations and timing functions.              */\n.slide-fade-enter-active {\n    transition: all .3s ease;\n}\n.slide-fade-leave-active {\n    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);\n}\n.slide-fade-enter, .slide-fade-leave-to\n/* .slide-fade-leave-active below version 2.1.8 */ {\n    transform: translateX(10px);\n    opacity: 0;\n}\n.active > a {\n    color: #33425b;\n    font-weight: 600;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Enter and leave animations can use different */\n/* durations and timing functions.              */\n.slide-fade-enter-active {\n    transition: all .3s ease;\n}\n.slide-fade-leave-active {\n    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);\n}\n.slide-fade-enter, .slide-fade-leave-to\n/* .slide-fade-leave-active below version 2.1.8 */ {\n    transform: translateX(10px);\n    opacity: 0;\n}\n.active > a {\n    color: #33425b;\n    font-weight: 600;\n}\n", ""]);
 
 // exports
 
@@ -47275,11 +47275,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             page: 1,
             country_id: '',
             countries: [],
-            per_page: 6,
-            queryCountry: {
-                "filter[q][iso|in][]": ['SV', 'GT', 'HN'],
-                "filter[q][DefaultSort|scp]": 1
-            }
+            per_page: 6
         };
     },
     mounted: function mounted() {
@@ -47318,7 +47314,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this2 = this;
 
             axios.get('/api/countries', {
-                params: this.queryCountry
+                params: {
+                    "filter[q][iso|in][]": ['SV', 'GT', 'HN', 'CR', 'PA', 'NI'],
+                    "filter[q][DefaultSort|scp]": 1
+                }
             }).then(function (response) {
                 _this2.countries = response.data.data;
             });
@@ -47336,10 +47335,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('section', {
-    staticClass: "pv4",
-    attrs: {
-      "id": "search"
-    }
+    staticClass: "pv4"
   }, [_c('div', {
     staticClass: "center w-60-l w-80"
   }, [_c('h1', {
@@ -47542,7 +47538,7 @@ var Component = __webpack_require__(6)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/linux-data/work/UCA/padf/uca.padf/resources/assets/js/components/Formations.vue"
+Component.options.__file = "/home/cesar/Code/iw/PADF/uca.padf/resources/assets/js/components/Formations.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Formations.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -47971,7 +47967,7 @@ var Component = __webpack_require__(6)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/linux-data/work/UCA/padf/uca.padf/resources/assets/js/components/Organizations.vue"
+Component.options.__file = "/home/cesar/Code/iw/PADF/uca.padf/resources/assets/js/components/Organizations.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Organizations.vue: functional components are not supported with templates, they should use render functions.")}
 
