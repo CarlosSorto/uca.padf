@@ -39,7 +39,10 @@
                     <div class="relative pl4 mb4">
                         <span class="icon-mail silver f4 absolute top-0 left-0"></span>
                         <p class="silver fw6 f6 mb2">Correo Electrónico</p>
-                        <p class="fw3 silver f6 ma0"><a href="mailto:info@example.com" class="link silver">{{ $organization->email }}</a></p>
+                        <p class="fw3 silver f6 ma0">
+                          {{HTML::mailto($organization->email,HTML::obfuscate($organization->email), ['class' => 'link silver'])}}
+
+                        </p>
                     </div>
                     <div class="relative pl4 mb4">
                         <span class="icon-phone silver f4 absolute top-0 left-0"></span>

@@ -15,7 +15,10 @@
                     </div>
                     <div class="mv1">
                         <h4 class="tb f6">Contacto</h4>
-                        <p><span class="icon-mail text--light-blue-50 mr2"></span> <a href="mailto:{{ $formation->email }}" class="link silver">{{ $formation->email }}</a></p>
+                        <p><span class="icon-mail text--light-blue-50 mr2"></span>
+                    
+                          {{HTML::mailto($formation->email,HTML::obfuscate($formation->email), ['class' => 'link silver'])}}
+                        </p>
                         <p><span class="icon-web text--light-blue-50 mr2"></span> <a href="{{ $formation->website }}" target="_blank" class="link silver">{{ $formation->website }}</a></p>
                     </div>
                 </div>
