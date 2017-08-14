@@ -12,7 +12,7 @@
             "source": {
                 "type": "git",
                 "url": "git@git.iw.sv:it/api-laravel.git",
-                "reference": "955b5d4f2cdfc6d67b648efbcc3a75e4aceef680"
+                "reference": "1082b629b9e6f308c70f2bacaa3deb299653207f"
             },
             "require": {
                 "firebase/php-jwt": "^4.0",
@@ -71,7 +71,7 @@
                 "Api",
                 "Iw"
             ],
-            "time": "2017-08-09T23:06:05+00:00"
+            "time": "2017-08-11T22:02:51+00:00"
         },
         {
             "name": "arrilot/laravel-widgets",

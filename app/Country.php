@@ -3,13 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Iw\Api\Traits\Models\Searcheable;
+use Iw\Api\Traits\Models\Searchable;
 
 class Country extends Model
 {
-    use Searcheable;
+    use Searchable;
 
-    protected static $searcheable_fields = [
+    protected static $searchable_fields = [
           'id' => [
             'type'=> 'integer',
           ],

@@ -4,11 +4,11 @@ namespace App;
 
 use App\Traits\Models\SearchContentOrganization;
 use Illuminate\Database\Eloquent\Model;
-use Iw\Api\Traits\Models\Searcheable;
+use Iw\Api\Traits\Models\Searchable;
 
 class Organization extends Model
 {
-    use Searcheable;
+    use Searchable;
     use SearchContentOrganization;
 
     protected $fillable= [
@@ -30,7 +30,7 @@ class Organization extends Model
         'latitude',
     ];
 
-    protected static $searcheable_fields = [
+    protected static $searchable_fields = [
           'id' => [
             'type'=> 'integer',
           ],

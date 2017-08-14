@@ -3,11 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Iw\Api\Traits\Models\Searcheable;
+use Iw\Api\Traits\Models\Searchable;
 
 class Document extends Model
 {
-    use Searcheable;
+    use Searchable;
     use \App\Traits\Models\SearchContentDocument;
 
     protected $fillable = [
@@ -25,7 +25,7 @@ class Document extends Model
         'position',
     ];
 
-    protected static $searcheable_fields = [
+    protected static $searchable_fields = [
       'id' => [
         'type'=> 'integer',
       ],
