@@ -15,7 +15,7 @@ $router->get('acerca-del-portal', 'SiteController@about')
        ->name('about');
 $router->get('repositorio-ddhh', 'SiteController@repositories')
        ->name('repositories');
-$router->get('organizaciones-afiliadas', 'SiteController@organizations')
+$router->get('directorio-organizaciones', 'SiteController@organizations')
        ->name('organizations');
 $router->get('formaciones', 'SiteController@formations')
        ->name('formations');
