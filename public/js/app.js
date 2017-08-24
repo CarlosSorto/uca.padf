@@ -51242,7 +51242,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Enter and leave animations can use different */\n/* durations and timing functions.              */\n.slide-fade-enter-active {\n    transition: all .3s ease;\n}\n.slide-fade-leave-active {\n    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);\n}\n.slide-fade-enter, .slide-fade-leave-to\n/* .slide-fade-leave-active below version 2.1.8 */ {\n    transform: translateX(10px);\n    opacity: 0;\n}\n.active > a {\n    color: #33425b;\n    font-weight: 600;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Enter and leave animations can use different */\n/* durations and timing functions.              */\n.slide-fade-enter-active {\n    transition: all .3s ease;\n}\n.slide-fade-leave-active {\n    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);\n}\n.slide-fade-enter, .slide-fade-leave-to\n/* .slide-fade-leave-active below version 2.1.8 */ {\n    transform: translateX(10px);\n    opacity: 0;\n}\n.active > a {\n    color: #33425b;\n    font-weight: 600;\n}\n", ""]);
 
 // exports
 
@@ -51355,8 +51355,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['topics'],
     data: function data() {
         return {
             documents: [],
@@ -51366,6 +51371,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             keyword: '',
             page: 1,
             country_id: '',
+            topic_id: '',
             countries: [],
             per_page: 6
         };
@@ -51386,7 +51392,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     "filter[q][title|cont]": this.keyword,
                     "filter[q][description|cont]": this.keyword,
                     "filter[per_page]": this.per_page,
-                    "filter[page]": this.page
+                    "filter[page]": this.page,
+                    "filter[q][Topic|scp]": this.topic_id
                 }
             }).then(function (response) {
                 _this.documents = response.data.data;
@@ -51439,7 +51446,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.keyword),
       expression: "keyword"
     }],
-    staticClass: "pa2 input-reset ba bg-transparent b--silver silver w-60-l w-100 mh0",
+    staticClass: "pa2 input-reset ba bg-transparent b--silver silver w-30-l w-100 mh0",
     attrs: {
       "type": "text",
       "placeholder": "Palabra Clave"
@@ -51454,6 +51461,42 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   }), _vm._v(" "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.topic_id),
+      expression: "topic_id"
+    }],
+    staticClass: "pa2 input-reset ba bg-transparent b--silver silver w-30-l w-100 text--light-blue-50 mh0",
+    attrs: {
+      "name": "",
+      "id": ""
+    },
+    on: {
+      "change": function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.topic_id = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }
+    }
+  }, [_c('option', {
+    staticClass: "text--light-blue-50",
+    attrs: {
+      "value": ""
+    }
+  }, [_vm._v("Categoría Temática")]), _vm._v(" "), _vm._l((_vm.topics), function(topic) {
+    return _c('option', {
+      staticClass: "text--light-blue-50",
+      domProps: {
+        "value": topic.id,
+        "textContent": _vm._s(topic.name)
+      }
+    })
+  })], 2), _vm._v(" "), _c('select', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -51481,7 +51524,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "value": ""
     }
-  }, [_vm._v("Selecciones un País")]), _vm._v(" "), _vm._l((_vm.countries), function(country) {
+  }, [_vm._v("Seleccione un País")]), _vm._v(" "), _vm._l((_vm.countries), function(country) {
     return _c('option', {
       staticClass: "text--light-blue-50",
       domProps: {
@@ -51886,7 +51929,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "value": ""
     }
-  }, [_vm._v("Selecciones una Modalidad")]), _vm._v(" "), _vm._l((_vm.modalities), function(modality) {
+  }, [_vm._v("Seleccione una Modalidad")]), _vm._v(" "), _vm._l((_vm.modalities), function(modality) {
     return _c('option', {
       staticClass: "text--light-blue-50",
       domProps: {

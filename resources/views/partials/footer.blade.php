@@ -4,10 +4,10 @@
             <div class="fl w-100 w-50-ns pa2 dn dn-m db-ns">
                 {!! $content->get('links_footer') !!}
             </div>
-            <div class="fl w-50 w-25-ns w-50-m pa2 mt5">
+            <div class="fl w-50 w-25-ns w-50-m mt5 ph2">
                 <img src="{{ config('app.url') .'/storage/'. app('voyager')->setting('logo_usaid') }}" alt="">
             </div>
-            <div class="fl w-50 w-25-ns pa2 w-50-m mt5">
+            <div class="fl w-50 w-25-ns w-50-m mt5 ph2">
                 <img src="{{ config('app.url') .'/storage/'. app('voyager')->setting('logo_padf') }}" alt="">
             </div>
         </div>

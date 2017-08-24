@@ -18,5 +18,5 @@
         </div>
     </section>
     {!! $content->get('repositorio_ddhh_introduccion') !!}
-    <documents></documents>
+    <documents :topics="{{ $topics }}"></documents>
 @endsection

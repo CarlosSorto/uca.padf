@@ -8,7 +8,7 @@
                 </p>
                 <input type="text" class="pa2 input-reset ba dib bg-transparent b--light-silver br1 bw1 w-30-l w-100 ma0" placeholder="Palabra Clave" v-model="keyword">
                 <select name="" id="" class="pa2 input-reset dib ba bg-transparent b--light-silver br1 bw1 w-30-l w-100 text--light-blue-50 ma0" v-model="modality">
-                    <option value="" class="text--light-blue-50">Selecciones una Modalidad</option>
+                    <option value="" class="text--light-blue-50">Seleccione una Modalidad</option>
                     <option :value="modality.id" class="text--light-blue-50" v-for="modality in modalities">{{ modality.name }}</option>
                 </select>
                 <select name="" id="" class="pa2 input-reset dib ba bg-transparent b--light-silver br1 bw1 w-30-l w-100 text--light-blue-50 ma0" v-model="type">

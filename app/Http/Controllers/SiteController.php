@@ -80,7 +80,9 @@ class SiteController extends Controller
 
     public function repositories()
     {
-        return view('site.repositories');
+        $topics = $this->topic->all();
+
+        return view('site.repositories', compact('topics'));
     }
 
     public function document(Document $document)
