@@ -55,7 +55,7 @@
                 isos: [],
                 countries: [],
                 queryCountry: {
-                    "filter[q][iso|in][]": ['SV', 'GT', 'HN'],
+                    "filter[q][iso|in][]": ['SV', 'GT', 'HN', 'CR', 'PA', 'NI'],
                     "filter[q][DefaultSort|scp]": 1
                 },
                 queryOrganization: {
