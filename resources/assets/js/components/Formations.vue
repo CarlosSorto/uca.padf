@@ -2,6 +2,10 @@
     <section class="pv4 bg--light-blue">
         <div class="mw8 center ph3-ns">
             <div class="w-80 center">
+                <h1 class="tc text--blue fw4 f2">Busca una actividad de interés</h1>
+                <p class="lh-copy f5 silver ma4 w-80 tc center">
+                    A continuación se muestra un motor de búsqueda diseñado especialmente para facilitar la identificación de cursos, talleres, programas, encuentros u otras actividades implementadas a nivel de la región, que puedan resultar de interés en el fortalecimiento del área de derechos humanos.
+                </p>
                 <input type="text" class="pa2 input-reset ba dib bg-transparent b--light-silver br1 bw1 w-30-l w-100 ma0" placeholder="Palabra Clave" v-model="keyword">
                 <select name="" id="" class="pa2 input-reset dib ba bg-transparent b--light-silver br1 bw1 w-30-l w-100 text--light-blue-50 ma0" v-model="modality">
                     <option value="" class="text--light-blue-50">Selecciones una Modalidad</option>
