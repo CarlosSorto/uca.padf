@@ -16,6 +16,7 @@
         "jenssegers/date": "^3.2",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
+        "laravelcollective/html": "^5.2.0",
         "nicolaslopezj/searchable": "^1.9",
         "tcg/voyager": "^0.11.14"
     },
