@@ -31,7 +31,7 @@
                             <a :href="organization.website" target="_blank" class="link">
                                 <p class="f6 fw6 text--blue h3" v-text="organization.name"></p>
                             </a>
-                            <a :href="'/organizaciones-afiliadas/'+ organization.id" class="f6 fw4 tc center link ba bw1 white bo--purple text--purple pv2 w-100 ph4 hover-white hover-bg--purple">Más Información</a>
+                            <a :href="'/directorio-organizaciones/'+ organization.id" class="f6 fw4 tc center link ba bw1 white bo--purple text--purple pv2 w-100 ph4 hover-white hover-bg--purple">Más Información</a>
                         </div>
                     </div>
                 </div>

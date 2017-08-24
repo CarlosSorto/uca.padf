@@ -32,7 +32,7 @@ $router->post('mail', 'SiteController@mail')->name('email.contact');
         ->name('formation');
  $router->get('repositorio-ddhh/{document}', 'SiteController@document')
         ->name('document');
- $router->get('organizaciones-afiliadas/{organization}', 'SiteController@organization')
+ $router->get('directorio-organizaciones/{organization}', 'SiteController@organization')
         ->name('organization');
 
 /*
