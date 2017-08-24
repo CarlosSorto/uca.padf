@@ -7,8 +7,8 @@
             <div class="fl w-50 w-25-ns w-50-m mt5 pr3">
                 <img src="{{ config('app.url') .'/storage/'. app('voyager')->setting('logo_usaid') }}" alt="">
             </div>
-            <div class="fl w-50 w-25-ns w-50-m mt5 pl3" style="margin-top: 5px">
-                <img src="{{ config('app.url') .'/storage/'. app('voyager')->setting('logo_padf') }}" alt="">
+            <div class="fl w-50 w-25-ns w-50-m mt5 pl3">
+                <img src="{{ config('app.url') .'/storage/'. app('voyager')->setting('logo_padf') }}" alt="" style="margin-top: 5px">
             </div>
         </div>
         <div class="dt w-100 center tc">
