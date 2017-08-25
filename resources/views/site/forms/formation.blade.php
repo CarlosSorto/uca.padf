@@ -55,7 +55,7 @@
                     <div class="fl w-100 w-50-ns ph3">
                         <div class="mb4">
                             <select class="w-100 f-select text--light-blue-50" name="formation_type_id" required>
-                                <option value="" class="text--light-blue-50">Seleccione un Tipo</option>
+                                <option value="" class="text--light-blue-50">Seleccione un Tipo de Formación</option>
                                 @foreach ($types as $type)
                                     <option value="{{ $type->id }}" class="text--light-blue-50" {{ (old("formation_type_id") == $type->id ? "selected":"") }}>
                                         {{ $type->name }}
