@@ -76,7 +76,7 @@
                                 </a>
                             </div>
                             <h4 class="fw6 text--blue f4 h3">{{ $organization->name }}</h4>
-                            <p class="silver lh-copy f6 h3 mb4">{{ $organization->description }}</p>
+                            <p class="silver lh-copy f6 h3 mb4">{{ str_limit($organization->description, 200) }}</p>
                             <p class="text--blue f5"><span class="icon-phone mr2"></span>{{ $organization->phone }}</p>
                             <p class="text--blue f5"><span class="icon-web mr2"></span>
                                 <a href="{{ $organization->website }}" target="_blank" class="link text--blue">
