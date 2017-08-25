@@ -33,7 +33,9 @@
            <h1 class="f2 fw4 text--blue">Información de Contacto</h1>
            <div class="cf">
                 <div class="fl w-100 w-70-ns pa2">
-                    <gmap :height="300" :marker="{lat: {{ $organization->latitude }}, lng: {{ $organization->longitude }}}" :draggable="false"></gmap>
+                    @if ($organization->latitude and $organization->longitude)
+                        <gmap :height="300" :marker="{lat: {{ $organization->latitude }}, lng: {{ $organization->longitude }}}" :draggable="false"></gmap>                        
+                    @endif
                 </div>
                 <div class="fl w-100 w-30-ns pa2">
                     <div class="relative pl4 mb4">
