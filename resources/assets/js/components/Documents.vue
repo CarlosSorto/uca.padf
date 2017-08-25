@@ -26,7 +26,7 @@
                                 <div class="ba bg-white b--black-10 mv4 ph3 pv2 w-100 mw6 h6 shadow-5">
                                     <div class="relative pl5">
                                         <span class="icon-pdf f1 silver ma1 absolute top-0 left-0"></span>
-                                        <h3 class="f5 fw5 text--blue h3">{{ document.title }}</h3>
+                                        <h3 class="f5 fw5 text--blue h4">{{ document.title }}</h3>
                                         <p class="silver f6 h2">{{ document.author }}, {{ document.published_date }}</p>
                                     </div>
                                     <div class="mv4">
