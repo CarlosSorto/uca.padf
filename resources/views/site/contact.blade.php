@@ -85,7 +85,7 @@
                             <span class="icon-mail mt2 f4 absolute top-0 left-0"></span>
                             <p>Correo Electrónico</p>
                             <p class="fw3 f6">
-                              {{HTML::mailto(app('voyager')->setting('contact_email'),HTML::obfuscate(app('voyager')->setting('contact_email')), ['class' => 'link silver'])}}
+                              {{HTML::mailto(app('voyager')->setting('contact_email'),HTML::obfuscate(app('voyager')->setting('contact_email')), ['class' => 'link white'])}}
                             </p>
                         </div>
                         <div class="white relative pl4">
