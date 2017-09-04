@@ -30,6 +30,11 @@ class Formation extends Model
         'formation_type_id',
     ];
 
+    protected $dates = [
+        'until',
+        'since',
+    ];
+
     protected static $searchable_fields = [
       'id' => [
         'type'=> 'integer',
