@@ -100,19 +100,21 @@ $(document).ready(function(){
   });
   $('#owl-galery').owlCarousel({
     items:1,
-    animateOut: 'fadeOut',
-    animateIn: 'fadeIn',
+    animateOut:'fadeOut',
+    animateIn:'fadeIn',
     lazyLoad:true,
+    center:true,
     loop:true,
     autoplay:true,
     nav:true,
+    autoHeight:true,
     dots:false,
+    margin: 10,
     autoplayTimeout:5000,
     autoplayHoverPause:true,
     smartSpeed:450,
-    thumbs: true,
+    thumbs:true,
     thumbsPrerendered: true,
-    autoHeight:true,
     responsiveClass:true,
     responsive:{
         0:{

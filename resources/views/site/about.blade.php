@@ -37,7 +37,7 @@
            <h1 class="tc text--blue fw4 f2">Galería</h1>
            <div class="owl-carousel owl-theme center" id="owl-galery" data-slider-id="1">
                @foreach ($galleries as $gallery)
-                   <img class="owl-lazy img-carousel" data-src="storage/{{ $gallery->image }}" alt="{{ $gallery->name }}">
+                   <img class="owl-lazy item img-carousel" data-src="storage/{{ $gallery->image }}" alt="{{ $gallery->name }}">
                @endforeach
            </div>
            <div class="owl-thumbs" data-slider-id="1">
