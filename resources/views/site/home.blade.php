@@ -72,7 +72,7 @@
                         <div class="ba bg-white b--black-10 mv4 w-100 mw6 center pa4 h6 shadow-5">
                             <div class="pa4 vmid">
                                 <a href="{{ route('organization', $organization->id) }}">
-                                    <img src="storage/{{ $organization->image }}" alt="" class="h4 w-auto">
+                                    <img src="storage/{{ $organization->image }}" alt="" class="w-auto" style="height: 12rem">
                                 </a>
                             </div>
                             <h4 class="fw6 text--blue f4 h3">{{ $organization->name }}</h4>
