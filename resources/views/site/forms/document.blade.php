@@ -79,19 +79,6 @@
                             @endif
                         </div>
                         <div class="mb4">
-                            <select class="w-100 f-select text--light-blue-50" name="organization_id" required>
-                                <option value="" class="text--light-blue-50">Selecciones una Organización</option>
-                                @foreach ($organizations as $organization)
-                                    <option value="{{ $organization->id }}" class="text--light-blue-50" {{ (old("organization_id") == $organization->id ? "selected":"") }}>
-                                        {{ $organization->name }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            @if($errors->has('organization_id'))
-                                <span class="f6 red">{{ $errors->first('organization_id') }}</span>
-                            @endif
-                        </div>
-                        <div class="mb4">
                             <input id="words" class="input-reset f-input bn pa2 mb2 db w-100" name="keywords" type="text" placeholder="Palabras clave*" value="{{ old('keywords') }}" required>
                             @if($errors->has('keywords'))
                                 <span class="f6 red">{{ $errors->first('keywords') }}</span>

@@ -46,6 +46,9 @@ class Formation extends Model
       'formation_type_id' => [
         'type'=> 'integer',
       ],
+      'country_id' => [
+        'type'=> 'integer',
+      ],
     ];
 
     public function modalityId()

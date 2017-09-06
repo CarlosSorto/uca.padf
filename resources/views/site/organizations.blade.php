@@ -18,5 +18,5 @@
         </div>
     </section>
     {!! $content->get('organizaciones_introduccion') !!}
-    <organizations :workareas="{{ $workareas }}"></organizations>
+    <organizations :workareas="{{ $workareas }}" :classifications="{{ $classifications }}"></organizations>
 @endsection

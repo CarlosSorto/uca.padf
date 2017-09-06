@@ -3,16 +3,20 @@
     <section class="pv4">
         <div class="center tc">
             <h1 class="text--blue f2 fw4">Inicia tu Búsqueda</h1>
-            <div class="w-80 center">
-                <select class="pa2 input-reset ba bg-transparent b--silver silver w-30-l w-100 text--light-blue-50 mh0" v-model="workarea">
+            <div class="w-100 center">
+                <select class="pa2 input-reset ba bg-transparent b--silver silver w-20-l w-100 text--light-blue-50 mh0" v-model="workarea">
                     <option value="" class="text--light-blue-50">Áreas de especialización</option>
                     <option :value="workarea.id" class="text--light-blue-50" v-for="workarea in workareas">{{ workarea.name }}</option>
                 </select>
-                <select class="pa2 input-reset ba bg-transparent b--silver silver w-30-l w-100 text--light-blue-50 mh0" v-model="organization">
+                <select class="pa2 input-reset ba bg-transparent b--silver silver w-20-l w-100 text--light-blue-50 mh0" v-model="classification_id">
+                    <option value="" class="text--light-blue-50">Clasf. Contemporanea</option>
+                    <option :value="classification.id" class="text--light-blue-50" v-for="classification in classifications">{{ classification.name }}</option>
+                </select>
+                <select class="pa2 input-reset ba bg-transparent b--silver silver w-20-l w-100 text--light-blue-50 mh0" v-model="organization">
                     <option value="" class="text--light-blue-50">Nombre de la Organización</option>
                     <option :value="organization.id" class="text--light-blue-50" v-for="organization in list_organizations">{{ organization.name }}</option>
                 </select>
-                <select class="pa2 input-reset ba bg-transparent b--silver silver w-30-l w-100 mb2 text--light-blue-50 mh0" v-model="country">
+                <select class="pa2 input-reset ba bg-transparent b--silver silver w-20-l w-100 mb2 text--light-blue-50 mh0" v-model="country">
                     <option value="" class="text--light-blue-50">Seleccione un País</option>
                     <option :value="country.iso" class="text--light-blue-50" v-for="country in countries">{{ country.name }}</option>
                 </select>
@@ -42,10 +46,11 @@
 
 <script>
     export default {
-        props: ['workareas'],
+        props: ['workareas', 'classifications'],
         data() {
             return {
                 organizations: [],
+                classification_id: '',
                 list_organizations: [],
                 organization: '',
                 country: '',
@@ -77,6 +82,7 @@
                         "filter[q][active|eq]": 1,
                         "filter[q][country_id|eq]": this.country != null && this.country != ''  ? this.countries.find(d => d.iso == this.country).id : null,
                         "filter[q][id|eq]": this.organization,
+                        "filter[q][classification_id|eq]": this.classification_id,
                         "filter[q][WorkArea|scp]": this.workarea
                     }
                 }).then((response) => {
