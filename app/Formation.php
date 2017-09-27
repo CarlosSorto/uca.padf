@@ -46,6 +46,9 @@ class Formation extends Model
       'formation_type_id' => [
         'type'=> 'integer',
       ],
+      'country_id' => [
+        'type'=> 'integer',
+      ],
     ];
 
     public function modalityId()
@@ -63,7 +66,17 @@ class Formation extends Model
         return $this->belongsTo(Country::class);
     }
 
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+
     public function formationTypeId()
+    {
+        return $this->belongsTo(FormationType::class);
+    }
+
+    public function formationType()
     {
         return $this->belongsTo(FormationType::class);
     }

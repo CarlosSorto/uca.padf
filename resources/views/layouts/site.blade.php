@@ -12,7 +12,7 @@
     <title>{{ Voyager::setting('title') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
     <main>
@@ -44,6 +44,6 @@
     @endif
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSyxQcRGp-u1hiUl7iAu71dEBhr4Acz2s"></script>
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.25/gmaps.js"></script> --}}
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ mix('js/app.js') }}"></script>
 </body>
 </html>

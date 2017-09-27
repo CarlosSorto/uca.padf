@@ -3,9 +3,13 @@
         <div class="center w-60-l w-80">
             <h1 class="tc text--blue fw4 f2">Inicia tu búsqueda</h1>
             <div>
-                <input type="text" class="pa2 input-reset ba bg-transparent b--silver silver w-60-l w-100 mh0" placeholder="Palabra Clave" v-model="keyword">
+                <input type="text" class="pa2 input-reset ba bg-transparent b--silver silver w-30-l w-100 mh0" placeholder="Palabra Clave" v-model="keyword">
+                <select name="" id="" class="pa2 input-reset ba bg-transparent b--silver silver w-30-l w-100 text--light-blue-50 mh0" v-model="topic_id">
+                    <option value="" class="text--light-blue-50">Categoría Temática</option>
+                    <option :value="topic.id" class="text--light-blue-50" v-for="topic in topics" v-text="topic.name"></option>
+                </select>
                 <select name="" id="" class="pa2 input-reset ba bg-transparent b--silver silver w-30-l w-100 text--light-blue-50 mh0" v-model="country_id">
-                    <option value="" class="text--light-blue-50">Selecciones un País</option>
+                    <option value="" class="text--light-blue-50">Seleccione un País</option>
                     <option :value="country.id" class="text--light-blue-50" v-for="country in countries" v-text="country.name"></option>
                 </select>
                 <a @click="get" class="f5 bo--purple fw4 db link ba bw1 pv2-l ph3-l text--purple hover-bg--purple hover-white bg-animate tc di-l"><span class="icon-search"></span></a>
@@ -22,7 +26,7 @@
                                 <div class="ba bg-white b--black-10 mv4 ph3 pv2 w-100 mw6 h6 shadow-5">
                                     <div class="relative pl5">
                                         <span class="icon-pdf f1 silver ma1 absolute top-0 left-0"></span>
-                                        <h3 class="f5 fw5 text--blue h3">{{ document.title }}</h3>
+                                        <h3 class="f5 fw5 text--blue h4">{{ document.title }}</h3>
                                         <p class="silver f6 h2">{{ document.author }}, {{ document.published_date }}</p>
                                     </div>
                                     <div class="mv4">
@@ -69,6 +73,7 @@
 
 <script>
     export default {
+        props: ['topics'],
         data() {
             return {
                 documents: [],
@@ -78,6 +83,7 @@
                 keyword: '',
                 page: 1,
                 country_id: '',
+                topic_id: '',
                 countries: [],
                 per_page: 6
             }
@@ -95,7 +101,8 @@
                         "filter[q][title|cont]": this.keyword,
                         "filter[q][description|cont]": this.keyword,
                         "filter[per_page]": this.per_page,
-                        "filter[page]": this.page
+                        "filter[page]": this.page,
+                        "filter[q][Topic|scp]": this.topic_id
                     }
                 }).then((response) => {
                     this.documents = response.data.data

@@ -80,7 +80,9 @@ class SiteController extends Controller
 
     public function repositories()
     {
-        return view('site.repositories');
+        $topics = $this->topic->all();
+
+        return view('site.repositories', compact('topics'));
     }
 
     public function document(Document $document)
@@ -90,7 +92,8 @@ class SiteController extends Controller
 
     public function create_document()
     {
-        $countries     = $this->country->all();
+        $isos          = ['SV', 'GT', 'HN', 'CR', 'PA', 'NI', 'MX'];
+        $countries     = $this->country->whereIn('iso', $isos)->get();
         $topics        = $this->topic->all();
         $organizations = $this->organization->all();
 
@@ -99,9 +102,10 @@ class SiteController extends Controller
 
     public function organizations()
     {
-        $workareas= $this->workArea->all();
+        $workareas       = $this->workArea->all();
+        $classifications = $this->classification->all();
 
-        return view('site.organizations', compact('workareas'));
+        return view('site.organizations', compact('workareas', 'classifications'));
     }
 
     public function organization(Organization $organization)
@@ -111,9 +115,10 @@ class SiteController extends Controller
 
     public function create_organization()
     {
+        $isos            = ['SV', 'GT', 'HN', 'CR', 'PA', 'NI', 'MX'];
         $classifications = $this->classification->all();
         $work_areas      = $this->workArea->all();
-        $countries       = $this->country->all();
+        $countries       = $this->country->whereIn('iso', $isos)->get();
 
         return view('site.forms.organization', compact('classifications', 'work_areas', 'countries'));
     }
@@ -133,8 +138,9 @@ class SiteController extends Controller
 
     public function create_formation()
     {
+        $isos       = ['SV', 'GT', 'HN', 'CR', 'PA', 'NI', 'MX'];
         $modalities = $this->modality->all();
-        $countries  = $this->country->all();
+        $countries  = $this->country->whereIn('iso', $isos)->get();
         $types      = $this->formationType->all();
 
         return view('site.forms.formation', compact('modalities', 'countries', 'types'));

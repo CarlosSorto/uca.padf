@@ -134,7 +134,7 @@ $purple: #526DD0;
     height: 100px;
     position: absolute;
     top: 40%;
-    right: -15px;
+    right: -25px;
     display: block;
     border: 0px solid black;
 }
@@ -269,4 +269,14 @@ p, ul {
     .pt-header-l {
         padding-top: 10rem;
     }
+}
+
+.chosen-search-input{
+    font-size: 16px !important;
+    font-family: 'Open Sans', sans-serif !important;
+}
+
+.chosen-results > li {
+    font-size: 16px;
+    font-family: 'Open Sans', sans-serif !important;
 }

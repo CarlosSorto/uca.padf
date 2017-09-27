@@ -15,7 +15,7 @@ $router->get('acerca-del-portal', 'SiteController@about')
        ->name('about');
 $router->get('repositorio-ddhh', 'SiteController@repositories')
        ->name('repositories');
-$router->get('organizaciones-afiliadas', 'SiteController@organizations')
+$router->get('directorio-organizaciones', 'SiteController@organizations')
        ->name('organizations');
 $router->get('formaciones', 'SiteController@formations')
        ->name('formations');
@@ -32,7 +32,7 @@ $router->post('mail', 'SiteController@mail')->name('email.contact');
         ->name('formation');
  $router->get('repositorio-ddhh/{document}', 'SiteController@document')
         ->name('document');
- $router->get('organizaciones-afiliadas/{organization}', 'SiteController@organization')
+ $router->get('directorio-organizaciones/{organization}', 'SiteController@organization')
         ->name('organization');
 
 /*

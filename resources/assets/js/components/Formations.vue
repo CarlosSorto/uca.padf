@@ -1,15 +1,23 @@
 <template>
     <section class="pv4 bg--light-blue">
         <div class="mw8 center ph3-ns">
-            <div class="w-80 center">
-                <input type="text" class="pa2 input-reset ba dib bg-transparent b--light-silver br1 bw1 w-30-l w-100 ma0" placeholder="Palabra Clave" v-model="keyword">
-                <select name="" id="" class="pa2 input-reset dib ba bg-transparent b--light-silver br1 bw1 w-30-l w-100 text--light-blue-50 ma0" v-model="modality">
-                    <option value="" class="text--light-blue-50">Selecciones una Modalidad</option>
+            <div class="w-100 center">
+                <h1 class="tc text--blue fw4 f2">Busca una actividad de interés</h1>
+                <p class="lh-copy f5 silver ma4 w-80 tc center">
+                    A continuación se muestra un motor de búsqueda diseñado especialmente para facilitar la identificación de cursos, talleres, programas, encuentros u otras actividades implementadas a nivel de la región, que puedan resultar de interés en el fortalecimiento del área de derechos humanos.
+                </p>
+                <input type="text" class="pa2 input-reset ba dib bg-transparent b--light-silver br1 bw1 w-25-l w-100 ma0" placeholder="Palabra Clave" v-model="keyword">
+                <select class="pa2 input-reset dib ba bg-transparent b--light-silver br1 bw1 w-25-l w-100 text--light-blue-50 ma0" v-model="modality">
+                    <option value="" class="text--light-blue-50">Seleccione una Modalidad</option>
                     <option :value="modality.id" class="text--light-blue-50" v-for="modality in modalities">{{ modality.name }}</option>
                 </select>
-                <select name="" id="" class="pa2 input-reset dib ba bg-transparent b--light-silver br1 bw1 w-30-l w-100 text--light-blue-50 ma0" v-model="type">
+                <select class="pa2 input-reset dib ba bg-transparent b--light-silver br1 bw1 w-20-l w-100 text--light-blue-50 ma0" v-model="type">
                     <option value="" class="text--light-blue-50">Tipo de Formación</option>
                     <option :value="type.id" class="text--light-blue-50" v-for="type in types">{{ type.name }}</option>
+                </select>
+                <select class="pa2 input-reset dib ba bg-transparent b--light-silver br1 bw1 w-20-l w-100 text--light-blue-50 ma0" v-model="country_id">
+                    <option value="" class="text--light-blue-50">Seleccione un País</option>
+                    <option :value="country.id" class="text--light-blue-50" v-for="country in countries">{{ country.name }}</option>
                 </select>
                 <a @click="get" class="f5 bo--purple fw4 db link ba bw1 pv2 ph3-l text--purple hover-bg--purple hover-white bg-animate tc di-l"><span class="icon-search"></span></a>
             </div>
@@ -71,16 +79,19 @@
                 formations: [],
                 modality: '',
                 type: '',
-                keyword:null,
+                keyword: null,
                 grid: true,
                 list: false,
                 meta: [],
                 page: 1,
                 per_page: 6,
+                countries: [],
+                country_id: ''
             }
         },
         mounted() {
             this.get()
+            this.getCountries()
         },
         methods: {
             get() {
@@ -89,6 +100,7 @@
                         "filter[q][active|eq]": 1,
                         "filter[q][modality_id|eq]": this.modality,
                         "filter[q][type_id|eq]": this.type,
+                        "filter[q][country_id|eq]": this.country_id,
                         "filter[q][title|cont]": this.keyword,
                         "filter[per_page]": this.per_page,
                         "filter[page]": this.page,
@@ -107,6 +119,16 @@
                     this.grid = false
                     this.list = true
                 }
+            },
+            getCountries() {
+                axios.get('/api/countries', {
+                    params: {
+                        "filter[q][iso|in][]": ['SV', 'GT', 'HN', 'CR', 'PA', 'NI'],
+                        "filter[q][DefaultSort|scp]": 1
+                    }
+                }).then( (response) => {
+                    this.countries = response.data.data
+                })
             },
             clickCallback (pageNum) {
                 this.page = pageNum

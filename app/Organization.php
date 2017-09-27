@@ -43,6 +43,9 @@ class Organization extends Model
           'country_id' => [
             'type'=> 'integer',
           ],
+          'classification_id' => [
+            'type'=> 'integer',
+          ],
     ];
 
     public function countryId()

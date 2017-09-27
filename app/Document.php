@@ -83,4 +83,15 @@ class Document extends Model
     {
         return $this->morphOne('App\SearchContent', 'sourceable');
     }
+
+    public function scopeTopic($q, $value)
+    {
+        if (is_null($value)) {
+            return $q;
+        }
+
+        return $q->whereHas('topics', function ($query) use ($value) {
+            $query->where('id', $value);
+        });
+    }
 }
