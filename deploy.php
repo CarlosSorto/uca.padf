@@ -28,6 +28,10 @@ host('www@104.131.130.10')
     ->stage('staging')
     ->set('deploy_path', '/home/www/public/website.uca.iw.sv');
 
+host('ideaworks@201.131.110.177')
+    ->stage('production')
+    ->set('deploy_path', '/home/ideaworks/public/derechoshumanos.uca.edu.sv')
+    ->set('http_user', 'ideaworks');
 
 // Tasks
 
