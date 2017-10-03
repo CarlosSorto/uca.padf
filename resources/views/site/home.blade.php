@@ -29,7 +29,7 @@
                                 <span class="{{ $formation->modality->icon }}"></span>
                                 {{ $formation->modality->name }}
                             </p>
-                            <a href="{{ route('formation', $formation->id) }}" class="f5 fw4 db tc bo--purple link ba bw1 pv2 text--purple hover-bg--purple hover-white bg-animate">Ir a Capacitación</a>
+                            <a href="{{ route('formation', $formation->id) }}" class="f5 fw4 db tc bo--purple link ba bw1 pv2 text--purple hover-bg--purple hover-white bg-animate">Ir a Actividad</a>
                         </div>
                     @endforeach
                 </div>

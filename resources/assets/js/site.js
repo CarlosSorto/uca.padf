@@ -6,7 +6,6 @@ $(document).ready(function(){
             until.config({minDate: this.getDate()});
         }
     });
-
     var until = new Pikaday({
         field: $('#until_date')[0]
     });

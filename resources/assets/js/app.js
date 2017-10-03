@@ -1,6 +1,5 @@
 require('./bootstrap');
 window.Pikaday = require('pikaday');
-require('pikaday/css/pikaday.css');
 require('owl.carousel');
 require('jquery-validation');
 require('jquery-validation/dist/localization/messages_es.js')

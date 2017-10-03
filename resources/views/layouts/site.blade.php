@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' csi.gstatic.com; script-src 'self' maps.googleapis.com cdnjs.cloudflare.com 'unsafe-inline' 'unsafe-eval'; object-src 'none'; style-src 'self' fonts.googleapis.com 'unsafe-inline';img-src 'self' maps.googleapis.com csi.gstatic.com maps.gstatic.com; font-src 'self' fonts.gstatic.com fonts.gstatic.com">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' csi.gstatic.com; script-src 'self' maps.googleapis.com cdnjs.cloudflare.com 'unsafe-inline' 'unsafe-eval'; object-src 'none'; style-src 'self' fonts.googleapis.com 'unsafe-inline'; font-src 'self' fonts.gstatic.com fonts.gstatic.com">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
