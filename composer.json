@@ -7,12 +7,12 @@
     "repositories": [
         {
             "type":"vcs",
-            "url":"git@git.iw.sv:it/api-laravel.git"
+            "url":"git@github.com:CarlosSorto/uca.padf.git"
         }
     ],
     "require": {
         "php": ">=5.6.4",
-        "iw/api": "dev-master",
+        "CarlosSorto": "dev-master",
         "jenssegers/date": "^3.2",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",

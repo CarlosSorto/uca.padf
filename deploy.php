@@ -6,7 +6,7 @@ require 'recipe/laravel.php';
 
 // Configuration
 
-set('repository', 'git@git.iw.sv:padf/uca.padf.git');
+set('repository', 'git@github.com:CarlosSorto/uca.padf.git');
 set('branch', 'develop');
 set('http_user', 'www');
 set('git_tty', true); // [Optional] Allocate tty for git on first deployment
